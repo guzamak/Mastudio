@@ -10,6 +10,8 @@ import app.components.fonts.IBMPlexSansThaiFont;
 import app.components.lib.MaOptionPane;
 import app.components.lib.Macolor;
 import java.awt.Color;
+import app.lib.PocketBaseClient;
+import app.lib.PocketBaseClient.PBResponse;
 
 /**
  *
@@ -17,6 +19,16 @@ import java.awt.Color;
  */
 public class SignInFrame extends MaFrame {
     
+    private PocketBaseClient pb = new PocketBaseClient("https://studiodb.hostmy.photos");
+    private PBResponse pbClient;
+    {
+        try {
+            pbClient = pb.authWithPassword("_superusers", System.getenv("SUPERUSERS_USERNAME"), System.getenv("SUPERUSERS_PASSWORD"));
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Authentication error", ex);
+            pbClient = null;
+        }
+    }
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SignInFrame.class.getName());
 
     /**
@@ -180,7 +192,16 @@ public class SignInFrame extends MaFrame {
             String user = username.getText();
             String pass = new String(password.getPassword());
 
-            if (user.equals("admin") && pass.equals("1234")) {
+            String adminId = System.getenv("ADMIN_ID");
+            PBResponse admin = null;
+            try {
+                admin = pb.getRecord("java_login", adminId);
+            } catch (java.io.IOException | InterruptedException ex) {
+                logger.log(java.util.logging.Level.SEVERE, "Error fetching admin record", ex);
+                MaOptionPane.showMessageDialog(this, "เกิดข้อผิดพลาดระหว่างดึงข้อมูลผู้ดูแลระบบ");
+            }
+
+            if (user.equals(admin.getJsonString("username")) && pass.equals(admin.getJsonString("password"))) {
 
                 MaOptionPane.showMessageDialog(this, "การเข้าสู่ระบบสำเร็จ");
 
