@@ -9,15 +9,40 @@ package app.ui;
  * @author poke
  */
 import app.components.lib.MaFrame;
+import app.components.lib.MaLabel;
+import app.components.lib.MaTextField;
+import app.components.fonts.IBMPlexSansThaiFont;
+import app.lib.PocketBaseClient;
+import app.lib.PocketBaseClient.PBResponse;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.TextField;
+import java.util.List;
+import javax.swing.BoxLayout;
+import javax.swing.BorderFactory;
+
 public class DashboardFrame extends MaFrame{
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardFrame.class.getName());
+
+    // PocetBase
+    private PocketBaseClient pb = new PocketBaseClient("https://studiodb.hostmy.photos");
+    private PBResponse pbClient;
+    {
+        try {
+            pbClient = pb.authWithPassword("_superusers", System.getenv("SUPERUSERS_USERNAME"), System.getenv("SUPERUSERS_PASSWORD"));
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Authentication error", ex);
+            pbClient = null;
+        }
+    }
 
     /**
      * Creates new form DashboardFrame
      */
     public DashboardFrame() {
         initComponents();
+        loadBookings();
     }
 
     /**
@@ -112,6 +137,46 @@ public class DashboardFrame extends MaFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loadBookings() {
+        if (!pb.isAuthenticated()) return;
+
+        try {
+            PBResponse res = pb.getRecords("bookings");
+            if (!res.isOk()) {
+                logger.warning("Failed to load bookings: " + res.getStatusCode());
+                return;
+            }
+
+            jPanel3.removeAll();
+            jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
+
+            List<String> items = res.getItems();
+            for (String item : items) {
+                String bookingNumber = PocketBaseClient.extractJsonString(item, "booking_number");
+                String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
+                System.out.println("item: " + item);
+                javax.swing.JPanel card = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
+                card.setBackground(Color.WHITE);
+                card.setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
+
+                MaLabel label = new MaLabel();
+                MaTextField textField = new MaTextField();
+                textField.setText(customerName);
+                label.setText(bookingNumber != null ? bookingNumber : "—");
+                label.setFont(IBMPlexSansThaiFont.medium(14f));
+                card.add(label);
+                card.add(textField);
+
+                jPanel3.add(card);
+            }
+
+            jPanel3.revalidate();
+            jPanel3.repaint();
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to load bookings", ex);
+        }
+    }
 
     /**
      * @param args the command line arguments

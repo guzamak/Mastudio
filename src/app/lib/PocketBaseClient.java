@@ -7,6 +7,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -144,6 +146,16 @@ public class PocketBaseClient {
         return URLEncoder.encode(value, StandardCharsets.UTF_8);
     }
 
+    /**
+     * Extract a string value by key from a raw JSON string.
+     * Usable on individual items returned by PBResponse.getItems().
+     */
+    public static String extractJsonString(String json, String key) {
+        Pattern p = Pattern.compile("\"" + Pattern.quote(key) + "\"\\s*:\\s*\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\"");
+        Matcher m = p.matcher(json);
+        return m.find() ? m.group(1).replace("\\\"", "\"").replace("\\\\", "\\") : null;
+    }
+
     // --- Response wrapper ---
 
     public static class PBResponse {
@@ -167,14 +179,39 @@ public class PocketBaseClient {
             return statusCode >= 200 && statusCode < 300;
         }
 
-        /**
-         * Extract a top-level string value from the JSON response by key.
-         * Works for simple flat fields like "token", "id", "email", etc.
-         */
         public String getJsonString(String key) {
-            Pattern p = Pattern.compile("\"" + Pattern.quote(key) + "\"\\s*:\\s*\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\"");
-            Matcher m = p.matcher(body);
-            return m.find() ? m.group(1).replace("\\\"", "\"").replace("\\\\", "\\") : null;
+            return extractJsonString(body, key);
+        }
+
+        /**
+         * Parse the "items" array from a PocketBase list response.
+         * Each element is the raw JSON string of one record.
+         */
+        public List<String> getItems() {
+            int arrStart = body.indexOf("\"items\"");
+            if (arrStart == -1) return List.of();
+            int bracketOpen = body.indexOf('[', arrStart);
+            if (bracketOpen == -1) return List.of();
+
+            List<String> items = new ArrayList<>();
+            int depth = 0;
+            int objStart = -1;
+            for (int i = bracketOpen; i < body.length(); i++) {
+                char c = body.charAt(i);
+                if (c == '{') {
+                    if (depth == 0) objStart = i;
+                    depth++;
+                } else if (c == '}') {
+                    depth--;
+                    if (depth == 0 && objStart != -1) {
+                        items.add(body.substring(objStart, i + 1));
+                        objStart = -1;
+                    }
+                } else if (c == ']' && depth == 0) {
+                    break;
+                }
+            }
+            return items;
         }
 
         @Override
