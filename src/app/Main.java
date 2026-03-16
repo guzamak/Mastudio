@@ -8,10 +8,10 @@ package app;
  *
  * @author poke
  */
-import app.ui.SignInFrame;
+import feature.auth.presentation.SignInFrame;
 
 public class Main {
     public static void main(String[] args) {
-         new SignInFrame().setVisible(true);
+        java.awt.EventQueue.invokeLater(() -> new SignInFrame().setVisible(true));
     }
 }

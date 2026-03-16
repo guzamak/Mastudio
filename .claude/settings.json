@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//Users/puttipong/Documents/GitHub/Mastudio/**)",
+      "Bash(done)",
+      "Bash(sed -i '' 's/^package app\\\\.components\\\\.lib;/package core.component;/' src/core/component/MaButton.java src/core/component/MaComboBox.java src/core/component/MaFrame.java src/core/component/MaLabel.java src/core/component/MaOptionPane.java src/core/component/MaPasswordField.java src/core/component/MaTextField.java src/core/component/Macolor.java)",
+      "Bash(sed -i '' 's/^package app\\\\.components\\\\.fonts;/package core.component.font;/' src/core/component/font/IBMPlexSansThaiFont.java)",
+      "Bash(sed -i '' 's/^package app\\\\.lib;/package data.pocketbase;/' src/data/pocketbase/PocketBaseClient.java)",
+      "Bash(sed -i '' 's/^package app\\\\.components\\\\.dashboard;/package feature.dashboard.component;/' src/feature/dashboard/component/NavLabel.java)",
+      "Bash(sed -i '' 's/^package app\\\\.ui;/package feature.dashboard.presentation;/' src/feature/dashboard/presentation/DashboardFrame.java src/feature/dashboard/presentation/DashboardFrameExample.java)",
+      "Bash(sed -i '' 's/^package app\\\\.ui;/package feature.auth.presentation;/' src/feature/auth/presentation/SignInFrameExample.java)"
+    ],
+    "additionalDirectories": [
+      "/Users/puttipong/Documents/GitHub/Mastudio/src/core/component"
+    ]
+  }
+}
