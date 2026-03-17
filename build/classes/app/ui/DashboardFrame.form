@@ -81,7 +81,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="Logoutbtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="refreshButton" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="refreshButton" min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -102,13 +102,21 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="navLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="maLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Logoutbtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="refreshButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="maLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Logoutbtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="refreshButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="maPanel2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -811,6 +819,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshButtonActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="ImageIcon icon = new ImageIcon(&quot;src/resources/images/refresh.png&quot;);&#xa;&#xa;Image img = icon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);&#xa;refreshButton.setIcon(new ImageIcon(img));&#xa;refreshButton.setText(null);&#xa;refreshButton.setBorderColor(Macolor.trans);&#xa;refreshButton.setBackground(Macolor.trans);&#xa;// Code adding the component to the parent container - not shown here"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
