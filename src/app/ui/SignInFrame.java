@@ -12,6 +12,7 @@ import app.components.lib.Macolor;
 import java.awt.Color;
 import app.lib.PocketBaseClient;
 import app.lib.PocketBaseClient.PBResponse;
+import app.lib.SessionManager;
 
 /**
  *
@@ -204,9 +205,10 @@ public class SignInFrame extends MaFrame {
 
             if (user.equals(admin.getJsonString("username")) && pass.equals(admin.getJsonString("password"))) {
 
+                SessionManager.saveSession(user, pb.getAuthToken());
+
                 MaOptionPane.showMessageDialog(this, "การเข้าสู่ระบบสำเร็จ");
 
-//                dispose signIn Frame
                 dispose();
                 new DashboardFrame().setVisible(true);
 

@@ -71,37 +71,34 @@ public class MaButton extends JButton {
 
     @Override
     protected void paintComponent(Graphics g) {
-
         Graphics2D g2 = (Graphics2D) g.create();
-
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(getBackground());
 
-        if(round){
-            g2.fillRoundRect(0,0,getWidth(),getHeight(),arc,arc);
-        }else{
-            g2.fillRect(0,0,getWidth(),getHeight());
+        if (round) {
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), arc, arc);
+        } else {
+            g2.fillRect(0, 0, getWidth(), getHeight());
         }
+        g2.dispose();
 
         super.paintComponent(g);
-        g2.dispose();
     }
 
     @Override
     protected void paintBorder(Graphics g) {
-
-        if(borderSize > 0){
-
+        if (borderSize > 0) {
             Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g2.setColor(borderColor);
             g2.setStroke(new BasicStroke(borderSize));
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            if(round){
-                g2.drawRoundRect(0,0,getWidth()-1,getHeight()-1,arc,arc);
-            }else{
-                g2.drawRect(0,0,getWidth()-1,getHeight()-1);
+            int inset = borderSize / 2;
+            if (round) {
+                g2.drawRoundRect(inset, inset, getWidth() - borderSize, getHeight() - borderSize, arc, arc);
+            } else {
+                g2.drawRect(inset, inset, getWidth() - borderSize, getHeight() - borderSize);
             }
-
             g2.dispose();
         }
     }

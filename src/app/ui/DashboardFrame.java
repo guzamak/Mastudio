@@ -14,6 +14,7 @@ import app.components.lib.MaTable;
 import app.components.fonts.IBMPlexSansThaiFont;
 import app.lib.PocketBaseClient;
 import app.lib.PocketBaseClient.PBResponse;
+import app.lib.SessionManager;
 import java.awt.Color;
 import java.awt.*;
 import java.awt.FlowLayout;
@@ -48,6 +49,7 @@ public class DashboardFrame extends MaFrame {
      */
     public DashboardFrame() {
         initComponents();
+
         loadBookings();
     }
 
@@ -80,6 +82,7 @@ public class DashboardFrame extends MaFrame {
         Logoutbtn = new app.components.lib.MaButton();
         maLabel1 = new app.components.lib.MaLabel();
         maTable3 = new app.components.lib.MaTable();
+        refreshButton = new app.components.lib.MaButton();
 
         javax.swing.GroupLayout bookingFrame1Layout = new javax.swing.GroupLayout(bookingFrame1.getContentPane());
         bookingFrame1.getContentPane().setLayout(bookingFrame1Layout);
@@ -197,6 +200,9 @@ public class DashboardFrame extends MaFrame {
         maLabel1.setText("ADMIN");
         maLabel1.setFont(IBMPlexSansThaiFont.medium(14f));
 
+        refreshButton.setText("Refresh");
+        refreshButton.addActionListener(this::refreshButtonActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -215,7 +221,9 @@ public class DashboardFrame extends MaFrame {
                                 .addGap(31, 31, 31)
                                 .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(Logoutbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(Logoutbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(maTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -232,7 +240,8 @@ public class DashboardFrame extends MaFrame {
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Logoutbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Logoutbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(maPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -249,7 +258,7 @@ public class DashboardFrame extends MaFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LogoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutbtnActionPerformed
-        // TODO add your handling code here:
+        SessionManager.clearSession();
         dispose();
         new SignInFrame().setVisible(true);
     }//GEN-LAST:event_LogoutbtnActionPerformed
@@ -261,6 +270,10 @@ public class DashboardFrame extends MaFrame {
     private void maButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_maButton5ActionPerformed
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        loadBookings();
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void loadBookings() {
         if (!pb.isAuthenticated()) {
@@ -389,5 +402,6 @@ try {
     private app.components.lib.MaTable maTable2;
     private app.components.lib.MaTable maTable3;
     private app.components.dashboard.NavLabel navLabel;
+    private app.components.lib.MaButton refreshButton;
     // End of variables declaration//GEN-END:variables
 }

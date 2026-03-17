@@ -9,19 +9,22 @@ package app;
  * @author poke
  */
 import app.components.lib.MaScrollBar;
+import app.lib.SessionManager;
+import app.ui.DashboardFrame;
 import app.ui.SignInFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 public class Main {
     public static void main(String[] args) {
-         UIManager.put("ScrollBarUI", MaScrollBar.class.getName());
+        UIManager.put("ScrollBarUI", MaScrollBar.class.getName());
 
-//           UIManager.put("ScrollBarUI", "myui.MaScrollBarUI");
-
-    SwingUtilities.invokeLater(() -> {
-        new SignInFrame().setVisible(true);
-    });
-
+        SwingUtilities.invokeLater(() -> {
+            if (SessionManager.hasSession()) {
+                new DashboardFrame().setVisible(true);
+            } else {
+                new SignInFrame().setVisible(true);
+            }
+        });
     }
 }

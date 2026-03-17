@@ -80,6 +80,8 @@
                               <Component id="maLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="Logoutbtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="refreshButton" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -104,6 +106,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="maLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Logoutbtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="refreshButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="maPanel2" min="-2" max="-2" attributes="0"/>
@@ -800,6 +803,14 @@
       </AuxValues>
     </Component>
     <Component class="app.components.lib.MaTable" name="maTable3">
+    </Component>
+    <Component class="app.components.lib.MaButton" name="refreshButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Refresh"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
