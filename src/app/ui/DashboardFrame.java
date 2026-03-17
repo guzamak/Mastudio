@@ -62,7 +62,6 @@ public class DashboardFrame extends MaFrame{
         maLabel1 = new app.components.lib.MaLabel();
         maLabel2 = new app.components.lib.MaLabel();
         jPanel3 = new javax.swing.JPanel();
-        maButton1 = new app.components.lib.MaButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,23 +84,15 @@ public class DashboardFrame extends MaFrame{
 
         jPanel3.setBackground(new java.awt.Color(0, 255, 0));
 
-        maButton1.setText("maButton1");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(884, Short.MAX_VALUE))
+            .addGap(0, 1010, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+            .addGap(0, 188, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -207,7 +198,6 @@ public class DashboardFrame extends MaFrame{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private app.components.lib.MaButton maButton1;
     private app.components.lib.MaLabel maLabel1;
     private app.components.lib.MaLabel maLabel2;
     private app.components.dashboard.NavLabel navLabel;

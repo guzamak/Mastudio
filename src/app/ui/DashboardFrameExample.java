@@ -11,6 +11,7 @@ package app.ui;
 import app.components.dashboard.NavLabel;
 import app.components.lib.MaComboBox;
 import app.components.lib.MaFrame;
+import app.components.lib.MaTable;
 import javax.swing.*;
 import java.awt.*;
 
@@ -37,6 +38,21 @@ public class DashboardFrameExample extends MaFrame {
         add(cb);
         add(navlabel);  
 //        add(panel, BorderLayout.CENTER);
+
+ // create table
+        MaTable table = new MaTable();
+
+        // set columns
+        table.getModel().setColumnIdentifiers(new Object[]{
+            "ID", "Name", "Age"
+        });
+
+        // add rows
+        table.getModel().addRow(new Object[]{1,"John",20});
+        table.getModel().addRow(new Object[]{2,"Anna",22});
+        table.getModel().addRow(new Object[]{3,"Mike",25});
+
+        add(table, BorderLayout.CENTER);
     }
 //    use for test code
     public static void main(String[] args) {
