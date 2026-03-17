@@ -63,7 +63,8 @@ public class MaPanel extends JPanel {
         repaint();
     }
 
-    public void setFieldColor(Color color) {
+    @Override
+    public void setBackground(Color color) {
         this.backgroundColor = color;
         repaint();
     }

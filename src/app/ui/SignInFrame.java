@@ -107,6 +107,7 @@ public class SignInFrame extends MaFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("เข้าสู่ระบบ");
 
         jPanel1.setMinimumSize(new java.awt.Dimension(400, 500));
         jPanel1.setBackground(Macolor.seablue);

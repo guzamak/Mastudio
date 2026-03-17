@@ -94,6 +94,7 @@ public class MaButton extends JButton {
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setColor(borderColor);
             g2.setStroke(new BasicStroke(borderSize));
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
             if(round){
                 g2.drawRoundRect(0,0,getWidth()-1,getHeight()-1,arc,arc);

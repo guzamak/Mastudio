@@ -122,7 +122,7 @@ public class MaTextField extends JTextField {
             g2.fillRect(0, 0, getWidth(), getHeight());
         }
 
-//        draw other thing
+//        draw other thing like text and i dont know everything expect bg
 //        important pls set setOpaque(false); to false to not paint bg
         super.paintComponent(g);
         g2.dispose();

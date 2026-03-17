@@ -29,6 +29,7 @@ public class MaList<E> extends JList<E> {
     private int padRight = 0;
     
     public MaList() {
+//        JScrollPane scroll = new JScrollPane(list);
         setDefaultStyle();
     }
 

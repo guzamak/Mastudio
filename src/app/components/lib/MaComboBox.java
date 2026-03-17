@@ -45,7 +45,6 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
         add(display, BorderLayout.CENTER);
         add(arrow, BorderLayout.EAST);
 
-        // register listeners
         arrow.addActionListener(this);
         display.addMouseListener(this);
 
@@ -58,6 +57,8 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
         JScrollPane scroll = new JScrollPane(list);
         scroll.setBorder(null);
         scroll.setPreferredSize(new Dimension(200,120));
+        scroll.getVerticalScrollBar().setUI(new MaScrollBar());
+        scroll.getHorizontalScrollBar().setUI(new MaScrollBar());
 
         popup.add(scroll);
     }
@@ -85,10 +86,6 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
         repaint();
     }
 
-    // ========================
-    // ActionListener
-    // ========================
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -100,9 +97,6 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
 
     }
 
-    // ========================
-    // MouseListener
-    // ========================
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -138,9 +132,7 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
     @Override
     public void mouseExited(MouseEvent e) {}
 
-    // ========================
-    // Paint
-    // ========================
+    
 
     @Override
     protected void paintComponent(Graphics g) {

@@ -9,25 +9,31 @@ package app.ui;
  * @author poke
  */
 import app.components.lib.MaFrame;
-import app.components.lib.MaLabel;
-import app.components.lib.MaTextField;
+import app.components.lib.*;
+import app.components.lib.MaTable;
 import app.components.fonts.IBMPlexSansThaiFont;
 import app.lib.PocketBaseClient;
 import app.lib.PocketBaseClient.PBResponse;
 import java.awt.Color;
+import java.awt.*;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.TextField;
 import java.util.List;
 import javax.swing.BoxLayout;
-import javax.swing.BorderFactory;
+import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.table.*;
+import java.util.*;
+public class DashboardFrame extends MaFrame {
 
-public class DashboardFrame extends MaFrame{
-    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardFrame.class.getName());
+    private MaTable maTable1;
 
     // PocetBase
     private PocketBaseClient pb = new PocketBaseClient("https://studiodb.hostmy.photos");
     private PBResponse pbClient;
+
     {
         try {
             pbClient = pb.authWithPassword("_superusers", System.getenv("SUPERUSERS_USERNAME"), System.getenv("SUPERUSERS_PASSWORD"));
@@ -55,115 +61,285 @@ public class DashboardFrame extends MaFrame{
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
+        bookingFrame1 = new app.ui.BookingFrame();
+        maTable2 = new app.components.lib.MaTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         navLabel = new app.components.dashboard.NavLabel();
         navLabel.setExtraText("DashBoard.");
-        jPanel2 = new javax.swing.JPanel();
+        maPanel2 = new app.components.lib.MaPanel();
+        imageLabel1 = new app.components.lib.ImageLabel();
+        imageLabel2 = new app.components.lib.ImageLabel();
+        maPanel1 = new app.components.lib.MaPanel();
+        maButton5 = new app.components.lib.MaButton();
+        maButton4 = new app.components.lib.MaButton();
+        maButton7 = new app.components.lib.MaButton();
+        maButton2 = new app.components.lib.MaButton();
+        maButton3 = new app.components.lib.MaButton();
+        maButton6 = new app.components.lib.MaButton();
+        Logoutbtn = new app.components.lib.MaButton();
         maLabel1 = new app.components.lib.MaLabel();
-        maLabel2 = new app.components.lib.MaLabel();
-        jPanel3 = new javax.swing.JPanel();
+        maTable3 = new app.components.lib.MaTable();
+
+        javax.swing.GroupLayout bookingFrame1Layout = new javax.swing.GroupLayout(bookingFrame1.getContentPane());
+        bookingFrame1.getContentPane().setLayout(bookingFrame1Layout);
+        bookingFrame1Layout.setHorizontalGroup(
+            bookingFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+        bookingFrame1Layout.setVerticalGroup(
+            bookingFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Dashboard");
 
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        maPanel2.setBorderColor(Macolor.trans);
+        java.awt.GridBagLayout maPanel2Layout = new java.awt.GridBagLayout();
+        maPanel2Layout.columnWidths = new int[] {0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0};
+        maPanel2Layout.rowHeights = new int[] {0};
+        maPanel2.setLayout(maPanel2Layout);
 
-        jPanel2.setBackground(new java.awt.Color(255, 0, 0));
-        java.awt.GridBagLayout jPanel2Layout = new java.awt.GridBagLayout();
-        jPanel2Layout.columnWidths = new int[] {0, 12, 0, 12, 0, 12, 0, 12, 0, 12, 0, 12, 0};
-        jPanel2Layout.rowHeights = new int[] {0};
-        jPanel2.setLayout(jPanel2Layout);
-
-        maLabel1.setText("maLabel1");
+        imageLabel1.setImage("src/resources/images/Profile.png");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        jPanel2.add(maLabel1, gridBagConstraints);
+        maPanel2.add(imageLabel1, gridBagConstraints);
 
-        maLabel2.setText("maLabel2");
-        jPanel2.add(maLabel2, new java.awt.GridBagConstraints());
+        imageLabel2.setImage("src/resources/images/Profile.png");
 
-        jPanel3.setBackground(new java.awt.Color(0, 255, 0));
+        maPanel1.setBackground(Color.WHITE);
+        maPanel1.setBorderColor(Macolor.magreen);
+        maPanel1.setPadding(20);
+        java.awt.GridBagLayout maPanel1Layout = new java.awt.GridBagLayout();
+        maPanel1Layout.columnWidths = new int[] {0, 22, 0, 22, 0};
+        maPanel1Layout.rowHeights = new int[] {0, 16, 0, 16, 0};
+        maPanel1.setLayout(maPanel1Layout);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
-        );
+        maButton5.setText("ประวัติการโอนเงิน");
+        maButton5.setBorderColor(Macolor.magreen);
+        maButton5.setButtonColor(Macolor.seablue);
+        maButton5.setTextColor(Macolor.magreen);
+        maButton5.addActionListener(this::maButton5ActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        maPanel1.add(maButton5, gridBagConstraints);
+
+        maButton4.setText("จัดการเเละออกใบเสร็จ");
+        maButton4.setBorderColor(Macolor.magreen);
+        maButton4.setButtonColor(Macolor.seablue);
+        maButton4.setTextColor(Macolor.magreen);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        maPanel1.add(maButton4, gridBagConstraints);
+
+        maButton7.setText("จัดการห้องเเละอุปกรณ์");
+        maButton7.setBorderColor(Macolor.magreen);
+        maButton7.setButtonColor(Macolor.seablue);
+        maButton7.setTextColor(Macolor.magreen);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        maPanel1.add(maButton7, gridBagConstraints);
+
+        maButton2.setText("จัดการการจอง");
+        maButton2.setBorderColor(Macolor.magreen);
+        maButton2.setButtonColor(Macolor.seablue);
+        maButton2.setTextColor(Macolor.magreen);
+        maButton2.addActionListener(this::maButton2ActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        maPanel1.add(maButton2, gridBagConstraints);
+
+        maButton3.setText("เเก้ไขอุปกรณ์เเต่ละห้อง");
+        maButton3.setBorderColor(Macolor.magreen);
+        maButton3.setButtonColor(Macolor.seablue);
+        maButton3.setTextColor(Macolor.magreen);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        maPanel1.add(maButton3, gridBagConstraints);
+
+        maButton6.setText("ตารางคิวงาน");
+        maButton6.setBorderColor(Macolor.magreen);
+        maButton6.setButtonColor(Macolor.seablue);
+        maButton6.setTextColor(Macolor.magreen);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        maPanel1.add(maButton6, gridBagConstraints);
+
+        Logoutbtn.setText("ออกจากระบบ");
+        Logoutbtn.setButtonColor(Macolor.trans);
+        Logoutbtn.setBorderColor(Macolor.mared);
+        Logoutbtn.setTextColor(Macolor.mared);
+        Logoutbtn.addActionListener(this::LogoutbtnActionPerformed);
+
+        maLabel1.setText("ADMIN");
+        maLabel1.setFont(IBMPlexSansThaiFont.medium(14f));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(navLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(imageLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(maPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Logoutbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(maTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(navLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
+                        .addComponent(navLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Logoutbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(maPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(imageLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(maTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loadBookings() {
-        if (!pb.isAuthenticated()) return;
+    private void LogoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutbtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new SignInFrame().setVisible(true);
+    }//GEN-LAST:event_LogoutbtnActionPerformed
 
-        try {
-            PBResponse res = pb.getRecords("bookings");
+    private void maButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maButton2ActionPerformed
+
+    private void maButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maButton5ActionPerformed
+
+    private void loadBookings() {
+        if (!pb.isAuthenticated()) {
+            return;
+        }
+
+//        try {
+//            PBResponse res = pb.getRecords("java_book");
+//            if (!res.isOk()) {
+//                logger.warning("Failed to load bookings: " + res.getStatusCode());
+//                return;
+//            }
+//
+//            jPanel3.removeAll();
+//            jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
+//
+        ////            List<String> items = res.getItems();
+////            for (String item : items) {
+////                String bookingNumber = PocketBaseClient.extractJsonString(item, "booking_number");
+////                String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
+////                System.out.println("item: " + item);
+////                javax.swing.JPanel card = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
+////                card.setBackground(Color.WHITE);
+////                card.setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
+////
+////                MaLabel label = new MaLabel();
+////                MaTextField textField = new MaTextField();
+////                textField.setText(customerName);
+////                label.setText(bookingNumber != null ? bookingNumber : "—");
+////                label.setFont(IBMPlexSansThaiFont.medium(14f));
+////                card.add(label);
+////                card.add(textField);
+////
+////                jPanel3.add(card);
+////            }
+////
+////            jPanel3.revalidate();
+////            jPanel3.repaint();
+//        } catch (java.io.IOException | InterruptedException ex) {
+//            logger.log(java.util.logging.Level.SEVERE, "Failed to load bookings", ex);
+//        }
+
+try {
+            PBResponse res = pb.getRecords("java_book");
+
             if (!res.isOk()) {
                 logger.warning("Failed to load bookings: " + res.getStatusCode());
                 return;
             }
 
-            jPanel3.removeAll();
-            jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
+      ArrayList<String> columns = new ArrayList<>();
+        columns.add("Room Name");
+        columns.add("Customer Name");
+        columns.add("Check In");
+        columns.add("Check Out");
 
-            List<String> items = res.getItems();
-            for (String item : items) {
-                String bookingNumber = PocketBaseClient.extractJsonString(item, "booking_number");
-                String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
-                System.out.println("item: " + item);
-                javax.swing.JPanel card = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
-                card.setBackground(Color.WHITE);
-                card.setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
+        ArrayList<Object[]> rows = new ArrayList<>();
 
-                MaLabel label = new MaLabel();
-                MaTextField textField = new MaTextField();
-                textField.setText(customerName);
-                label.setText(bookingNumber != null ? bookingNumber : "—");
-                label.setFont(IBMPlexSansThaiFont.medium(14f));
-                card.add(label);
-                card.add(textField);
+        List<String> items = res.getItems();
 
-                jPanel3.add(card);
-            }
+        for (String item : items) {
 
-            jPanel3.revalidate();
-            jPanel3.repaint();
+            String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
+            String checkIn = PocketBaseClient.extractJsonString(item, "checkIn_time");
+            String checkOut = PocketBaseClient.extractJsonString(item, "checkOut_time");
+            String roomName = PocketBaseClient.extractJsonString(item, "room_name");
+
+            rows.add(new Object[]{
+                roomName,
+                customerName,
+                checkIn,
+                checkOut
+            });
+        }
+
+        maTable3.updateView(columns, rows);
+
+ 
+
         } catch (java.io.IOException | InterruptedException ex) {
             logger.log(java.util.logging.Level.SEVERE, "Failed to load bookings", ex);
         }
@@ -195,11 +371,23 @@ public class DashboardFrame extends MaFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private app.components.lib.MaButton Logoutbtn;
+    private app.ui.BookingFrame bookingFrame1;
+    private app.components.lib.ImageLabel imageLabel1;
+    private app.components.lib.ImageLabel imageLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private app.components.lib.MaButton maButton2;
+    private app.components.lib.MaButton maButton3;
+    private app.components.lib.MaButton maButton4;
+    private app.components.lib.MaButton maButton5;
+    private app.components.lib.MaButton maButton6;
+    private app.components.lib.MaButton maButton7;
     private app.components.lib.MaLabel maLabel1;
-    private app.components.lib.MaLabel maLabel2;
+    private app.components.lib.MaPanel maPanel1;
+    private app.components.lib.MaPanel maPanel2;
+    private app.components.lib.MaTable maTable2;
+    private app.components.lib.MaTable maTable3;
     private app.components.dashboard.NavLabel navLabel;
     // End of variables declaration//GEN-END:variables
 }

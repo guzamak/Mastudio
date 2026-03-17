@@ -22,6 +22,6 @@ public class MaFrame extends JFrame {
 //        System.out.println(icon.getImage());
         setIconImage(icon.getImage());
         getContentPane().setBackground(new Color(240,248,255));
-//        setResizable(false);
+        setResizable(false);
     }
 }
