@@ -4,14 +4,10 @@
  */
 package app;
 
-/**
- *
- * @author poke
- */
-import app.components.lib.MaScrollBar;
-import app.lib.SessionManager;
-import app.ui.DashboardFrame;
-import app.ui.SignInFrame;
+import app.core.components.MaScrollBar;
+import app.model.session.SessionManager;
+import app.presentation.auth.view.SignInFrame;
+import app.presentation.dashboard.view.DashboardFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 

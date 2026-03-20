@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -h \"^package\" /Users/puttipong/Documents/GitHub/Mastudio/src/app/**/*.java)"
+    ]
+  }
+}
