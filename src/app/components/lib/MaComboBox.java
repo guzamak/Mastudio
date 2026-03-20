@@ -20,6 +20,7 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
     private MaButton arrow;
 
     private JPopupMenu popup;
+    private JWindow popupWindow;
     private MaList<E> list;
 
     private int arc = 20;
@@ -56,12 +57,14 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
         panel.setBorderColor(Macolor.trans);
 
 //        popup.setBorder(null); now work need this to work i dkw
-        Border redLine = BorderFactory.createLineBorder(Color.RED, 0); 
-        Border emptyPadding = BorderFactory.createEmptyBorder(1, 1, 1, 1); 
-        Border compoundBorder = BorderFactory.createCompoundBorder(redLine, emptyPadding); 
-        popup = new JPopupMenu();
-        popup.setBackground(Macolor.trans);
-        popup.setBorder(compoundBorder);
+//        Border redLine = BorderFactory.createLineBorder(Color.RED, 0); 
+//        Border emptyPadding = BorderFactory.createEmptyBorder(1, 1, 1, 1); 
+//        Border compoundBorder = BorderFactory.createCompoundBorder(redLine, emptyPadding); 
+//        popup = new JPopupMenu();
+//        popup.setLightWeightPopupEnabled(true);
+//        if popup append outside of frame it will create bg anyway but jwindow not
+//        popup.setBackground(Macolor.trans);
+//        popup.setBorder(compoundBorder);
 
 //      I cant fix bg and border of it 
         MaScrollPane scroll = new MaScrollPane(list);
@@ -71,18 +74,52 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
 //        scroll.getViewport().setBackground(Macolor.trans);
 //        scroll.getViewport().setBorder(null);
 
-        popup.add(panel);
+popupWindow = new JWindow();
+popupWindow.setBackground(new Color(0,0,0,0)); // true transparency
+popupWindow.add(panel);
+popupWindow.pack();
+popupWindow.setVisible(false);
+//        popup.add(panel);
     }
 
+//    private void togglePopup() {
+//
+//        if (popup.isVisible()) {
+//            popup.setVisible(false);
+//        } else {
+//            popup.show(this, 0, getHeight());
+//        }
+//
+//    }
     private void togglePopup() {
 
-        if (popup.isVisible()) {
-            popup.setVisible(false);
+    if (popupWindow.isVisible()) {
+        popupWindow.setVisible(false);
+        return;
+    }
+
+    try {
+//        get checkbox location + checkbox hieght to find y and x = same as checkbox  
+        Point p = getLocationOnScreen();
+
+        int popupHeight = popupWindow.getHeight();
+        int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+
+        int y;
+//        if y + pophp height out of screen make it another wway
+        if (p.y + getHeight() + popupHeight > screenHeight) {
+            y = p.y - popupHeight;
         } else {
-            popup.show(this, 0, getHeight());
+            y = p.y + getHeight();
         }
 
+        popupWindow.setLocation(p.x, y);
+        popupWindow.setVisible(true);
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
 
     public void setList(E[] items) {
         list.setListData(items);
