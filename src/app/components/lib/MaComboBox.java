@@ -22,6 +22,7 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
     private JPopupMenu popup;
     private JWindow popupWindow;
     private MaList<E> list;
+    private MaScrollPane scroll;
 
     private int arc = 20;
 
@@ -65,20 +66,20 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
 //        if popup append outside of frame it will create bg anyway but jwindow not
 //        popup.setBackground(Macolor.trans);
 //        popup.setBorder(compoundBorder);
-
 //      I cant fix bg and border of it 
-        MaScrollPane scroll = new MaScrollPane(list);
+        scroll = new MaScrollPane(list);
         panel.add(scroll, BorderLayout.CENTER);
-        scroll.setPreferredSize(new Dimension(200, 120));
+//        not work
+//        scroll.setPreferredSize(new Dimension(display.getwidth(), 120));
 //        scroll.getViewport().setOpaque(false);
 //        scroll.getViewport().setBackground(Macolor.trans);
 //        scroll.getViewport().setBorder(null);
 
-popupWindow = new JWindow();
-popupWindow.setBackground(new Color(0,0,0,0)); // true transparency
-popupWindow.add(panel);
-popupWindow.pack();
-popupWindow.setVisible(false);
+        popupWindow = new JWindow();
+        popupWindow.setBackground(new Color(0, 0, 0, 0)); // true transparency
+        popupWindow.add(panel);
+        popupWindow.pack();
+        popupWindow.setVisible(false);
 //        popup.add(panel);
     }
 
@@ -93,16 +94,21 @@ popupWindow.setVisible(false);
 //    }
     private void togglePopup() {
 
-    if (popupWindow.isVisible()) {
-        popupWindow.setVisible(false);
-        return;
-    }
+        if (popupWindow.isVisible()) {
+            popupWindow.setVisible(false);
+            return;
+        }
 
 //        get checkbox location + checkbox hieght to find y and x = same as checkbox  
         Point p = getLocationOnScreen();
 
         int popupHeight = popupWindow.getHeight();
         int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+        int width = getWidth();
+        int height = 120;
+
+        scroll.setPreferredSize(new Dimension(width, height));
+        popupWindow.pack();
 
         int y;
 //        if y + pophp height out of screen make it another wway
@@ -114,7 +120,7 @@ popupWindow.setVisible(false);
 
         popupWindow.setLocation(p.x, y);
         popupWindow.setVisible(true);
-}
+    }
 
     public void setList(E[] items) {
         list.setListData(items);
