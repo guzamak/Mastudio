@@ -54,11 +54,8 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
 
         popup = new JPopupMenu();
 
-        JScrollPane scroll = new JScrollPane(list);
-        scroll.setBorder(null);
+        JScrollPane scroll = new MaScrollPane(list);
         scroll.setPreferredSize(new Dimension(200,120));
-        scroll.getVerticalScrollBar().setUI(new MaScrollBar());
-        scroll.getHorizontalScrollBar().setUI(new MaScrollBar());
 
         popup.add(scroll);
     }

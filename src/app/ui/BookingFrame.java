@@ -45,32 +45,73 @@ public class BookingFrame extends MaFrame {
 
         navLabel = new app.components.dashboard.NavLabel();
         navLabel.setExtraText("จัดการการจอง");
-        maPanel2 = new app.components.lib.MaPanel();
         maButton1 = new app.components.lib.MaButton();
         maTable1 = new app.components.lib.MaTable();
+        maButton2 = new app.components.lib.MaButton();
+        maButton3 = new app.components.lib.MaButton();
+        maPanel1 = new app.components.lib.MaPanel();
+        maScrollPane1 = new app.components.lib.MaScrollPane();
+        maTextArea1 = new app.components.lib.MaTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        maPanel2.setBackground(Color.white);
-        maPanel2.setBorderColor(Macolor.magreen);
-
-        javax.swing.GroupLayout maPanel2Layout = new javax.swing.GroupLayout(maPanel2);
-        maPanel2.setLayout(maPanel2Layout);
-        maPanel2Layout.setHorizontalGroup(
-            maPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 249, Short.MAX_VALUE)
-        );
-        maPanel2Layout.setVerticalGroup(
-            maPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
+        setTitle("จัดการการจอง");
 
         maButton1.setBorderColor(Macolor.magreen);
         maButton1.setTextColor(Macolor.magreen);
         maButton1.setButtonColor(Color.white);
-        maButton1.setArc(50);
-        maButton1.setText("+ New walking booking");
+        maButton1.setArc(35);
+        maButton1.setText("+ เพิ่มข้อมูล");
         maButton1.addActionListener(this::maButton1ActionPerformed);
+
+        maButton2.setButtonColor(Color.white);
+        maButton2.setBorderColor(Macolor.mablue);
+        maButton2.setTextColor(Macolor.mablue);
+        maButton2.setArc(35);
+        maButton2.setText("เเก้ไขข้อมูลที่เลือก");
+        maButton2.addActionListener(this::maButton2ActionPerformed);
+
+        maButton3.setButtonColor(Color.white);
+        maButton3.setBorderColor(Macolor.mared);
+        maButton3.setTextColor(Macolor.mared);
+        maButton3.setArc(35);
+        maButton3.setText("ลบข้อมูลที่เลือก");
+        maButton3.addActionListener(this::maButton3ActionPerformed);
+
+        maPanel1.setBackground(Color.white);
+        maPanel1.setBorderColor(Macolor.magreen);
+
+        maScrollPane1.setScrollX(false);
+        maScrollPane1.scrollToTop();
+
+        maTextArea1.setTextColor(Macolor.magreen);
+        maTextArea1.setFont(IBMPlexSansThaiFont.light(12f));
+        maTextArea1.setEditable(false);
+        maTextArea1.setCaretPosition(0);
+        maTextArea1.setColumns(20);
+        maTextArea1.setRows(5);
+        maTextArea1.setText("วิธีการใช้งาน\n** วิธีการเพิ่มข้อมูล**\n\nกดปุ่ม “+ เพิ่มข้อมูล”\n1. ระบบจะเปิดฟอร์มให้กรอกข้อมูล (ขึ้นอยู่กับการออกแบบระบบ)\n2.กรอกข้อมูลให้ครบในแต่ละคอลัมน์\n3.กดยืนยันเพื่อบันทึกข้อมูล\n4.ข้อมูลใหม่จะแสดงในตารางทันที\n\n*หมายเหตุ: ควรตรวจสอบความถูกต้องก่อนบันทึก\n\n\n** วิธีการลบข้อมูล **\n\n1.คลิกเลือกแถวข้อมูลที่ต้องการลบ\n2.กดปุ่ม “ลบข้อมูลที่เลือก”\n\n* คำเตือน: การลบข้อมูลไม่สามารถกู้คืนได้ ควรตรวจสอบก่อนลบทุกครั้ง");
+        maScrollPane1.setViewportView(maTextArea1);
+
+        javax.swing.GroupLayout maPanel1Layout = new javax.swing.GroupLayout(maPanel1);
+        maPanel1.setLayout(maPanel1Layout);
+        maPanel1Layout.setHorizontalGroup(
+            maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 256, Short.MAX_VALUE)
+            .addGroup(maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(maPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(maScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        maPanel1Layout.setVerticalGroup(
+            maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 364, Short.MAX_VALUE)
+            .addGroup(maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(maPanel1Layout.createSequentialGroup()
+                    .addGap(9, 9, 9)
+                    .addComponent(maScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(10, 10, 10)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,32 +120,38 @@ public class BookingFrame extends MaFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(39, 39, 39)
                         .addComponent(navLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(maPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(maTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(maTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(maButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(maButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addGap(11, 11, 11)
                 .addComponent(navLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(maPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(81, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(maTable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75))))
+                    .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,6 +160,14 @@ public class BookingFrame extends MaFrame {
     private void maButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_maButton1ActionPerformed
+
+    private void maButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maButton2ActionPerformed
+
+    private void maButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,8 +196,12 @@ public class BookingFrame extends MaFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.components.lib.MaButton maButton1;
-    private app.components.lib.MaPanel maPanel2;
+    private app.components.lib.MaButton maButton2;
+    private app.components.lib.MaButton maButton3;
+    private app.components.lib.MaPanel maPanel1;
+    private app.components.lib.MaScrollPane maScrollPane1;
     private app.components.lib.MaTable maTable1;
+    private app.components.lib.MaTextArea maTextArea1;
     private app.components.dashboard.NavLabel navLabel;
     // End of variables declaration//GEN-END:variables
 }

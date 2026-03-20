@@ -104,15 +104,7 @@ public class MaTable extends MaPanel {
             }
         });
 
-        scroll = new JScrollPane(table);
-        scroll.setBorder(null);
-        scroll.getViewport().setBackground(Macolor.seablue);
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scroll.getVerticalScrollBar().setUI(new MaScrollBar());
-        scroll.getHorizontalScrollBar().setUI(new MaScrollBar());
-        scroll.getVerticalScrollBar().setUI(new MaScrollBar());
-        scroll.getHorizontalScrollBar().setUI(new MaScrollBar());
+        scroll = new MaScrollPane(table);
 
         add(scroll, BorderLayout.CENTER);
     }

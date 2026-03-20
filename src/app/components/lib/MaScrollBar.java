@@ -15,15 +15,17 @@ import java.awt.*;
 // doc for make custom ScorllBar
 // https://stackoverflow.com/questions/8208508/custom-design-jscollpane-java-swing
 //https://stackoverflow.com/questions/44432037/basicscrollbarui-how-to-use-it
-
 public class MaScrollBar extends BasicScrollBarUI {
 
     private final Dimension zeroDim = new Dimension();
+    private int thickness = 6;
 
     @Override
     protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
         Graphics2D g2 = (Graphics2D) g.create();
-        g2.setColor(new Color(240,240,240)); 
+        g2.setColor(new Color(240, 240, 240, 0));
+//        not work
+//                g2.fillRect(trackBounds.x, trackBounds.y, thickness, trackBounds.height);
         g2.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
         g2.dispose();
     }
@@ -36,14 +38,14 @@ public class MaScrollBar extends BasicScrollBarUI {
 
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                            RenderingHints.VALUE_ANTIALIAS_ON);
+                RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2.setColor(Macolor.magreen); 
+        g2.setColor(Macolor.magreen);
         int arc = 10;
         g2.fillRoundRect(
                 thumbBounds.x,
                 thumbBounds.y,
-                thumbBounds.width,
+                thickness,
                 thumbBounds.height,
                 arc, arc
         );
@@ -51,7 +53,17 @@ public class MaScrollBar extends BasicScrollBarUI {
         g2.dispose();
     }
 
-    // Remove arrow buttons
+//    make track follow thickness 
+    @Override
+    public Dimension getPreferredSize(JComponent c) {
+        if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {
+            return new Dimension(thickness, super.getPreferredSize(c).height);
+        } else {
+            return new Dimension(super.getPreferredSize(c).width, thickness);
+        }
+    }
+
+    // Remove arrow buttons by make w h =0
     @Override
     protected JButton createDecreaseButton(int orientation) {
         return new JButton() {
@@ -71,4 +83,9 @@ public class MaScrollBar extends BasicScrollBarUI {
             }
         };
     }
+
+    public void setThickness(int thickness) {
+        this.thickness = thickness;
+    }
+
 }

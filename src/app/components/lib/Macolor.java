@@ -17,6 +17,7 @@ public class Macolor {
     public static Color bggrey = new Color(217,217,217,11);
     public static Color seablue = new Color(240,248,255);
     public static Color magreen = new Color(41,196,101);
+    public static Color mablue = new Color(102, 163, 184);
     public static Color mared = new Color(255,114,114);
     public static Color trans = new Color(255,114,114,0);
 }

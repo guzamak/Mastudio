@@ -1,22 +1,21 @@
-package app.ui;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+package app.ui;
 
 /**
  *
  * @author poke
  */
-public class AddBookingFrame extends javax.swing.JFrame {
+public class ReceiptPageFrame extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AddBookingFrame.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReceiptPageFrame.class.getName());
 
     /**
-     * Creates new form AddBookingFrame
+     * Creates new form ReceiptPageFrame
      */
-    public AddBookingFrame() {
+    public ReceiptPageFrame() {
         initComponents();
     }
 
@@ -67,7 +66,7 @@ public class AddBookingFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new AddBookingFrame().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ReceiptPageFrame().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
