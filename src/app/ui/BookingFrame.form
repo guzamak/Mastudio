@@ -30,7 +30,7 @@
                       <Component id="navLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="maPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -49,15 +49,18 @@
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               <Component id="navLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="23" pref="23" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="maTable1" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="maButton1" min="-2" pref="45" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="maPanel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="81" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="maPanel2" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="maTable1" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="maButton1" min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="81" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,11 +72,14 @@
       </AuxValues>
     </Component>
     <Container class="app.components.lib.MaPanel" name="maPanel2">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maPanel2.setBackground(Color.white);&#xa;maPanel2.setBorderColor(Macolor.magreen);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="251" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="249" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -85,8 +91,14 @@
     </Container>
     <Component class="app.components.lib.MaButton" name="maButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="maButton1"/>
+        <Property name="text" type="java.lang.String" value="+ New walking booking"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maButton1ActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maButton1.setBorderColor(Macolor.magreen);&#xa;maButton1.setTextColor(Macolor.magreen);&#xa;maButton1.setButtonColor(Color.white);&#xa;maButton1.setArc(50);"/>
+      </AuxValues>
     </Component>
     <Component class="app.components.lib.MaTable" name="maTable1">
     </Component>

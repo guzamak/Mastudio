@@ -42,7 +42,6 @@ public class BookingFrame extends MaFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         navLabel = new app.components.dashboard.NavLabel();
         navLabel.setExtraText("จัดการการจอง");
@@ -52,18 +51,26 @@ public class BookingFrame extends MaFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        maPanel2.setBackground(Color.white);
+        maPanel2.setBorderColor(Macolor.magreen);
+
         javax.swing.GroupLayout maPanel2Layout = new javax.swing.GroupLayout(maPanel2);
         maPanel2.setLayout(maPanel2Layout);
         maPanel2Layout.setHorizontalGroup(
             maPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 251, Short.MAX_VALUE)
+            .addGap(0, 249, Short.MAX_VALUE)
         );
         maPanel2Layout.setVerticalGroup(
             maPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
-        maButton1.setText("maButton1");
+        maButton1.setBorderColor(Macolor.magreen);
+        maButton1.setTextColor(Macolor.magreen);
+        maButton1.setButtonColor(Color.white);
+        maButton1.setArc(50);
+        maButton1.setText("+ New walking booking");
+        maButton1.addActionListener(this::maButton1ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,7 +82,7 @@ public class BookingFrame extends MaFrame {
                         .addGap(6, 6, 6)
                         .addComponent(navLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(22, 22, 22)
                         .addComponent(maPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -89,17 +96,23 @@ public class BookingFrame extends MaFrame {
                 .addGap(6, 6, 6)
                 .addComponent(navLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(maPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(81, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(maTable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(maPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void maButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maButton1ActionPerformed
 
     /**
      * @param args the command line arguments

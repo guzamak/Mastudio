@@ -38,14 +38,14 @@ public class RefreshButton extends MaButton {
         int x = (getWidth() - size) / 2;
         int y = (getHeight() - size) / 2;
 
-        g2.setStroke(new BasicStroke(2.5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        g2.setStroke(new BasicStroke(1.25f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         g2.setColor(getForeground());
 
 //      draw circle
         g2.drawArc(x, y, size, size, 40, 280);
 
         // Arrow head position
-        double angle = Math.toRadians(325); 
+        double angle = Math.toRadians(325);
 
         int cx = x + size / 2;
         int cy = y + size / 2;
@@ -53,15 +53,34 @@ public class RefreshButton extends MaButton {
 
 //        need to draw triangle to understand
 //        center of cicle(change defult positon (0,0) form topleft to center of screen) 
-// + (r * Math.cos(angle) (x position of angle ) + storke size) 
-        int ax = (int) (cx + r * Math.cos(angle) + 2.5f);
-        int ay = (int) (cy - r * Math.sin(angle) + 2.5f); 
+// + (r * Math.cos(angle) (x position of angle ) + storke size ) 
+        int ax = (int) (cx + r * Math.cos(angle) + 1.25f);
+        int ay = (int) (cy - r * Math.sin(angle) + 1.25f);
 
 //        draw triagle
+//       it need rotate
+//        Polygon arrow = new Polygon();
+//        arrow.addPoint(ax, ay);
+//        
+//
+//        arrow.addPoint(ax - 4, ay - 4);
+//        arrow.addPoint(ax + 4, ay - 4);
+//      rotate version
         Polygon arrow = new Polygon();
-        arrow.addPoint(ax, ay);
-        arrow.addPoint(ax - 8, ay - 4);
-        arrow.addPoint(ax - 4, ay + 8);
+
+        int[][] pts = {
+            {0, 0},
+            {-4, -4},
+            {4, -4}
+        };
+
+//    2d rotation martix center point is axay draw circle to understand
+        for (int[] p : pts) {
+            int rx = (int) (p[0] * Math.cos(Math.toRadians(225)) - p[1] * Math.sin(Math.toRadians(225)));
+            int ry = (int) (p[0] * Math.sin(Math.toRadians(225)) + p[1] * Math.cos(Math.toRadians(225)));
+
+            arrow.addPoint(ax + rx, ay + ry);
+        }
 
         g2.fill(arrow);
     }
