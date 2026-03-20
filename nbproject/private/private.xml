@@ -10,13 +10,24 @@
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaList.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaPanel.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaComboBox.java</file>
-            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaTable.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaLabel.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaButton.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaPasswordField.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaTextField.java</file>
-            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/ui/DashboardFrame.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/Main.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/ImageLabel.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/resources/images/Profile.png</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/Macolor.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/ui/BookingFrame.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaScrollBar.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaFrame.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaTable.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/controller/Booking.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaTableWithBtn.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/components/lib/MaOptionPane.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/ui/DashboardFrame.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/resources/images/icon.jpg</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/resources/images/refresh.png</file>
         </group>
     </open-files>
 </project-private>

@@ -820,7 +820,8 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshButtonActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="ImageIcon icon = new ImageIcon(&quot;src/resources/images/refresh.png&quot;);&#xa;&#xa;Image img = icon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);&#xa;refreshButton.setIcon(new ImageIcon(img));&#xa;refreshButton.setText(null);&#xa;refreshButton.setBorderColor(Macolor.trans);&#xa;refreshButton.setBackground(Macolor.trans);&#xa;// Code adding the component to the parent container - not shown here"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new app.components.lib.RefreshButton()"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//ImageIcon icon = new ImageIcon(&quot;src/resources/images/refresh.png&quot;);&#xa;//&#xa;//Image img = icon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);&#xa;//refreshButton.setIcon(new ImageIcon(img));&#xa;refreshButton.setText(null);&#xa;refreshButton.setBorderColor(Macolor.trans);&#xa;refreshButton.setBackground(Macolor.trans);&#xa;refreshButton.setForeground(Macolor.magreen);&#xa;// Code adding the component to the parent container - not shown here"/>
       </AuxValues>
     </Component>
   </SubComponents>

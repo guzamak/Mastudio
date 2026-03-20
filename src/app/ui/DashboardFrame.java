@@ -84,7 +84,7 @@ public class DashboardFrame extends MaFrame {
         Logoutbtn = new app.components.lib.MaButton();
         maLabel1 = new app.components.lib.MaLabel();
         maTable3 = new app.components.lib.MaTable();
-        refreshButton = new app.components.lib.MaButton();
+        refreshButton = new app.components.lib.RefreshButton();
 
         javax.swing.GroupLayout bookingFrame1Layout = new javax.swing.GroupLayout(bookingFrame1.getContentPane());
         bookingFrame1.getContentPane().setLayout(bookingFrame1Layout);
@@ -203,13 +203,14 @@ public class DashboardFrame extends MaFrame {
         maLabel1.setFont(IBMPlexSansThaiFont.medium(14f));
 
         refreshButton.setText("Refresh");
-        ImageIcon icon = new ImageIcon("src/resources/images/refresh.png");
-
-        Image img = icon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);
-        refreshButton.setIcon(new ImageIcon(img));
+        //ImageIcon icon = new ImageIcon("src/resources/images/refresh.png");
+        //
+        //Image img = icon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);
+        //refreshButton.setIcon(new ImageIcon(img));
         refreshButton.setText(null);
         refreshButton.setBorderColor(Macolor.trans);
         refreshButton.setBackground(Macolor.trans);
+        refreshButton.setForeground(Macolor.magreen);
         // Code adding the component to the parent container - not shown here
         refreshButton.addActionListener(this::refreshButtonActionPerformed);
 
