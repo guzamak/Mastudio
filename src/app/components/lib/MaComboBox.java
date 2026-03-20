@@ -12,7 +12,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
-
+import javax.swing.border.Border;
 
 public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListener {
 
@@ -32,7 +32,7 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
 
         display = new MaLabel();
         display.setText("Select...");
-        display.setBorder(new EmptyBorder(5,10,5,10));
+        display.setBorder(new EmptyBorder(5, 10, 5, 10));
 
         arrow = new MaButton();
         arrow.setText("  v  ");
@@ -51,34 +51,48 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
         list = new MaList<>();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.addMouseListener(this);
+        MaPanel panel = new MaPanel();
+        panel.setBackground(Macolor.trans);
+        panel.setBorderColor(Macolor.trans);
 
+//        popup.setBorder(null); now work need this to work i dkw
+        Border redLine = BorderFactory.createLineBorder(Color.RED, 0); 
+        Border emptyPadding = BorderFactory.createEmptyBorder(1, 1, 1, 1); 
+        Border compoundBorder = BorderFactory.createCompoundBorder(redLine, emptyPadding); 
         popup = new JPopupMenu();
+        popup.setBackground(Macolor.trans);
+        popup.setBorder(compoundBorder);
 
-        JScrollPane scroll = new MaScrollPane(list);
-        scroll.setPreferredSize(new Dimension(200,120));
+//      I cant fix bg and border of it 
+        MaScrollPane scroll = new MaScrollPane(list);
+        panel.add(scroll, BorderLayout.CENTER);
+        scroll.setPreferredSize(new Dimension(200, 120));
+//        scroll.getViewport().setOpaque(false);
+//        scroll.getViewport().setBackground(Macolor.trans);
+//        scroll.getViewport().setBorder(null);
 
-        popup.add(scroll);
+        popup.add(panel);
     }
 
     private void togglePopup() {
 
-        if(popup.isVisible()){
+        if (popup.isVisible()) {
             popup.setVisible(false);
         } else {
-            popup.show(this,0,getHeight());
+            popup.show(this, 0, getHeight());
         }
 
     }
 
-    public void setList(E[] items){
+    public void setList(E[] items) {
         list.setListData(items);
     }
 
-    public E getSelectedItem(){
+    public E getSelectedItem() {
         return list.getSelectedValue();
     }
 
-    public void setArc(int arc){
+    public void setArc(int arc) {
         this.arc = arc;
         repaint();
     }
@@ -88,27 +102,24 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
 
         Object src = e.getSource();
 
-        if(src == arrow){
+        if (src == arrow) {
             togglePopup();
         }
 
     }
-
 
     @Override
     public void mouseClicked(MouseEvent e) {
 
         Object src = e.getSource();
 
-        if(src == display){
+        if (src == display) {
             togglePopup();
-        }
-
-        else if(src == list){
+        } else if (src == list) {
 
             E value = list.getSelectedValue();
 
-            if(value != null){
+            if (value != null) {
                 display.setText(value.toString());
             }
 
@@ -118,18 +129,20 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+    }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
-
-    
+    public void mouseExited(MouseEvent e) {
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -140,10 +153,10 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         g2.setColor(Color.WHITE);
-        g2.fillRoundRect(0,0,getWidth(),getHeight(),arc,arc);
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), arc, arc);
 
-        g2.setColor(new Color(180,180,180));
-        g2.drawRoundRect(0,0,getWidth()-1,getHeight()-1,arc,arc);
+        g2.setColor(new Color(180, 180, 180));
+        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, arc, arc);
 
         g2.dispose();
     }

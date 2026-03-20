@@ -37,7 +37,10 @@ public class MaList<E> extends JList<E> {
         setFont(IBMPlexSansThaiFont.regular(14f));
         setForeground(Color.BLACK);
 //        important it make Jcomponent dont paint bg make it can have custom bg on it s
-        setOpaque(false);
+//      not work
+//        setOpaque(false);
+//      but this work idk why
+        setBackground(Macolor.trans);
         setBorder(BorderFactory.createEmptyBorder(padTop, padLeft, padBottom, padRight));
         updateSpace();
     }

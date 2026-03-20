@@ -35,14 +35,9 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="maButton1" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                       <Component id="maLabel5" min="-2" pref="61" max="-2" attributes="0"/>
@@ -61,8 +56,6 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="maComboBox6" min="-2" pref="75" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="maComboBox2" min="-2" max="-2" attributes="0"/>
-                  <Component id="maTextField1" min="-2" pref="88" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="maComboBox1" min="-2" pref="75" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -77,8 +70,15 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="maComboBox14" min="-2" pref="75" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="maTextField1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="maComboBox2" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="48" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="maButton1" min="-2" pref="100" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,8 +94,8 @@
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="maLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="maTextField1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Component id="maTextField1" min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="maLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -121,9 +121,9 @@
                   <Component id="maComboBox15" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="maComboBox16" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
               <Component id="maButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -132,9 +132,9 @@
     <Component class="app.components.lib.MaComboBox" name="maComboBox1">
     </Component>
     <Component class="app.components.lib.MaTextField" name="maTextField1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="maTextField1"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maTextField1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="app.components.lib.MaComboBox" name="maComboBox2">
     </Component>
@@ -163,7 +163,7 @@
     </Component>
     <Component class="app.components.lib.MaLabel" name="maLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="maLabel1"/>
+        <Property name="text" type="java.lang.String" value="+ ..."/>
       </Properties>
     </Component>
     <Component class="app.components.lib.MaLabel" name="maLabel2">
