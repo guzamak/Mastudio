@@ -161,7 +161,7 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
                 display.setText(value.toString());
             }
 
-            popup.setVisible(false);
+            popupWindow.setVisible(false);
         }
 
     }

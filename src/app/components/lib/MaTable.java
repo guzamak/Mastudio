@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.util.*;
+import javax.swing.border.Border;
 
 // cant make round border i dont know how to make 
 //doc
@@ -50,7 +51,11 @@ public class MaTable extends MaPanel {
                 }
         );
 
+        Border redLine = BorderFactory.createLineBorder(Color.RED, 0); 
+        Border emptyPadding = BorderFactory.createEmptyBorder(0, 0, 0, 0); 
+        Border compoundBorder = BorderFactory.createCompoundBorder(redLine, emptyPadding); 
         table = new JTable(model);
+        table.setBorder(compoundBorder);
         table.setRowHeight(30);
         table.setShowGrid(false);
         table.setIntercellSpacing(new Dimension(0, 0));
