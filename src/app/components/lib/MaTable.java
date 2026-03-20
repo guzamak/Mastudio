@@ -58,6 +58,7 @@ public class MaTable extends MaPanel {
         table.setBorder(compoundBorder);
         table.setRowHeight(30);
         table.setShowGrid(false);
+        table.setFocusable(false);
         table.setIntercellSpacing(new Dimension(0, 0));
         table.setFont(new Font("IBM Plex Sans Thai", Font.PLAIN, 14));
 
