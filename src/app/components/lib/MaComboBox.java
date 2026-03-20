@@ -98,7 +98,6 @@ popupWindow.setVisible(false);
         return;
     }
 
-    try {
 //        get checkbox location + checkbox hieght to find y and x = same as checkbox  
         Point p = getLocationOnScreen();
 
@@ -115,10 +114,6 @@ popupWindow.setVisible(false);
 
         popupWindow.setLocation(p.x, y);
         popupWindow.setVisible(true);
-
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
 }
 
     public void setList(E[] items) {
