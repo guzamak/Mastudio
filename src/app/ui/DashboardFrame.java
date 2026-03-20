@@ -78,7 +78,7 @@ public class DashboardFrame extends MaFrame {
         maButton5 = new app.components.lib.MaButton();
         maButton4 = new app.components.lib.MaButton();
         maButton7 = new app.components.lib.MaButton();
-        maButton2 = new app.components.lib.MaButton();
+        editbookingBtn = new app.components.lib.MaButton();
         maButton3 = new app.components.lib.MaButton();
         maButton6 = new app.components.lib.MaButton();
         Logoutbtn = new app.components.lib.MaButton();
@@ -163,16 +163,16 @@ public class DashboardFrame extends MaFrame {
         gridBagConstraints.gridy = 0;
         maPanel1.add(maButton7, gridBagConstraints);
 
-        maButton2.setText("จัดการการจอง");
-        maButton2.setBorderColor(Macolor.magreen);
-        maButton2.setButtonColor(Macolor.seablue);
-        maButton2.setTextColor(Macolor.magreen);
-        maButton2.addActionListener(this::maButton2ActionPerformed);
+        editbookingBtn.setText("จัดการการจอง");
+        editbookingBtn.setBorderColor(Macolor.magreen);
+        editbookingBtn.setButtonColor(Macolor.seablue);
+        editbookingBtn.setTextColor(Macolor.magreen);
+        editbookingBtn.addActionListener(this::editbookingBtnActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        maPanel1.add(maButton2, gridBagConstraints);
+        maPanel1.add(editbookingBtn, gridBagConstraints);
 
         maButton3.setText("เเก้ไขอุปกรณ์เเต่ละห้อง");
         maButton3.setBorderColor(Macolor.magreen);
@@ -279,9 +279,10 @@ public class DashboardFrame extends MaFrame {
         new SignInFrame().setVisible(true);
     }//GEN-LAST:event_LogoutbtnActionPerformed
 
-    private void maButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton2ActionPerformed
+    private void editbookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbookingBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_maButton2ActionPerformed
+        new BookingFrame().setVisible(true);
+    }//GEN-LAST:event_editbookingBtnActionPerformed
 
     private void maButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton5ActionPerformed
         // TODO add your handling code here:
@@ -402,11 +403,11 @@ try {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.components.lib.MaButton Logoutbtn;
     private app.ui.BookingFrame bookingFrame1;
+    private app.components.lib.MaButton editbookingBtn;
     private app.components.lib.ImageLabel imageLabel1;
     private app.components.lib.ImageLabel imageLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private app.components.lib.MaButton maButton2;
     private app.components.lib.MaButton maButton3;
     private app.components.lib.MaButton maButton4;
     private app.components.lib.MaButton maButton5;

@@ -12,17 +12,22 @@ import app.components.lib.MaScrollBar;
 import app.lib.SessionManager;
 import app.ui.DashboardFrame;
 import app.ui.SignInFrame;
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 public class Main {
+
     public static void main(String[] args) {
-        UIManager.put("ScrollBarUI", MaScrollBar.class.getName());
 
         SwingUtilities.invokeLater(() -> {
             if (SessionManager.hasSession()) {
-                new DashboardFrame().setVisible(true);
-            } else {
+//                make it root frame when close other it will not close if 
+// not close root
+               DashboardFrame d =  new DashboardFrame();
+               d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+               d.setVisible(true);
+        } else {
                 new SignInFrame().setVisible(true);
             }
         });

@@ -49,13 +49,9 @@ public class MaTable extends MaPanel {
                 new String[]{
                     "Col 1", "Col 2", "Col 3", "Col 4"
                 }
-        );
-
-        Border redLine = BorderFactory.createLineBorder(Color.RED, 0); 
-        Border emptyPadding = BorderFactory.createEmptyBorder(0, 0, 0, 0); 
-        Border compoundBorder = BorderFactory.createCompoundBorder(redLine, emptyPadding); 
+        ); 
         table = new JTable(model);
-        table.setBorder(compoundBorder);
+        table.setBorder(BorderFactory.createEmptyBorder());
         table.setRowHeight(30);
         table.setShowGrid(false);
         table.setFocusable(false);
@@ -111,6 +107,7 @@ public class MaTable extends MaPanel {
         });
 
         scroll = new MaScrollPane(table);
+        scroll.setBorder(BorderFactory.createEmptyBorder());
 
         add(scroll, BorderLayout.CENTER);
     }

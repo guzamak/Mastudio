@@ -325,15 +325,15 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="app.components.lib.MaButton" name="maButton2">
+        <Component class="app.components.lib.MaButton" name="editbookingBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xe08;&#xe31;&#xe14;&#xe01;&#xe32;&#xe23;&#xe01;&#xe32;&#xe23;&#xe08;&#xe2d;&#xe07;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editbookingBtnActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maButton2.setBorderColor(Macolor.magreen);&#xa;maButton2.setButtonColor(Macolor.seablue);&#xa;maButton2.setTextColor(Macolor.magreen);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="editbookingBtn.setBorderColor(Macolor.magreen);&#xa;editbookingBtn.setButtonColor(Macolor.seablue);&#xa;editbookingBtn.setTextColor(Macolor.magreen);"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -654,11 +654,11 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="29_maButton2">
-              <CodeVariable name="maButton2" type="8194" declaredType="app.components.lib.MaButton"/>
+            <CodeExpression id="29_editbookingBtn">
+              <CodeVariable name="editbookingBtn" type="8194" declaredType="app.components.lib.MaButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
-                  <ComponentRef name="maButton2"/>
+                  <ComponentRef name="editbookingBtn"/>
                 </ExpressionProvider>
               </ExpressionOrigin>
             </CodeExpression>
