@@ -11,12 +11,16 @@ import java.util.HashMap;
  * @author poke
  */
 public class Room {
-    private String name ;
-    public static HashMap<String, Room> data = new HashMap<>();
+    private String id;         
+    private String roomName;   
 
-    public void setName(String name) {
-        this.name = name;
+    public static HashMap<String, Room> data = new HashMap<>();
+    public Room(String id, String roomName) {
+        this.id = id;
+        this.roomName = roomName;
     }
-    
+
+    public String getId() { return id; }
+    public String getRoomName() { return roomName; }
     
 }

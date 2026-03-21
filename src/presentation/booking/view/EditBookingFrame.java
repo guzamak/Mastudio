@@ -290,6 +290,8 @@ public class EditBookingFrame extends MaFrame {
 
         if (isNew) {
             System.out.println("rest");
+//            want id form backend 
+            
             String newBookingId = "BK" + (Booking.data.size() + 1); // simple increment, can be improved
             Booking.data.put(newBookingId, booking);
         }
