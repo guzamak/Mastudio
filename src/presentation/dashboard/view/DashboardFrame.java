@@ -13,6 +13,7 @@ import presentation.booking.view.BookingFrame;
 import presentation.auth.view.SignInFrame;
 import app.core.components.Macolor;
 import app.core.components.MaFrame;
+import app.core.components.MaInternalFrame;
 import app.core.components.MaTable;
 import app.core.components.fonts.IBMPlexSansThaiFont;
 import model.client.PocketBaseClient;
@@ -32,8 +33,9 @@ import java.util.*;
 import java.awt.image.*;
 import java.time.LocalDate;
 import presentation.booking.controller.Booking;
+import app.MainFrame;
 
-public class DashboardFrame extends MaFrame {
+public class DashboardFrame extends MaInternalFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardFrame.class.getName());
 
@@ -57,6 +59,7 @@ public class DashboardFrame extends MaFrame {
         initComponents();
         loadBookings();
         updateRender();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -281,12 +284,12 @@ public class DashboardFrame extends MaFrame {
     private void LogoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutbtnActionPerformed
         SessionManager.clearSession();
         dispose();
-        new SignInFrame().setVisible(true);
+         MainFrame.getInstance().openInternalFrame(new SignInFrame());
     }//GEN-LAST:event_LogoutbtnActionPerformed
 
     private void editbookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbookingBtnActionPerformed
         // TODO add your handling code here:
-        new BookingFrame().setVisible(true);
+        MainFrame.getInstance().openInternalFrame(new BookingFrame());
     }//GEN-LAST:event_editbookingBtnActionPerformed
 
     private void maButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton5ActionPerformed
@@ -299,7 +302,7 @@ public class DashboardFrame extends MaFrame {
 
     private void BookingTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingTableBtnActionPerformed
         // TODO add your handling code here:
-        new BookingTableFrame().setVisible(true);
+       MainFrame.getInstance().openInternalFrame(new BookingTableFrame());
     }//GEN-LAST:event_BookingTableBtnActionPerformed
 
     private void loadBookings() {

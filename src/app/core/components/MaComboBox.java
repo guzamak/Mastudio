@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.Border;
+import javax.swing.event.InternalFrameAdapter;
 
 public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListener {
 
@@ -97,17 +98,32 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
     private void togglePopup() {
         if (ancestor == null) {
             Window topWindow = SwingUtilities.getWindowAncestor(this);
-//            System.out.println(topWindow);
+
             if (topWindow != null) {
                 topWindow.addComponentListener(new ComponentAdapter() {
                     @Override
                     public void componentMoved(ComponentEvent e) {
                         if (popupWindow != null && popupWindow.isVisible()) {
-                            popupWindow.setVisible(false); // hide popup if frame moves
+                            popupWindow.setVisible(false);
                         }
                     }
                 });
             }
+
+            JInternalFrame internalFrame = (JInternalFrame) SwingUtilities.getAncestorOfClass(MaInternalFrame.class, this);
+
+            if (internalFrame != null) {
+                internalFrame.addInternalFrameListener(new InternalFrameAdapter() {
+                    @Override
+                    public void internalFrameClosing(javax.swing.event.InternalFrameEvent e) {
+                        if (popupWindow != null) {
+                            popupWindow.setVisible(false);
+                            popupWindow.dispose();
+                        }
+                    }
+                });
+            }
+
             this.ancestor = topWindow;
         }
 

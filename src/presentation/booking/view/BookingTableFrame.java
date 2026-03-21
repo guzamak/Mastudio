@@ -10,6 +10,7 @@ package presentation.booking.view;
  */
 import app.core.components.Macolor;
 import app.core.components.MaFrame;
+import app.core.components.MaInternalFrame;
 import app.core.components.MaTextField;
 import app.core.components.fonts.IBMPlexSansThaiFont;
 import model.client.PocketBaseClient;
@@ -33,7 +34,7 @@ import java.time.ZoneOffset;
 import java.util.Map;
 
 
-public class BookingTableFrame extends MaFrame {
+public class BookingTableFrame extends MaInternalFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(BookingTableFrame.class.getName());
 
@@ -45,6 +46,7 @@ public class BookingTableFrame extends MaFrame {
      */
     public BookingTableFrame() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**

@@ -8,8 +8,10 @@ package presentation.booking.view;
  *
  * @author poke
  */
+import app.MainFrame;
 import app.core.components.Macolor;
 import app.core.components.MaFrame;
+import app.core.components.MaInternalFrame;
 import app.core.components.MaTextField;
 import app.core.components.fonts.IBMPlexSansThaiFont;
 import model.client.PocketBaseClient;
@@ -26,7 +28,7 @@ import javax.swing.*;
 import javax.swing.ImageIcon;
 import presentation.booking.controller.Booking;
 
-public class BookingFrame extends MaFrame {
+public class BookingFrame extends MaInternalFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(BookingFrame.class.getName());
 
@@ -38,6 +40,7 @@ public class BookingFrame extends MaFrame {
     public BookingFrame() {
         initComponents();
         updateRender();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -166,7 +169,7 @@ public class BookingFrame extends MaFrame {
 
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
         // TODO add your handling code here:
-        new EditBookingFrame(this).setVisible(true);
+        MainFrame.getInstance().openInternalFrame(new EditBookingFrame(this));
     }//GEN-LAST:event_AddBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
@@ -178,7 +181,7 @@ public class BookingFrame extends MaFrame {
             String key = bookingKeys.get(tableselectedRow);
             Booking updateBooking = Booking.data.get(key);
             updateBooking.getId();
-            new EditBookingFrame(updateBooking.getId(),this).setVisible(true);
+            MainFrame.getInstance().openInternalFrame(new EditBookingFrame(updateBooking.getId(),this));
         }
     }//GEN-LAST:event_updateBtnActionPerformed
 

@@ -3,6 +3,7 @@ package presentation.booking.view;
 import app.core.components.Macolor;
 import app.core.components.MaFrame;
 import app.core.components.MaFrame;
+import app.core.components.MaInternalFrame;
 import app.core.components.MaTable;
 import app.core.components.fonts.IBMPlexSansThaiFont;
 import model.client.PocketBaseClient;
@@ -27,7 +28,7 @@ import java.time.format.DateTimeFormatter;
 import model.client.TimeUtils;
 import presentation.booking.controller.Booking;
 
-public class EditBookingFrame extends MaFrame {
+public class EditBookingFrame extends MaInternalFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EditBookingFrame.class.getName());
 
@@ -44,12 +45,14 @@ public class EditBookingFrame extends MaFrame {
         initComponents();
         updateRender();
         maLabel1.setText("ห้อง : " + id);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     public EditBookingFrame(BookingFrame parent) {
         this.parent = parent;
         initComponents();
         updateRender();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -277,7 +280,7 @@ public class EditBookingFrame extends MaFrame {
         
         Booking.updateBookingData(
                 booking,
-                 (String) roomComboBox.getSelectedItem(),
+                (String) roomComboBox.getSelectedItem(),
                 customerName.getText(),
                 (String) CheckInYearCombobox.getSelectedItem(),
                 (String) CheckInMonthCombobox.getSelectedItem(),

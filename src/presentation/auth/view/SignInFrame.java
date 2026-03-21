@@ -4,7 +4,9 @@
  */
 package presentation.auth.view;
 
+import app.MainFrame;
 import app.core.components.MaFrame;
+import app.core.components.MaInternalFrame;
 //import app.components.*;
 import app.core.components.fonts.IBMPlexSansThaiFont;
 import app.core.components.MaOptionPane;
@@ -19,7 +21,7 @@ import model.session.SessionManager;
  *
  * @author poke
  */
-public class SignInFrame extends MaFrame {
+public class SignInFrame extends MaInternalFrame {
     
     private PocketBaseClient pb = new PocketBaseClient("https://studiodb.hostmy.photos");
     private PBResponse pbClient;
@@ -38,6 +40,9 @@ public class SignInFrame extends MaFrame {
      */
     public SignInFrame() {
         initComponents();
+//        fix bug that i use JFrameForm for InternalForm it need JINternalFrameForm when create file
+//      i am lazy to fix all thig
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -211,7 +216,7 @@ public class SignInFrame extends MaFrame {
                 MaOptionPane.showMessageDialog(this, "การเข้าสู่ระบบสำเร็จ");
 
                 dispose();
-                new DashboardFrame().setVisible(true);
+                MainFrame.getInstance().openInternalFrame(new DashboardFrame());
 
             } else {
 
@@ -232,27 +237,27 @@ public class SignInFrame extends MaFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new SignInFrame().setVisible(true));
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+//            logger.log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(() -> new SignInFrame().setVisible(true));
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.core.components.MaLabel descLabel;
