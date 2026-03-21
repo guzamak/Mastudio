@@ -8,10 +8,10 @@ package app;
  *
  * @author poke
  */
-import app.components.lib.MaScrollBar;
-import app.lib.SessionManager;
-import app.ui.DashboardFrame;
-import app.ui.SignInFrame;
+import app.core.components.MaScrollBar;
+import model.session.SessionManager;
+import presentation.dashboard.view.DashboardFrame;
+import presentation.auth.view.SignInFrame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;

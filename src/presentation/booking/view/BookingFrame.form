@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="&#xe08;&#xe31;&#xe14;&#xe01;&#xe32;&#xe23;&#xe01;&#xe32;&#xe23;&#xe08;&#xe2d;&#xe07;"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="3"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="navLabel" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="maPanel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="maTable1" min="-2" pref="519" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="maButton1" min="-2" pref="233" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="maButton2" min="-2" pref="258" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="maButton3" min="-2" pref="270" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="59" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <Component id="navLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="maPanel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="maTable1" min="-2" pref="364" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="maButton2" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="maButton3" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="maButton1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="app.core.components.NavLabel" name="navLabel">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="navLabel.setExtraText(&quot;&#xe08;&#xe31;&#xe14;&#xe01;&#xe32;&#xe23;&#xe01;&#xe32;&#xe23;&#xe08;&#xe2d;&#xe07;&quot;);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaButton" name="maButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+ &#xe40;&#xe1e;&#xe34;&#xe48;&#xe21;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maButton1ActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maButton1.setBorderColor(Macolor.magreen);&#xa;maButton1.setTextColor(Macolor.magreen);&#xa;maButton1.setButtonColor(Color.white);&#xa;maButton1.setArc(35);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaTable" name="maTable1">
+    </Component>
+    <Component class="app.core.components.MaButton" name="maButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe40;&#xe40;&#xe01;&#xe49;&#xe44;&#xe02;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;&#xe17;&#xe35;&#xe48;&#xe40;&#xe25;&#xe37;&#xe2d;&#xe01;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maButton2ActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maButton2.setButtonColor(Color.white);&#xa;maButton2.setBorderColor(Macolor.mablue);&#xa;maButton2.setTextColor(Macolor.mablue);&#xa;maButton2.setArc(35);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaButton" name="maButton3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe25;&#xe1a;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;&#xe17;&#xe35;&#xe48;&#xe40;&#xe25;&#xe37;&#xe2d;&#xe01;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maButton3ActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maButton3.setButtonColor(Color.white);&#xa;maButton3.setBorderColor(Macolor.mared);&#xa;maButton3.setTextColor(Macolor.mared);&#xa;maButton3.setArc(35);"/>
+      </AuxValues>
+    </Component>
+    <Container class="app.core.components.MaPanel" name="maPanel1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maPanel1.setBackground(Color.white);&#xa;maPanel1.setBorderColor(Macolor.magreen);"/>
+      </AuxValues>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="256" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="maScrollPane1" min="-2" pref="244" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="364" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <Component id="maScrollPane1" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="app.core.components.MaScrollPane" name="maScrollPane1">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maScrollPane1.setScrollX(false);&#xa;maScrollPane1.scrollToTop();"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="app.core.components.MaTextArea" name="maTextArea1">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" value="&#xe27;&#xe34;&#xe18;&#xe35;&#xe01;&#xe32;&#xe23;&#xe43;&#xe0a;&#xe49;&#xe07;&#xe32;&#xe19;&#xa;** &#xe27;&#xe34;&#xe18;&#xe35;&#xe01;&#xe32;&#xe23;&#xe40;&#xe1e;&#xe34;&#xe48;&#xe21;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;**&#xa;&#xa;&#xe01;&#xe14;&#xe1b;&#xe38;&#xe48;&#xe21; &#x201c;+ &#xe40;&#xe1e;&#xe34;&#xe48;&#xe21;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;&#x201d;&#xa;1. &#xe23;&#xe30;&#xe1a;&#xe1a;&#xe08;&#xe30;&#xe40;&#xe1b;&#xe34;&#xe14;&#xe1f;&#xe2d;&#xe23;&#xe4c;&#xe21;&#xe43;&#xe2b;&#xe49;&#xe01;&#xe23;&#xe2d;&#xe01;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25; (&#xe02;&#xe36;&#xe49;&#xe19;&#xe2d;&#xe22;&#xe39;&#xe48;&#xe01;&#xe31;&#xe1a;&#xe01;&#xe32;&#xe23;&#xe2d;&#xe2d;&#xe01;&#xe41;&#xe1a;&#xe1a;&#xe23;&#xe30;&#xe1a;&#xe1a;)&#xa;2.&#xe01;&#xe23;&#xe2d;&#xe01;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;&#xe43;&#xe2b;&#xe49;&#xe04;&#xe23;&#xe1a;&#xe43;&#xe19;&#xe41;&#xe15;&#xe48;&#xe25;&#xe30;&#xe04;&#xe2d;&#xe25;&#xe31;&#xe21;&#xe19;&#xe4c;&#xa;3.&#xe01;&#xe14;&#xe22;&#xe37;&#xe19;&#xe22;&#xe31;&#xe19;&#xe40;&#xe1e;&#xe37;&#xe48;&#xe2d;&#xe1a;&#xe31;&#xe19;&#xe17;&#xe36;&#xe01;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;&#xa;4.&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;&#xe43;&#xe2b;&#xe21;&#xe48;&#xe08;&#xe30;&#xe41;&#xe2a;&#xe14;&#xe07;&#xe43;&#xe19;&#xe15;&#xe32;&#xe23;&#xe32;&#xe07;&#xe17;&#xe31;&#xe19;&#xe17;&#xe35;&#xa;&#xa;*&#xe2b;&#xe21;&#xe32;&#xe22;&#xe40;&#xe2b;&#xe15;&#xe38;: &#xe04;&#xe27;&#xe23;&#xe15;&#xe23;&#xe27;&#xe08;&#xe2a;&#xe2d;&#xe1a;&#xe04;&#xe27;&#xe32;&#xe21;&#xe16;&#xe39;&#xe01;&#xe15;&#xe49;&#xe2d;&#xe07;&#xe01;&#xe48;&#xe2d;&#xe19;&#xe1a;&#xe31;&#xe19;&#xe17;&#xe36;&#xe01;&#xa;&#xa;&#xa;** &#xe27;&#xe34;&#xe18;&#xe35;&#xe01;&#xe32;&#xe23;&#xe25;&#xe1a;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25; **&#xa;&#xa;1.&#xe04;&#xe25;&#xe34;&#xe01;&#xe40;&#xe25;&#xe37;&#xe2d;&#xe01;&#xe41;&#xe16;&#xe27;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;&#xe17;&#xe35;&#xe48;&#xe15;&#xe49;&#xe2d;&#xe07;&#xe01;&#xe32;&#xe23;&#xe25;&#xe1a;&#xa;2.&#xe01;&#xe14;&#xe1b;&#xe38;&#xe48;&#xe21; &#x201c;&#xe25;&#xe1a;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;&#xe17;&#xe35;&#xe48;&#xe40;&#xe25;&#xe37;&#xe2d;&#xe01;&#x201d;&#xa;&#xa;* &#xe04;&#xe33;&#xe40;&#xe15;&#xe37;&#xe2d;&#xe19;: &#xe01;&#xe32;&#xe23;&#xe25;&#xe1a;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;&#xe44;&#xe21;&#xe48;&#xe2a;&#xe32;&#xe21;&#xe32;&#xe23;&#xe16;&#xe01;&#xe39;&#xe49;&#xe04;&#xe37;&#xe19;&#xe44;&#xe14;&#xe49; &#xe04;&#xe27;&#xe23;&#xe15;&#xe23;&#xe27;&#xe08;&#xe2a;&#xe2d;&#xe1a;&#xe01;&#xe48;&#xe2d;&#xe19;&#xe25;&#xe1a;&#xe17;&#xe38;&#xe01;&#xe04;&#xe23;&#xe31;&#xe49;&#xe07;" postCode="maTextArea1.setTextColor(Macolor.magreen);&#xa;maTextArea1.setBackground(Color.white);&#xa;maTextArea1.setFont(IBMPlexSansThaiFont.light(12f));&#xa;maTextArea1.setEditable(false);&#xa;maTextArea1.setCaretPosition(0);"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

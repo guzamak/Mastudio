@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="app.core.components.MaComboBox" name="maComboBox8">
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox11">
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox9">
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox10">
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox7">
+    </Component>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="3"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="maLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <Component id="maLabel3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="maComboBox2" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="maComboBox3" min="-2" pref="82" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="maComboBox1" min="-2" pref="96" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <Component id="maComboBox4" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="maComboBox6" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="maComboBox16" min="-2" pref="98" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                      <Component id="maComboBox19" min="-2" pref="92" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="maLabel9" min="-2" max="-2" attributes="0"/>
+                                          <Component id="maLabel7" min="-2" max="-2" attributes="0"/>
+                                          <Component id="maLabel8" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="maComboBox5" min="-2" pref="82" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="maComboBox17" min="-2" pref="92" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="maComboBox20" min="-2" pref="82" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="maComboBox21" min="-2" pref="92" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="maButton1" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="maTextField1" min="-2" pref="299" max="-2" attributes="0"/>
+                          <Component id="maLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="maLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="51" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Component id="maLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="maLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="maComboBox2" min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Component id="maLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="maTextField1" min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="maLabel4" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="maComboBox3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="maComboBox1" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="maComboBox4" min="-2" pref="34" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="maLabel7" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="maComboBox5" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="maComboBox17" min="-2" pref="34" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Component id="maLabel8" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="maComboBox6" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="maComboBox19" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="maComboBox16" min="-2" pref="34" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="maLabel9" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="maComboBox20" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="maComboBox21" min="-2" pref="34" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="maButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="38" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="app.core.components.MaLabel" name="maLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe2b;&#xe49;&#xe2d;&#xe07;"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel3.setFont(IBMPlexSansThaiFont.medium(16f));"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox2">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maComboBox2.getArrow().setBackground(Macolor.trans);&#xa;maComboBox2.getArrow().setBorderColor(Macolor.trans);&#xa;maComboBox2.getArrow().setTextColor(Macolor.magreen);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaLabel" name="maLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe0a;&#xe37;&#xe48;&#xe2d;&#xe25;&#xe39;&#xe01;&#xe04;&#xe49;&#xe32;"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel2.setFont(IBMPlexSansThaiFont.medium(16f));"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaTextField" name="maTextField1">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maTextField1ActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maTextField1.setPadding(10);&#xa;maTextField1.setColumns(20);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaLabel" name="maLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe27;&#xe31;&#xe19;&#xe17;&#xe35;&#xe48;&#xe40;&#xe02;&#xe49;&#xe32;"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel4.setFont(IBMPlexSansThaiFont.medium(14f));"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maComboBox1.getArrow().setBackground(Macolor.trans);&#xa;maComboBox1.getArrow().setBorderColor(Macolor.trans);&#xa;maComboBox1.getArrow().setTextColor(Macolor.magreen);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox3">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maComboBox3.getArrow().setBackground(Macolor.trans);&#xa;maComboBox3.getArrow().setBorderColor(Macolor.trans);&#xa;maComboBox3.getArrow().setTextColor(Macolor.magreen);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox4">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maComboBox4.getArrow().setBackground(Macolor.trans);&#xa;maComboBox4.getArrow().setBorderColor(Macolor.trans);&#xa;maComboBox4.getArrow().setTextColor(Macolor.magreen);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaLabel" name="maLabel7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe40;&#xe27;&#xe25;&#xe32;&#xe17;&#xe35;&#xe48;&#xe40;&#xe02;&#xe49;&#xe32;"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel7.setFont(IBMPlexSansThaiFont.medium(14f));"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox5">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maComboBox5.getArrow().setBackground(Macolor.trans);&#xa;maComboBox5.getArrow().setBorderColor(Macolor.trans);&#xa;maComboBox5.getArrow().setTextColor(Macolor.magreen);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox17">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maComboBox17.getArrow().setBackground(Macolor.trans);&#xa;maComboBox17.getArrow().setBorderColor(Macolor.trans);&#xa;maComboBox17.getArrow().setTextColor(Macolor.magreen);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaLabel" name="maLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe27;&#xe31;&#xe19;&#xe17;&#xe35;&#xe48;&#xe2d;&#xe2d;&#xe01;"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel8.setFont(IBMPlexSansThaiFont.medium(14f));"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox6">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maComboBox6.getArrow().setBackground(Macolor.trans);&#xa;maComboBox6.getArrow().setBorderColor(Macolor.trans);&#xa;maComboBox6.getArrow().setTextColor(Macolor.magreen);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox16">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maComboBox16.getArrow().setBackground(Macolor.trans);&#xa;maComboBox16.getArrow().setBorderColor(Macolor.trans);&#xa;maComboBox16.getArrow().setTextColor(Macolor.magreen);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox19">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maComboBox19.getArrow().setBackground(Macolor.trans);&#xa;maComboBox19.getArrow().setBorderColor(Macolor.trans);&#xa;maComboBox19.getArrow().setTextColor(Macolor.magreen);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaLabel" name="maLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe40;&#xe27;&#xe25;&#xe32;&#xe17;&#xe35;&#xe48;&#xe2d;&#xe2d;&#xe01;"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel9.setFont(IBMPlexSansThaiFont.medium(14f));"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox20">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maComboBox20.getArrow().setBackground(Macolor.trans);&#xa;maComboBox20.getArrow().setBorderColor(Macolor.trans);&#xa;maComboBox20.getArrow().setTextColor(Macolor.magreen);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaComboBox" name="maComboBox21">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maComboBox21.getArrow().setBackground(Macolor.trans);&#xa;maComboBox21.getArrow().setBorderColor(Macolor.trans);&#xa;maComboBox21.getArrow().setTextColor(Macolor.magreen);"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaLabel" name="maLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+ &#xe2b;&#xe49;&#xe2d;&#xe07;&#xe43;&#xe2b;&#xe21;&#xe48;"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel1.setTextColor(Macolor.magreen);&#xa;maLabel1.setFont(IBMPlexSansThaiFont.bold(24f));"/>
+      </AuxValues>
+    </Component>
+    <Component class="app.core.components.MaButton" name="maButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe1a;&#xe31;&#xe19;&#xe17;&#xe36;&#xe01;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maButton1.setButtonColor(Macolor.magreen);&#xa;maButton1.setBorderColor(Macolor.trans);"/>
+      </AuxValues>
+    </Component>
+  </SubComponents>
+</Form>
