@@ -60,9 +60,9 @@ public class BookingFrame extends MaInternalFrame {
         deleteBtn = new app.core.components.MaButton();
         maPanel1 = new app.core.components.MaPanel();
         maScrollPane1 = new app.core.components.MaScrollPane();
-        maTextArea1 = new app.core.components.MaTextArea();
+        HowtoBooking = new app.core.components.MaTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("จัดการการจอง");
 
         AddBtn.setBorderColor(Macolor.magreen);
@@ -92,15 +92,15 @@ public class BookingFrame extends MaInternalFrame {
         maScrollPane1.setScrollX(false);
         maScrollPane1.scrollToTop();
 
-        maTextArea1.setColumns(20);
-        maTextArea1.setRows(5);
-        maTextArea1.setText("วิธีการใช้งาน\n** วิธีการเพิ่มข้อมูล**\n\nกดปุ่ม “+ เพิ่มข้อมูล”\n1. ระบบจะเปิดฟอร์มให้กรอกข้อมูล (ขึ้นอยู่กับการออกแบบระบบ)\n2.กรอกข้อมูลให้ครบในแต่ละคอลัมน์\n3.กดยืนยันเพื่อบันทึกข้อมูล\n4.ข้อมูลใหม่จะแสดงในตารางทันที\n\n*หมายเหตุ: ควรตรวจสอบความถูกต้องก่อนบันทึก\n\n\n** วิธีการลบข้อมูล **\n\n1.คลิกเลือกแถวข้อมูลที่ต้องการลบ\n2.กดปุ่ม “ลบข้อมูลที่เลือก”\n\n* คำเตือน: การลบข้อมูลไม่สามารถกู้คืนได้ ควรตรวจสอบก่อนลบทุกครั้ง");
-        maTextArea1.setTextColor(Macolor.magreen);
-        maTextArea1.setBackground(Color.white);
-        maTextArea1.setFont(IBMPlexSansThaiFont.light(12f));
-        maTextArea1.setEditable(false);
-        maTextArea1.setCaretPosition(0);
-        maScrollPane1.setViewportView(maTextArea1);
+        HowtoBooking.setColumns(20);
+        HowtoBooking.setRows(5);
+        HowtoBooking.setText("วิธีการใช้งาน\n** วิธีการเพิ่มข้อมูล**\n\nกดปุ่ม “+ เพิ่มข้อมูล”\n1. ระบบจะเปิดฟอร์มให้กรอกข้อมูล (ขึ้นอยู่กับการออกแบบระบบ)\n2.กรอกข้อมูลให้ครบในแต่ละคอลัมน์\n3.กดยืนยันเพื่อบันทึกข้อมูล\n4.ข้อมูลใหม่จะแสดงในตารางทันที\n\n*หมายเหตุ: ควรตรวจสอบความถูกต้องก่อนบันทึก\n\n\n** วิธีการลบข้อมูล **\n\n1.คลิกเลือกแถวข้อมูลที่ต้องการลบ\n2.กดปุ่ม “ลบข้อมูลที่เลือก”\n\n* คำเตือน: การลบข้อมูลไม่สามารถกู้คืนได้ ควรตรวจสอบก่อนลบทุกครั้ง");
+        HowtoBooking.setTextColor(Macolor.magreen);
+        HowtoBooking.setBackground(Color.white);
+        HowtoBooking.setFont(IBMPlexSansThaiFont.light(12f));
+        HowtoBooking.setEditable(false);
+        HowtoBooking.setCaretPosition(0);
+        maScrollPane1.setViewportView(HowtoBooking);
 
         javax.swing.GroupLayout maPanel1Layout = new javax.swing.GroupLayout(maPanel1);
         maPanel1.setLayout(maPanel1Layout);
@@ -250,11 +250,11 @@ public class BookingFrame extends MaInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.core.components.MaButton AddBtn;
+    private app.core.components.MaTextArea HowtoBooking;
     private app.core.components.MaButton deleteBtn;
     private app.core.components.MaPanel maPanel1;
     private app.core.components.MaScrollPane maScrollPane1;
     private app.core.components.MaTable maTable1;
-    private app.core.components.MaTextArea maTextArea1;
     private app.core.components.NavLabel navLabel;
     private app.core.components.MaButton updateBtn;
     // End of variables declaration//GEN-END:variables

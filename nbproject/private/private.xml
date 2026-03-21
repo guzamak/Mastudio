@@ -16,7 +16,7 @@
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/dashboard/view/DashboardFrame.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaButton.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/auth/view/SignInFrameExample.java</file>
-            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/MDIMainFrame.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/MainFrame.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/receipt/view/ReceiptPageFrame.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/fonts/IBMPlexSansThaiFont.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/dashboard/view/DashboardFrameExample.java</file>
@@ -27,6 +27,12 @@
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaList.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaFrame.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/roomAndaccessory/controller/Room.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/roomAndaccessory/view/RoomFrame.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/RefreshButton.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaPanel.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaInternalFrame.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaLabel.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/auth/view/NewJInternalFrame.java</file>
         </group>
     </open-files>
 </project-private>

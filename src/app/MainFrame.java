@@ -28,7 +28,8 @@ public class MainFrame extends MaFrame {
 
     public MainFrame() {
         instance = this;
-        setTitle("MDI App");
+        setTitle("Mastudio");
+        setSize(1440,1080);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,6 +46,7 @@ public class MainFrame extends MaFrame {
         // center the internal frame
 //        int x = (desktopPane.getWidth() - frame.getWidth()) / 2;
 //        int y = (desktopPane.getHeight() - frame.getHeight()) / 2;
+        frame.toFront();
         frame.setLocation(0, 0);
     }
 

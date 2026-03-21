@@ -8,6 +8,7 @@ package app.core.components;
  *
  * @author poke
  */
+import app.core.components.fonts.IBMPlexSansThaiFont;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
@@ -19,7 +20,6 @@ import javax.swing.border.Border;
 //https://www.youtube.com/watch?v=ABTaFh2Sj9w
 //https://www.youtube.com/watch?v=J6ybK_K00G4
 //https://www.youtube.com/watch?v=yJUQshXN_EY
-
 public class MaTable extends MaPanel {
 
     private JTable table;
@@ -49,14 +49,14 @@ public class MaTable extends MaPanel {
                 new String[]{
                     "Col 1", "Col 2", "Col 3", "Col 4"
                 }
-        ); 
+        );
         table = new JTable(model);
         table.setBorder(BorderFactory.createEmptyBorder());
         table.setRowHeight(30);
         table.setShowGrid(false);
         table.setFocusable(false);
         table.setIntercellSpacing(new Dimension(0, 0));
-        table.setFont(new Font("IBM Plex Sans Thai", Font.PLAIN, 14));
+        table.setFont(IBMPlexSansThaiFont.regular(14f));
 
         table.setBackground(Color.WHITE);
         table.setForeground(Color.BLACK);
@@ -72,13 +72,14 @@ public class MaTable extends MaPanel {
                     JTable table, Object value, boolean isSelected,
                     boolean hasFocus, int row, int column) {
 
+//                getTableCellRendererComponent mostly return JLable (cell of table) but you can custom to other
+//              when make extends DefaultTableCellRenderer or overide in line
                 JLabel label = (JLabel) super.getTableCellRendererComponent(
                         table, value, isSelected, hasFocus, row, column);
 
                 label.setHorizontalAlignment(JLabel.LEFT);
                 label.setBackground(Color.WHITE);
                 label.setForeground(Macolor.magreen);
-                label.setFont(new Font("IBM Plex Sans Thai", Font.BOLD, 14));
                 label.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
                 label.setOpaque(true);
 
@@ -104,8 +105,7 @@ public class MaTable extends MaPanel {
 
                 return c;
             }
-            
-            
+
         });
 
         scroll = new MaScrollPane(table);
@@ -122,9 +122,10 @@ public class MaTable extends MaPanel {
         return table;
     }
 
-    public int getSelectedRow(){
+    public int getSelectedRow() {
         return getTable().getSelectedRow();
     }
+
     public void updateView(ArrayList<String> columns, ArrayList<Object[]> rows) {
 
         DefaultTableModel model = (DefaultTableModel) this.getModel();

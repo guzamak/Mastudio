@@ -26,7 +26,7 @@ public class MaTextArea extends JTextArea {
     private void setDefaultStyle() {
         setFont(IBMPlexSansThaiFont.regular(14f));
         setForeground(Color.BLACK);
-        setOpaque(false);
+        setOpaque(true);
         setLineWrap(true);        // better for textarea
         setWrapStyleWord(true);   // wrap by words
 //        make it not scroll to end auto when sstat
