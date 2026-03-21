@@ -34,6 +34,7 @@ import java.awt.image.*;
 import java.time.LocalDate;
 import presentation.booking.controller.Booking;
 import app.MainFrame;
+import presentation.roomAndaccessory.controller.Room;
 import presentation.roomAndaccessory.view.RoomFrame;
 
 public class DashboardFrame extends MaInternalFrame {
@@ -60,6 +61,7 @@ public class DashboardFrame extends MaInternalFrame {
         initComponents();
         loadBookings();
         updateRender();
+        Room.loadRooms(logger);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
@@ -368,7 +370,8 @@ try {
                 String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
                 String checkIn = PocketBaseClient.extractJsonString(item, "checkIn_time");
                 String timeslot = PocketBaseClient.extractJsonString(item, "time_slot");
-                String roomName = PocketBaseClient.extractJsonString(item, "room_name");
+                String roomId = PocketBaseClient.extractJsonString(item, "room");
+                String roomName = Room.data.get(roomId).getName();
                 String id = PocketBaseClient.extractJsonString(item, "id");
                 System.out.println(id);
 

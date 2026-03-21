@@ -68,10 +68,21 @@ public class Booking {
         this.timeSlot = timeSlot;
     }
 
-    public static void updateBookingData(Booking booking,String room,String customerName,String timeSlot,
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
+    
+    
+
+    public static void updateBookingData(Booking booking,String room,String id,String customerName,String timeSlot,
             String checkInYearStr, String checkInMonthStr, String checkInDayStr
             ){
         booking.setRoom(room);
+        booking.setRoomId(id);
         booking.setCustomer(customerName);
         booking.setTimeSlot(timeSlot);
         int checkInYear = Integer.parseInt(checkInYearStr);

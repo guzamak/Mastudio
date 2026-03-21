@@ -212,6 +212,7 @@ public class EditBookingFrame extends MaInternalFrame {
         Booking.updateBookingData(
                 booking,
                 (String) roomComboBox.getSelectedItem(),
+                (String) Room.getRoomNameToIdMap().get(roomComboBox.getSelectedItem()),
                 customerName.getText(),
                 (String) CheckInTimeSlotCombobox.getSelectedItem(),
                 (String) CheckInYearCombobox.getSelectedItem(),
@@ -226,6 +227,13 @@ public class EditBookingFrame extends MaInternalFrame {
             String newBookingId = "BK" + (Booking.data.size() + 1); // simple increment, can be improved
             Booking.data.put(newBookingId, booking);
         }
+        
+        if (isNew){
+//            post api
+        }
+        else {
+//          put api   
+        }
         parent.updateRender();
         dispose();
     }//GEN-LAST:event_submitBtnActionPerformed
@@ -235,7 +243,7 @@ public class EditBookingFrame extends MaInternalFrame {
      */
     public void updateRender() {
 
-//        roomComboBox.setList(Room.data.keySet().toArray(new String[1]));
+        roomComboBox.setList(Room.getRoomNamesList().toArray(new String[1]));
         CheckInDateCombobox.setList(TimeUtils.days);
         CheckInYearCombobox.setList(TimeUtils.years);
 

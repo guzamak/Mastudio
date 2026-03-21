@@ -32,6 +32,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.Map;
+import presentation.roomAndaccessory.controller.Room;
 
 
 public class BookingTableFrame extends MaInternalFrame {
@@ -156,7 +157,8 @@ public class BookingTableFrame extends MaInternalFrame {
             String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
             String checkIn = PocketBaseClient.extractJsonString(item, "checkIn_time");
             String timeSlot = PocketBaseClient.extractJsonString(item, "time_slot");
-            String roomName = PocketBaseClient.extractJsonString(item, "room_name");
+            String roomId = PocketBaseClient.extractJsonString(item, "room");
+            String roomName = Room.data.get(roomId).getName();
 
             rows.add(new Object[]{
                 roomName,

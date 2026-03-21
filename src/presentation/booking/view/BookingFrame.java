@@ -27,6 +27,7 @@ import javax.swing.BoxLayout;
 import javax.swing.*;
 import javax.swing.ImageIcon;
 import presentation.booking.controller.Booking;
+import presentation.roomAndaccessory.controller.Room;
 
 public class BookingFrame extends MaInternalFrame {
 
@@ -40,6 +41,7 @@ public class BookingFrame extends MaInternalFrame {
     public BookingFrame() {
         initComponents();
         updateRender();
+        Room.loadRooms(logger);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
