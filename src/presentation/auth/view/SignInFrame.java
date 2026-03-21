@@ -13,6 +13,7 @@ import app.core.components.MaOptionPane;
 import app.core.components.Macolor;
 import presentation.dashboard.view.DashboardFrame;
 import java.awt.Color;
+import javax.swing.JInternalFrame;
 import model.client.PocketBaseClient;
 import model.client.PocketBaseClient.PBResponse;
 import model.session.SessionManager;
@@ -22,9 +23,10 @@ import model.session.SessionManager;
  * @author poke
  */
 public class SignInFrame extends MaInternalFrame {
-    
+
     private PocketBaseClient pb = new PocketBaseClient("https://studiodb.hostmy.photos");
     private PBResponse pbClient;
+
     {
         try {
             pbClient = pb.authWithPassword("_superusers", System.getenv("SUPERUSERS_USERNAME"), System.getenv("SUPERUSERS_PASSWORD"));
@@ -215,12 +217,15 @@ public class SignInFrame extends MaInternalFrame {
 
                 MaOptionPane.showMessageDialog(this, "การเข้าสู่ระบบสำเร็จ");
 
-                dispose();
+                for (JInternalFrame frame : MainFrame.frames) {
+                    frame.dispose();
+                }
+                MainFrame.frames.clear();
                 MainFrame.getInstance().openInternalFrame(new DashboardFrame());
 
             } else {
 
-                MaOptionPane.showMessageDialog(this, "รหัสผ่านหรือชื่อผู้ใช้ไม่ถูกต้อง");
+                MaOptionPane.showMessageDialog(MainFrame.getInstance(), "รหัสผ่านหรือชื่อผู้ใช้ไม่ถูกต้อง");
 
             }
         }

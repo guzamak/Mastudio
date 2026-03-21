@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import model.session.SessionManager;
 import presentation.auth.view.SignInFrame;
 import presentation.dashboard.view.DashboardFrame;
@@ -25,8 +26,11 @@ public class MainFrame extends MaFrame {
 
     private JDesktopPane desktopPane;
     private static MainFrame instance;
+    public static ArrayList<JInternalFrame> frames = new ArrayList<>();
 
     public MainFrame() {
+        MenuBar menu = new MenuBar();
+        setJMenuBar(menu);
         instance = this;
         setTitle("Mastudio");
         setSize(1440,1080);
@@ -48,7 +52,9 @@ public class MainFrame extends MaFrame {
 //        int y = (desktopPane.getHeight() - frame.getHeight()) / 2;
         frame.toFront();
         frame.setLocation(0, 0);
+        frames.add(frame);
     }
+    
 
     public static MainFrame getInstance() {
         return instance;
