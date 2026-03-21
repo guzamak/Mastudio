@@ -34,7 +34,7 @@ public class DashboardFrame extends MaFrame {
     private MaTable maTable1;
 
     // PocetBase
-    private PocketBaseClient pb = new PocketBaseClient("https://studiodb.hostmy.photos");
+    private PocketBaseClient pb = SessionManager.pb;
     private PBResponse pbClient;
 
     {
@@ -80,7 +80,7 @@ public class DashboardFrame extends MaFrame {
         maButton7 = new app.components.lib.MaButton();
         editbookingBtn = new app.components.lib.MaButton();
         maButton3 = new app.components.lib.MaButton();
-        maButton6 = new app.components.lib.MaButton();
+        BookingTableBtn = new app.components.lib.MaButton();
         Logoutbtn = new app.components.lib.MaButton();
         maLabel1 = new app.components.lib.MaLabel();
         maTable3 = new app.components.lib.MaTable();
@@ -183,15 +183,16 @@ public class DashboardFrame extends MaFrame {
         gridBagConstraints.gridy = 4;
         maPanel1.add(maButton3, gridBagConstraints);
 
-        maButton6.setText("ตารางคิวงาน");
-        maButton6.setBorderColor(Macolor.magreen);
-        maButton6.setButtonColor(Macolor.seablue);
-        maButton6.setTextColor(Macolor.magreen);
+        BookingTableBtn.setText("ตารางคิวงาน");
+        BookingTableBtn.setBorderColor(Macolor.magreen);
+        BookingTableBtn.setButtonColor(Macolor.seablue);
+        BookingTableBtn.setTextColor(Macolor.magreen);
+        BookingTableBtn.addActionListener(this::BookingTableBtnActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        maPanel1.add(maButton6, gridBagConstraints);
+        maPanel1.add(BookingTableBtn, gridBagConstraints);
 
         Logoutbtn.setText("ออกจากระบบ");
         Logoutbtn.setButtonColor(Macolor.trans);
@@ -291,6 +292,11 @@ public class DashboardFrame extends MaFrame {
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         loadBookings();
     }//GEN-LAST:event_refreshButtonActionPerformed
+
+    private void BookingTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingTableBtnActionPerformed
+        // TODO add your handling code here:
+        new BookingTableFrame().setVisible(true);
+    }//GEN-LAST:event_BookingTableBtnActionPerformed
 
     private void loadBookings() {
         if (!pb.isAuthenticated()) {
@@ -401,6 +407,7 @@ try {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private app.components.lib.MaButton BookingTableBtn;
     private app.components.lib.MaButton Logoutbtn;
     private app.ui.BookingFrame bookingFrame1;
     private app.components.lib.MaButton editbookingBtn;
@@ -411,7 +418,6 @@ try {
     private app.components.lib.MaButton maButton3;
     private app.components.lib.MaButton maButton4;
     private app.components.lib.MaButton maButton5;
-    private app.components.lib.MaButton maButton6;
     private app.components.lib.MaButton maButton7;
     private app.components.lib.MaLabel maLabel1;
     private app.components.lib.MaPanel maPanel1;

@@ -9,7 +9,7 @@ import java.util.prefs.Preferences;
 public class SessionManager {
 
     private static final Preferences prefs = Preferences.userNodeForPackage(SessionManager.class);
-
+    public static PocketBaseClient pb = new PocketBaseClient("https://studiodb.hostmy.photos");   
     private static final String KEY_USERNAME = "session_username";
     private static final String KEY_TOKEN = "session_token";
     private static final String KEY_LOGGED_IN = "session_logged_in";

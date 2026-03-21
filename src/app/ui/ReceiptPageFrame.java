@@ -8,7 +8,22 @@ package app.ui;
  *
  * @author poke
  */
-public class ReceiptPageFrame extends javax.swing.JFrame {
+import app.components.lib.MaFrame;
+import app.components.lib.*;
+import app.components.lib.MaTextField;
+import app.components.fonts.IBMPlexSansThaiFont;
+import app.lib.PocketBaseClient;
+import app.lib.PocketBaseClient.PBResponse;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.awt.TextField;
+import java.util.List;
+import javax.swing.BoxLayout;
+import javax.swing.*;
+import javax.swing.ImageIcon;
+public class ReceiptPageFrame extends MaFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReceiptPageFrame.class.getName());
 
@@ -30,8 +45,51 @@ public class ReceiptPageFrame extends javax.swing.JFrame {
 
         navLabel1 = new app.components.dashboard.NavLabel();
         navLabel1.setExtraText("ออกใบเสณ้จ");
+        maPanel1 = new app.components.lib.MaPanel();
+        maScrollPane1 = new app.components.lib.MaScrollPane();
+        maTextArea1 = new app.components.lib.MaTextArea();
+        maLabel1 = new app.components.lib.MaLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        maPanel1.setBackground(Color.white);
+        maPanel1.setBorderColor(Macolor.magreen);
+
+        maScrollPane1.setScrollX(false);
+        maScrollPane1.scrollToTop();
+        maScrollPane1.getViewport().setBackground(Color.white);
+
+        maTextArea1.setTextColor(Macolor.magreen);
+        maTextArea1.setFont(IBMPlexSansThaiFont.light(12f));
+        maTextArea1.setEditable(false);
+        maTextArea1.setBackground(Color.white);
+        maTextArea1.setColumns(20);
+        maTextArea1.setRows(5);
+        maTextArea1.setText("วิธีการใช้งาน\n** วิธีการเพิ่มข้อมูล**\n\nกดปุ่ม “+ เพิ่มข้อมูล”\n1. ระบบจะเปิดฟอร์มให้กรอกข้อมูล (ขึ้นอยู่กับการออกแบบระบบ)\n2.กรอกข้อมูลให้ครบในแต่ละคอลัมน์\n3.กดยืนยันเพื่อบันทึกข้อมูล\n4.ข้อมูลใหม่จะแสดงในตารางทันที\n\n*หมายเหตุ: ควรตรวจสอบความถูกต้องก่อนบันทึก\n\n\n** วิธีการลบข้อมูล **\n\n1.คลิกเลือกแถวข้อมูลที่ต้องการลบ\n2.กดปุ่ม “ลบข้อมูลที่เลือก”\n\n* คำเตือน: การลบข้อมูลไม่สามารถกู้คืนได้ ควรตรวจสอบก่อนลบทุกครั้ง");
+        maScrollPane1.setViewportView(maTextArea1);
+
+        javax.swing.GroupLayout maPanel1Layout = new javax.swing.GroupLayout(maPanel1);
+        maPanel1.setLayout(maPanel1Layout);
+        maPanel1Layout.setHorizontalGroup(
+            maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 256, Short.MAX_VALUE)
+            .addGroup(maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(maPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(maScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        maPanel1Layout.setVerticalGroup(
+            maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 325, Short.MAX_VALUE)
+            .addGroup(maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(maPanel1Layout.createSequentialGroup()
+                    .addGap(9, 9, 9)
+                    .addComponent(maScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                    .addGap(10, 10, 10)))
+        );
+
+        maLabel1.setText("รายชื่อห้อง (ต้องการออกใบเสร็จห้องไหน )");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -39,15 +97,24 @@ public class ReceiptPageFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(navLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(navLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(navLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,6 +146,10 @@ public class ReceiptPageFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private app.components.lib.MaLabel maLabel1;
+    private app.components.lib.MaPanel maPanel1;
+    private app.components.lib.MaScrollPane maScrollPane1;
+    private app.components.lib.MaTextArea maTextArea1;
     private app.components.dashboard.NavLabel navLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,7 +27,8 @@ public class ImageLabel extends JLabel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+//        not paint text
+//        super.paintComponent(g);
 
         if (image != null) {
             int labelWidth = getWidth();

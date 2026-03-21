@@ -354,12 +354,15 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="app.components.lib.MaButton" name="maButton6">
+        <Component class="app.components.lib.MaButton" name="BookingTableBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xe15;&#xe32;&#xe23;&#xe32;&#xe07;&#xe04;&#xe34;&#xe27;&#xe07;&#xe32;&#xe19;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BookingTableBtnActionPerformed"/>
+          </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maButton6.setBorderColor(Macolor.magreen);&#xa;maButton6.setButtonColor(Macolor.seablue);&#xa;maButton6.setTextColor(Macolor.magreen);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="BookingTableBtn.setBorderColor(Macolor.magreen);&#xa;BookingTableBtn.setButtonColor(Macolor.seablue);&#xa;BookingTableBtn.setTextColor(Macolor.magreen);"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -779,11 +782,11 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="38_maButton6">
-              <CodeVariable name="maButton6" type="8194" declaredType="app.components.lib.MaButton"/>
+            <CodeExpression id="38_BookingTableBtn">
+              <CodeVariable name="BookingTableBtn" type="8194" declaredType="app.components.lib.MaButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
-                  <ComponentRef name="maButton6"/>
+                  <ComponentRef name="BookingTableBtn"/>
                 </ExpressionProvider>
               </ExpressionOrigin>
             </CodeExpression>
