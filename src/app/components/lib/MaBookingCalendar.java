@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package app.components.dashboard;
+package app.components.lib;
 
 import app.components.lib.*;
 import java.awt.GridLayout;
@@ -16,7 +16,7 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.time.YearMonth;
 
-public class BookingCalendar extends JPanel implements DateSelectionListener{
+public class MaBookingCalendar extends MaPanel implements DateSelectionListener{
 
     private MaPanel calendarPanel;
     private MaPanel headerPanel;
@@ -31,7 +31,7 @@ public class BookingCalendar extends JPanel implements DateSelectionListener{
         this.listener = listener;
     }
 
-    public BookingCalendar() {
+    public MaBookingCalendar() {
         setLayout(new BorderLayout());
         setBackground(Color.WHITE); 
         LocalDate now = LocalDate.now();
@@ -39,7 +39,7 @@ public class BookingCalendar extends JPanel implements DateSelectionListener{
         year = now.getYear();
 
         headerPanel = new MaPanel();
-        headerPanel.setBackground(Color.WHITE); 
+        headerPanel.setBackground(Macolor.trans); 
         headerPanel.setLayout(new FlowLayout());
 
         MaButton prevButton = new MaButton();
@@ -66,7 +66,7 @@ public class BookingCalendar extends JPanel implements DateSelectionListener{
         calendarPanel = new MaPanel();
         calendarPanel.setBorderColor(Macolor.trans);
         calendarPanel.setLayout(new GridBagLayout());
-        calendarPanel.setBackground(Color.white);
+        calendarPanel.setBackground(Macolor.trans);
 
         add(calendarPanel, BorderLayout.CENTER);
 
