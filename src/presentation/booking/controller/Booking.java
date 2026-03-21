@@ -13,12 +13,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import model.client.TimeUtils;
+
 public class Booking {
-    private String room,customer ,id;
-    private String checkIn,checkout;
+
+    private String room, customer, id;
+    private String checkIn, checkout;
     public static HashMap<String, Booking> data = new HashMap<>();
 
-    public Booking(String id,String room, String customer, String checkIn, String checkout) {
+    public Booking(String id, String room, String customer, String checkIn, String checkout) {
         this.id = id;
         this.room = room;
         this.customer = customer;
@@ -30,7 +32,6 @@ public class Booking {
         return id;
     }
 
-    
     public String getRoom() {
         return room;
     }
@@ -62,14 +63,16 @@ public class Booking {
     public void setCheckout(String checkout) {
         this.checkout = checkout;
     }
-    
-        public static void updateBookingData(
+
+    public static void updateBookingData(
             Booking booking,
-            String room , String customerName,
+            String room, String customerName,
             String checkInYearStr, String checkInMonthStr, String checkInDayStr, String checkInHourStr, String checkInMinuteStr,
             String checkOutYearStr, String checkOutMonthStr, String checkOutDayStr, String checkOutHourStr, String checkOutMinuteStr
     ) {
         // Parse check-in
+        booking.setRoom(room);
+        booking.setCustomer(customerName);
         int checkInYear = Integer.parseInt(checkInYearStr);
         int checkInMonth = TimeUtils.parseMonth(checkInMonthStr);
         int checkInDay = Integer.parseInt(checkInDayStr);
@@ -96,6 +99,4 @@ public class Booking {
         booking.setCheckout(checkOutOffset.format(formatter));
     }
 
-
-    
 }
