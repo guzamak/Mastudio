@@ -63,8 +63,9 @@ public class Booking {
         this.checkout = checkout;
     }
     
-        public static void updateBookingDates(
+        public static void updateBookingData(
             Booking booking,
+            String room , String customerName,
             String checkInYearStr, String checkInMonthStr, String checkInDayStr, String checkInHourStr, String checkInMinuteStr,
             String checkOutYearStr, String checkOutMonthStr, String checkOutDayStr, String checkOutHourStr, String checkOutMinuteStr
     ) {

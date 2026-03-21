@@ -274,8 +274,11 @@ public class EditBookingFrame extends MaFrame {
             booking = new Booking(null, "", "", "", "");
         }
 
-        Booking.updateBookingDates(
+        
+        Booking.updateBookingData(
                 booking,
+                 (String) roomComboBox.getSelectedItem(),
+                customerName.getText(),
                 (String) CheckInYearCombobox.getSelectedItem(),
                 (String) CheckInMonthCombobox.getSelectedItem(),
                 (String) CheckInDateCombobox.getSelectedItem(),
