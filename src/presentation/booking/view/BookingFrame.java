@@ -202,7 +202,7 @@ public class BookingFrame extends MaInternalFrame {
         columns.add("Room Name");
         columns.add("Customer Name");
         columns.add("Check In");
-        columns.add("Check Out");
+        columns.add("Time Slot");
 
         ArrayList<Object[]> rows = new ArrayList<>();
         for (String key : Booking.data.keySet()) {
@@ -210,7 +210,7 @@ public class BookingFrame extends MaInternalFrame {
 
             String customerName = b.getCustomer();
             String checkIn = b.getCheckIn();
-            String checkOut = b.getCheckout();
+            String checkOut = b.getTimeSlot();
             String roomName = b.getRoom();
 
             rows.add(new Object[]{

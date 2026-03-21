@@ -155,6 +155,12 @@ public class PocketBaseClient {
         Matcher m = p.matcher(json);
         return m.find() ? m.group(1).replace("\\\"", "\"").replace("\\\\", "\\") : null;
     }
+    
+    public static Double extractJsonNumber(String json, String key) {
+    Pattern p = Pattern.compile("\"" + Pattern.quote(key) + "\"\\s*:\\s*(\\d+(\\.\\d+)?)");
+    Matcher m = p.matcher(json);
+    return m.find() ? Double.parseDouble(m.group(1)) : null;
+}
 
     // --- Response wrapper ---
 

@@ -125,7 +125,7 @@ public class BookingTableFrame extends MaInternalFrame {
             System.out.println(pb.getAuthToken());
             return;
         }
-        String filter = "checkIn_time <= '" + endUtc + "' && checkOut_time >= '" + startUtc + "'";
+        String filter = "checkIn_time <= '" + endUtc + "' && checkIn_time >= '" + startUtc + "'";
         Map<String, String> params = Map.of("filter", filter);
         try {
             PBResponse res = pb.getRecords("java_book", params);
@@ -139,7 +139,7 @@ public class BookingTableFrame extends MaInternalFrame {
             columns.add("Room Name");
             columns.add("Customer Name");
             columns.add("Check In");
-            columns.add("Check Out");
+            columns.add("Time Slot");
 
             ArrayList<Object[]> rows = new ArrayList<>();
 
@@ -155,14 +155,14 @@ public class BookingTableFrame extends MaInternalFrame {
 
             String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
             String checkIn = PocketBaseClient.extractJsonString(item, "checkIn_time");
-            String checkOut = PocketBaseClient.extractJsonString(item, "checkOut_time");
+            String timeSlot = PocketBaseClient.extractJsonString(item, "time_slot");
             String roomName = PocketBaseClient.extractJsonString(item, "room_name");
 
             rows.add(new Object[]{
                 roomName,
                 customerName,
                 checkIn,
-                checkOut
+                timeSlot,
             });
         }
 

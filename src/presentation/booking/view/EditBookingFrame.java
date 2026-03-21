@@ -27,6 +27,7 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import model.client.TimeUtils;
 import presentation.booking.controller.Booking;
+import presentation.roomAndaccessory.controller.Room;
 
 public class EditBookingFrame extends MaInternalFrame {
 
@@ -78,19 +79,11 @@ public class EditBookingFrame extends MaInternalFrame {
         CheckInDateCombobox = new app.core.components.MaComboBox();
         CheckInYearCombobox = new app.core.components.MaComboBox();
         maLabel7 = new app.core.components.MaLabel();
-        CheckInHourCombobox = new app.core.components.MaComboBox();
-        CheckInMinCombobox = new app.core.components.MaComboBox();
-        maLabel8 = new app.core.components.MaLabel();
-        CheckOutDateCombobox = new app.core.components.MaComboBox();
-        CheckOutMonthCombobox = new app.core.components.MaComboBox();
-        CheckOutYearCombobox = new app.core.components.MaComboBox();
-        maLabel9 = new app.core.components.MaLabel();
-        CheckOutHourCombobox = new app.core.components.MaComboBox();
-        CheckOutMinCombobox = new app.core.components.MaComboBox();
+        CheckInTimeSlotCombobox = new app.core.components.MaComboBox();
         maLabel1 = new app.core.components.MaLabel();
         submitBtn = new app.core.components.MaButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         maLabel3.setText("ห้อง");
         maLabel3.setFont(IBMPlexSansThaiFont.medium(16f));
@@ -124,39 +117,9 @@ public class EditBookingFrame extends MaInternalFrame {
         maLabel7.setText("เวลาที่เข้า");
         maLabel7.setFont(IBMPlexSansThaiFont.medium(14f));
 
-        CheckInHourCombobox.getArrow().setBackground(Macolor.trans);
-        CheckInHourCombobox.getArrow().setBorderColor(Macolor.trans);
-        CheckInHourCombobox.getArrow().setTextColor(Macolor.magreen);
-
-        CheckInMinCombobox.getArrow().setBackground(Macolor.trans);
-        CheckInMinCombobox.getArrow().setBorderColor(Macolor.trans);
-        CheckInMinCombobox.getArrow().setTextColor(Macolor.magreen);
-
-        maLabel8.setText("วันที่ออก");
-        maLabel8.setFont(IBMPlexSansThaiFont.medium(14f));
-
-        CheckOutDateCombobox.getArrow().setBackground(Macolor.trans);
-        CheckOutDateCombobox.getArrow().setBorderColor(Macolor.trans);
-        CheckOutDateCombobox.getArrow().setTextColor(Macolor.magreen);
-
-        CheckOutMonthCombobox.getArrow().setBackground(Macolor.trans);
-        CheckOutMonthCombobox.getArrow().setBorderColor(Macolor.trans);
-        CheckOutMonthCombobox.getArrow().setTextColor(Macolor.magreen);
-
-        CheckOutYearCombobox.getArrow().setBackground(Macolor.trans);
-        CheckOutYearCombobox.getArrow().setBorderColor(Macolor.trans);
-        CheckOutYearCombobox.getArrow().setTextColor(Macolor.magreen);
-
-        maLabel9.setText("เวลาที่ออก");
-        maLabel9.setFont(IBMPlexSansThaiFont.medium(14f));
-
-        CheckOutHourCombobox.getArrow().setBackground(Macolor.trans);
-        CheckOutHourCombobox.getArrow().setBorderColor(Macolor.trans);
-        CheckOutHourCombobox.getArrow().setTextColor(Macolor.magreen);
-
-        CheckOutMinCombobox.getArrow().setBackground(Macolor.trans);
-        CheckOutMinCombobox.getArrow().setBorderColor(Macolor.trans);
-        CheckOutMinCombobox.getArrow().setTextColor(Macolor.magreen);
+        CheckInTimeSlotCombobox.getArrow().setBackground(Macolor.trans);
+        CheckInTimeSlotCombobox.getArrow().setBorderColor(Macolor.trans);
+        CheckInTimeSlotCombobox.getArrow().setTextColor(Macolor.magreen);
 
         maLabel1.setText("+ ห้องใหม่");
         maLabel1.setTextColor(Macolor.magreen);
@@ -172,8 +135,8 @@ public class EditBookingFrame extends MaInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,33 +154,17 @@ public class EditBookingFrame extends MaInternalFrame {
                                         .addGap(12, 12, 12)
                                         .addComponent(CheckInYearCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(CheckOutDateCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(CheckOutMonthCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(CheckOutYearCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(maLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(maLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(maLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(CheckInHourCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(CheckInMinCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(CheckOutHourCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(CheckOutMinCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(maLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(submitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(layout.createSequentialGroup()
+                                    .addComponent(CheckInTimeSlotCombobox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(submitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(customerName, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(customerName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
                             .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(maLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,25 +189,10 @@ public class EditBookingFrame extends MaInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(maLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CheckInHourCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CheckInMinCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(maLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CheckOutDateCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CheckOutYearCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CheckOutMonthCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(maLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CheckOutHourCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CheckOutMinCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addComponent(CheckInTimeSlotCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
                 .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -277,27 +209,20 @@ public class EditBookingFrame extends MaInternalFrame {
             booking = new Booking(null, "", "", "", "");
         }
 
-        
         Booking.updateBookingData(
                 booking,
                 (String) roomComboBox.getSelectedItem(),
                 customerName.getText(),
+                (String) CheckInTimeSlotCombobox.getSelectedItem(),
                 (String) CheckInYearCombobox.getSelectedItem(),
                 (String) CheckInMonthCombobox.getSelectedItem(),
-                (String) CheckInDateCombobox.getSelectedItem(),
-                (String) CheckInHourCombobox.getSelectedItem(),
-                (String) CheckInMinCombobox.getSelectedItem(),
-                (String) CheckOutYearCombobox.getSelectedItem(),
-                (String) CheckOutMonthCombobox.getSelectedItem(),
-                (String) CheckOutDateCombobox.getSelectedItem(),
-                (String) CheckOutHourCombobox.getSelectedItem(),
-                (String) CheckOutMinCombobox.getSelectedItem()
+                (String) CheckInDateCombobox.getSelectedItem()
         );
 
         if (isNew) {
             System.out.println("rest");
 //            want id form backend 
-            
+
             String newBookingId = "BK" + (Booking.data.size() + 1); // simple increment, can be improved
             Booking.data.put(newBookingId, booking);
         }
@@ -310,25 +235,16 @@ public class EditBookingFrame extends MaInternalFrame {
      */
     public void updateRender() {
 
+//        roomComboBox.setList(Room.data.keySet().toArray(new String[1]));
+        CheckInDateCombobox.setList(TimeUtils.days);
         CheckInYearCombobox.setList(TimeUtils.years);
-        CheckOutYearCombobox.setList(TimeUtils.years);
 
         String[] monthNames = new String[TimeUtils.months.length];
         for (int i = 0; i < TimeUtils.months.length; i++) {
             monthNames[i] = TimeUtils.monthMap.get(TimeUtils.months[i]);
         }
         CheckInMonthCombobox.setList(monthNames);
-        CheckOutMonthCombobox.setList(monthNames);
-
-        CheckInDateCombobox.setList(TimeUtils.days);
-        CheckOutDateCombobox.setList(TimeUtils.days);
-
-        CheckInHourCombobox.setList(TimeUtils.hours);
-        CheckOutHourCombobox.setList(TimeUtils.hours);
-
-        CheckInMinCombobox.setList(TimeUtils.minutes);
-        CheckOutMinCombobox.setList(TimeUtils.minutes);
-
+        CheckInTimeSlotCombobox.setList(Booking.time_slot_list.toArray(new String[0]));
         if (booking != null) {
 
             customerName.setText(booking.getCustomer());
@@ -337,21 +253,10 @@ public class EditBookingFrame extends MaInternalFrame {
 // Parse check-in/check-out ISO string
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSX");
             OffsetDateTime checkIn = OffsetDateTime.parse(booking.getCheckIn(), formatter);
-            OffsetDateTime checkOut = OffsetDateTime.parse(booking.getCheckout(), formatter);
             CheckInYearCombobox.setSelectedItem(String.valueOf(checkIn.getYear()));
-            CheckOutYearCombobox.setSelectedItem(String.valueOf(checkOut.getYear()));
-
             CheckInMonthCombobox.setSelectedItem(TimeUtils.monthMap.get(String.valueOf(checkIn.getMonthValue())));
-            CheckOutMonthCombobox.setSelectedItem(TimeUtils.monthMap.get(String.valueOf(checkOut.getMonthValue())));
-
             CheckInDateCombobox.setSelectedItem(String.valueOf(checkIn.getDayOfMonth()));
-            CheckOutDateCombobox.setSelectedItem(String.valueOf(checkOut.getDayOfMonth()));
-
-            CheckInHourCombobox.setSelectedItem(String.format("%02d", checkIn.getHour()));
-            CheckOutHourCombobox.setSelectedItem(String.format("%02d", checkOut.getHour()));
-
-            CheckInMinCombobox.setSelectedItem(String.format("%02d", checkIn.getMinute()));
-            CheckOutMinCombobox.setSelectedItem(String.format("%02d", checkOut.getMinute()));
+            CheckInTimeSlotCombobox.setSelectedItem(booking.getTimeSlot());
         }
     }
 
@@ -379,15 +284,9 @@ public class EditBookingFrame extends MaInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.core.components.MaComboBox CheckInDateCombobox;
-    private app.core.components.MaComboBox CheckInHourCombobox;
-    private app.core.components.MaComboBox CheckInMinCombobox;
     private app.core.components.MaComboBox CheckInMonthCombobox;
+    private app.core.components.MaComboBox CheckInTimeSlotCombobox;
     private app.core.components.MaComboBox CheckInYearCombobox;
-    private app.core.components.MaComboBox CheckOutDateCombobox;
-    private app.core.components.MaComboBox CheckOutHourCombobox;
-    private app.core.components.MaComboBox CheckOutMinCombobox;
-    private app.core.components.MaComboBox CheckOutMonthCombobox;
-    private app.core.components.MaComboBox CheckOutYearCombobox;
     private app.core.components.MaTextField customerName;
     private app.core.components.MaComboBox maComboBox10;
     private app.core.components.MaComboBox maComboBox11;
@@ -399,8 +298,6 @@ public class EditBookingFrame extends MaInternalFrame {
     private app.core.components.MaLabel maLabel3;
     private app.core.components.MaLabel maLabel4;
     private app.core.components.MaLabel maLabel7;
-    private app.core.components.MaLabel maLabel8;
-    private app.core.components.MaLabel maLabel9;
     private app.core.components.MaComboBox roomComboBox;
     private app.core.components.MaButton submitBtn;
     // End of variables declaration//GEN-END:variables

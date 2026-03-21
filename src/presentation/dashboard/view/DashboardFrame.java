@@ -34,6 +34,7 @@ import java.awt.image.*;
 import java.time.LocalDate;
 import presentation.booking.controller.Booking;
 import app.MainFrame;
+import presentation.roomAndaccessory.view.RoomFrame;
 
 public class DashboardFrame extends MaInternalFrame {
 
@@ -117,7 +118,7 @@ public class DashboardFrame extends MaInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dashboard");
 
         maPanel2.setBorderColor(Macolor.trans);
@@ -165,6 +166,7 @@ public class DashboardFrame extends MaInternalFrame {
         maButton7.setBorderColor(Macolor.magreen);
         maButton7.setButtonColor(Macolor.seablue);
         maButton7.setTextColor(Macolor.magreen);
+        maButton7.addActionListener(this::maButton7ActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -305,6 +307,11 @@ public class DashboardFrame extends MaInternalFrame {
        MainFrame.getInstance().openInternalFrame(new BookingTableFrame());
     }//GEN-LAST:event_BookingTableBtnActionPerformed
 
+    private void maButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton7ActionPerformed
+        // TODO add your handling code here:
+         MainFrame.getInstance().openInternalFrame(new RoomFrame());
+    }//GEN-LAST:event_maButton7ActionPerformed
+
     private void loadBookings() {
         if (!pb.isAuthenticated()) {
             return;
@@ -360,12 +367,12 @@ try {
 
                 String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
                 String checkIn = PocketBaseClient.extractJsonString(item, "checkIn_time");
-                String checkOut = PocketBaseClient.extractJsonString(item, "checkOut_time");
+                String timeslot = PocketBaseClient.extractJsonString(item, "time_slot");
                 String roomName = PocketBaseClient.extractJsonString(item, "room_name");
                 String id = PocketBaseClient.extractJsonString(item, "id");
                 System.out.println(id);
 
-                Booking.data.put(id,new Booking(id,roomName, customerName, checkIn, checkOut));
+                Booking.data.put(id,new Booking(id,roomName, customerName, timeslot,checkIn));
             }
             updateRender();
         } catch (java.io.IOException | InterruptedException ex) {
@@ -378,7 +385,7 @@ try {
         columns.add("Room Name");
         columns.add("Customer Name");
         columns.add("Check In");
-        columns.add("Check Out");
+        columns.add("Time Slot");
 
         ArrayList<Object[]> rows = new ArrayList<>();
          for (String key: Booking.data.keySet()) {
@@ -386,7 +393,7 @@ try {
 
                 String customerName = b.getCustomer();
                 String checkIn = b.getCheckIn();
-                String checkOut =  b.getCheckout();
+                String checkOut =  b.getTimeSlot();
                 String roomName = b.getRoom();
 
                 rows.add(new Object[]{

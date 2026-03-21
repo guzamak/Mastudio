@@ -315,6 +315,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xe08;&#xe31;&#xe14;&#xe01;&#xe32;&#xe23;&#xe2b;&#xe49;&#xe2d;&#xe07;&#xe40;&#xe40;&#xe25;&#xe30;&#xe2d;&#xe38;&#xe1b;&#xe01;&#xe23;&#xe13;&#xe4c;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maButton7ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maButton7.setBorderColor(Macolor.magreen);&#xa;maButton7.setButtonColor(Macolor.seablue);&#xa;maButton7.setTextColor(Macolor.magreen);"/>
           </AuxValues>

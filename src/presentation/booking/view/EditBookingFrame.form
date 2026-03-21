@@ -34,9 +34,9 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="maLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -55,46 +55,26 @@
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                       <Component id="CheckInYearCombobox" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="CheckOutDateCombobox" pref="0" max="32767" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="CheckOutMonthCombobox" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                      <Component id="CheckOutYearCombobox" min="-2" pref="92" max="-2" attributes="0"/>
-                                  </Group>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="maLabel9" min="-2" max="-2" attributes="0"/>
-                                          <Component id="maLabel7" min="-2" max="-2" attributes="0"/>
-                                          <Component id="maLabel8" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="CheckInHourCombobox" min="-2" pref="82" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="CheckInMinCombobox" min="-2" pref="92" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="CheckOutHourCombobox" min="-2" pref="82" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="CheckOutMinCombobox" min="-2" pref="92" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="maLabel7" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="submitBtn" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="CheckInTimeSlotCombobox" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="submitBtn" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="customerName" min="-2" pref="299" max="-2" attributes="0"/>
+                          <Component id="customerName" alignment="1" pref="299" max="32767" attributes="0"/>
                           <Component id="maLabel2" min="-2" max="-2" attributes="0"/>
                           <Component id="maLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="51" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -122,28 +102,10 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="maLabel7" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="CheckInHourCombobox" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="CheckInMinCombobox" min="-2" pref="34" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="maLabel8" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="CheckOutDateCombobox" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="CheckOutYearCombobox" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="CheckOutMonthCombobox" min="-2" pref="34" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="maLabel9" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="CheckOutHourCombobox" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="CheckOutMinCombobox" min="-2" pref="34" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="CheckInTimeSlotCombobox" min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Component id="submitBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -209,55 +171,9 @@
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel7.setFont(IBMPlexSansThaiFont.medium(14f));"/>
       </AuxValues>
     </Component>
-    <Component class="app.core.components.MaComboBox" name="CheckInHourCombobox">
+    <Component class="app.core.components.MaComboBox" name="CheckInTimeSlotCombobox">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="CheckInHourCombobox.getArrow().setBackground(Macolor.trans);&#xa;CheckInHourCombobox.getArrow().setBorderColor(Macolor.trans);&#xa;CheckInHourCombobox.getArrow().setTextColor(Macolor.magreen);"/>
-      </AuxValues>
-    </Component>
-    <Component class="app.core.components.MaComboBox" name="CheckInMinCombobox">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="CheckInMinCombobox.getArrow().setBackground(Macolor.trans);&#xa;CheckInMinCombobox.getArrow().setBorderColor(Macolor.trans);&#xa;CheckInMinCombobox.getArrow().setTextColor(Macolor.magreen);"/>
-      </AuxValues>
-    </Component>
-    <Component class="app.core.components.MaLabel" name="maLabel8">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#xe27;&#xe31;&#xe19;&#xe17;&#xe35;&#xe48;&#xe2d;&#xe2d;&#xe01;"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel8.setFont(IBMPlexSansThaiFont.medium(14f));"/>
-      </AuxValues>
-    </Component>
-    <Component class="app.core.components.MaComboBox" name="CheckOutDateCombobox">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="CheckOutDateCombobox.getArrow().setBackground(Macolor.trans);&#xa;CheckOutDateCombobox.getArrow().setBorderColor(Macolor.trans);&#xa;CheckOutDateCombobox.getArrow().setTextColor(Macolor.magreen);"/>
-      </AuxValues>
-    </Component>
-    <Component class="app.core.components.MaComboBox" name="CheckOutMonthCombobox">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="CheckOutMonthCombobox.getArrow().setBackground(Macolor.trans);&#xa;CheckOutMonthCombobox.getArrow().setBorderColor(Macolor.trans);&#xa;CheckOutMonthCombobox.getArrow().setTextColor(Macolor.magreen);"/>
-      </AuxValues>
-    </Component>
-    <Component class="app.core.components.MaComboBox" name="CheckOutYearCombobox">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="CheckOutYearCombobox.getArrow().setBackground(Macolor.trans);&#xa;CheckOutYearCombobox.getArrow().setBorderColor(Macolor.trans);&#xa;CheckOutYearCombobox.getArrow().setTextColor(Macolor.magreen);"/>
-      </AuxValues>
-    </Component>
-    <Component class="app.core.components.MaLabel" name="maLabel9">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#xe40;&#xe27;&#xe25;&#xe32;&#xe17;&#xe35;&#xe48;&#xe2d;&#xe2d;&#xe01;"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel9.setFont(IBMPlexSansThaiFont.medium(14f));"/>
-      </AuxValues>
-    </Component>
-    <Component class="app.core.components.MaComboBox" name="CheckOutHourCombobox">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="CheckOutHourCombobox.getArrow().setBackground(Macolor.trans);&#xa;CheckOutHourCombobox.getArrow().setBorderColor(Macolor.trans);&#xa;CheckOutHourCombobox.getArrow().setTextColor(Macolor.magreen);"/>
-      </AuxValues>
-    </Component>
-    <Component class="app.core.components.MaComboBox" name="CheckOutMinCombobox">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="CheckOutMinCombobox.getArrow().setBackground(Macolor.trans);&#xa;CheckOutMinCombobox.getArrow().setBorderColor(Macolor.trans);&#xa;CheckOutMinCombobox.getArrow().setTextColor(Macolor.magreen);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="CheckInTimeSlotCombobox.getArrow().setBackground(Macolor.trans);&#xa;CheckInTimeSlotCombobox.getArrow().setBorderColor(Macolor.trans);&#xa;CheckInTimeSlotCombobox.getArrow().setTextColor(Macolor.magreen);"/>
       </AuxValues>
     </Component>
     <Component class="app.core.components.MaLabel" name="maLabel1">

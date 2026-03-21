@@ -8,15 +8,48 @@ package presentation.roomAndaccessory.view;
  *
  * @author poke
  */
-public class RoomFrame extends javax.swing.JFrame {
-    
+import presentation.booking.view.BookingTableFrame;
+import presentation.booking.view.BookingFrame;
+import presentation.auth.view.SignInFrame;
+import app.core.components.Macolor;
+import app.core.components.MaFrame;
+import app.core.components.MaInternalFrame;
+import app.core.components.MaTable;
+import app.core.components.fonts.IBMPlexSansThaiFont;
+import model.client.PocketBaseClient;
+import model.client.PocketBaseClient.PBResponse;
+import model.session.SessionManager;
+import java.awt.Color;
+import java.awt.*;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.awt.TextField;
+import java.util.List;
+import javax.swing.BoxLayout;
+import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.table.*;
+import java.util.*;
+import java.awt.image.*;
+import java.time.LocalDate;
+import presentation.booking.controller.Booking;
+import app.MainFrame;
+import presentation.roomAndaccessory.controller.Room;
+
+public class RoomFrame extends MaInternalFrame {
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RoomFrame.class.getName());
+
+    private PocketBaseClient pb = SessionManager.pb;
+    private PBResponse pbClient;
 
     /**
      * Creates new form RoomFrame
      */
     public RoomFrame() {
         initComponents();
+        loadRooms();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -28,17 +61,101 @@ public class RoomFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        navLabel1 = new app.core.components.NavLabel();
+        navLabel2 = new app.core.components.NavLabel();
+        maTable1 = new app.core.components.MaTable();
+        maTable2 = new app.core.components.MaTable();
+        navLabel3 = new app.core.components.NavLabel();
+        maLabel1 = new app.core.components.MaLabel();
+        maLabel2 = new app.core.components.MaLabel();
+        maButton1 = new app.core.components.MaButton();
+        maButton2 = new app.core.components.MaButton();
+        maButton3 = new app.core.components.MaButton();
+        maButton4 = new app.core.components.MaButton();
+        maButton5 = new app.core.components.MaButton();
+        maButton6 = new app.core.components.MaButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        maLabel1.setText("maLabel1");
+
+        maLabel2.setText("maLabel2");
+
+        maButton1.setText("maButton1");
+
+        maButton2.setText("maButton2");
+
+        maButton3.setText("maButton3");
+
+        maButton4.setText("maButton1");
+
+        maButton5.setText("maButton2");
+
+        maButton6.setText("maButton3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(maTable2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(maButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(maButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(maButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(maTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(maButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(maButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(navLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(navLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(maTable1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(maButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(maButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(maTable2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(maButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(maButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(maButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(274, 274, 274))))
         );
 
         pack();
@@ -47,28 +164,81 @@ public class RoomFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+    private void loadRooms() {
+        if (!pb.isAuthenticated()) {
+            return;
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new RoomFrame().setVisible(true));
+        try {
+            PBResponse res = pb.getRecords("java_room");
+
+            if (!res.isOk()) {
+                logger.warning("Failed to load rooms: " + res.getStatusCode());
+                return;
+            }
+
+            List<String> items = res.getItems();
+
+            // clear old data (important)
+            Room.data.clear();
+
+            for (String item : items) {
+
+                String id = PocketBaseClient.extractJsonString(item, "id");
+                String roomName = PocketBaseClient.extractJsonString(item, "name");
+
+                // price might be number → use extractDouble (or parse)
+                double pricePerHour = PocketBaseClient.extractJsonNumber(item, "price_per_hour");
+
+                System.out.println("Room: " + id+ " "+ roomName+pricePerHour);
+
+                Room.data.put(id, new Room(id, roomName, pricePerHour));
+            }
+
+            updateRender(); // refresh UI
+
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to load rooms", ex);
+        }
     }
 
+    public void updateRender() {
+        ArrayList<String> columns = new ArrayList<>();
+        columns.add("Room Name");
+        columns.add("Price / Hour");
+
+        ArrayList<Object[]> rows = new ArrayList<>();
+
+        for (String key : Room.data.keySet()) {
+            Room r = Room.data.get(key);
+
+            String roomName = r.getRoomName();
+            double price = r.getPricePerHour();
+
+            rows.add(new Object[]{
+                roomName,
+                price
+            });
+        }
+
+        maTable1.updateView(columns, rows);
+    }
+
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private app.core.components.MaButton maButton1;
+    private app.core.components.MaButton maButton2;
+    private app.core.components.MaButton maButton3;
+    private app.core.components.MaButton maButton4;
+    private app.core.components.MaButton maButton5;
+    private app.core.components.MaButton maButton6;
+    private app.core.components.MaLabel maLabel1;
+    private app.core.components.MaLabel maLabel2;
+    private app.core.components.MaTable maTable1;
+    private app.core.components.MaTable maTable2;
+    private app.core.components.NavLabel navLabel1;
+    private app.core.components.NavLabel navLabel2;
+    private app.core.components.NavLabel navLabel3;
     // End of variables declaration//GEN-END:variables
 }
