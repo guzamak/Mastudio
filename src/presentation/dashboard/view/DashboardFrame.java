@@ -30,11 +30,12 @@ import javax.swing.ImageIcon;
 import javax.swing.table.*;
 import java.util.*;
 import java.awt.image.*;
+import java.time.LocalDate;
+import presentation.booking.controller.Booking;
 
 public class DashboardFrame extends MaFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardFrame.class.getName());
-    private MaTable maTable1;
 
     // PocetBase
     private PocketBaseClient pb = SessionManager.pb;
@@ -54,8 +55,8 @@ public class DashboardFrame extends MaFrame {
      */
     public DashboardFrame() {
         initComponents();
-
         loadBookings();
+        updateRender();
     }
 
     /**
@@ -350,38 +351,49 @@ try {
                 return;
             }
 
-      ArrayList<String> columns = new ArrayList<>();
+            List<String> items = res.getItems();
+
+            for (String item : items) {
+
+                String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
+                String checkIn = PocketBaseClient.extractJsonString(item, "checkIn_time");
+                String checkOut = PocketBaseClient.extractJsonString(item, "checkOut_time");
+                String roomName = PocketBaseClient.extractJsonString(item, "room_name");
+                String id = PocketBaseClient.extractJsonString(item, "id");
+                System.out.println(id);
+
+                Booking.data.put(id,new Booking(id,roomName, customerName, checkIn, checkOut));
+            }
+            updateRender();
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to load bookings", ex);
+        }
+    }
+
+    public void updateRender() {
+        ArrayList<String> columns = new ArrayList<>();
         columns.add("Room Name");
         columns.add("Customer Name");
         columns.add("Check In");
         columns.add("Check Out");
 
         ArrayList<Object[]> rows = new ArrayList<>();
+         for (String key: Booking.data.keySet()) {
+              Booking b = Booking.data.get(key);
 
-        List<String> items = res.getItems();
+                String customerName = b.getCustomer();
+                String checkIn = b.getCheckIn();
+                String checkOut =  b.getCheckout();
+                String roomName = b.getRoom();
 
-        for (String item : items) {
-
-            String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
-            String checkIn = PocketBaseClient.extractJsonString(item, "checkIn_time");
-            String checkOut = PocketBaseClient.extractJsonString(item, "checkOut_time");
-            String roomName = PocketBaseClient.extractJsonString(item, "room_name");
-
-            rows.add(new Object[]{
-                roomName,
-                customerName,
-                checkIn,
-                checkOut
-            });
-        }
-
-        maTable3.updateView(columns, rows);
-
- 
-
-        } catch (java.io.IOException | InterruptedException ex) {
-            logger.log(java.util.logging.Level.SEVERE, "Failed to load bookings", ex);
-        }
+                rows.add(new Object[]{
+                    roomName,
+                    customerName,
+                    checkIn,
+                    checkOut
+                });
+            }
+         maTable3.updateView(columns, rows);
     }
 
     /**

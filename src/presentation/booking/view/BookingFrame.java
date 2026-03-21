@@ -19,19 +19,25 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.TextField;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.*;
 import javax.swing.ImageIcon;
+import presentation.booking.controller.Booking;
+
 public class BookingFrame extends MaFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(BookingFrame.class.getName());
+
+    private int selectedBookingId = -1;
 
     /**
      * Creates new form BookingFrame
      */
     public BookingFrame() {
         initComponents();
+        updateRender();
     }
 
     /**
@@ -45,10 +51,10 @@ public class BookingFrame extends MaFrame {
 
         navLabel = new app.core.components.NavLabel();
         navLabel.setExtraText("จัดการการจอง");
-        maButton1 = new app.core.components.MaButton();
+        AddBtn = new app.core.components.MaButton();
         maTable1 = new app.core.components.MaTable();
-        maButton2 = new app.core.components.MaButton();
-        maButton3 = new app.core.components.MaButton();
+        updateBtn = new app.core.components.MaButton();
+        deleteBtn = new app.core.components.MaButton();
         maPanel1 = new app.core.components.MaPanel();
         maScrollPane1 = new app.core.components.MaScrollPane();
         maTextArea1 = new app.core.components.MaTextArea();
@@ -56,26 +62,26 @@ public class BookingFrame extends MaFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("จัดการการจอง");
 
-        maButton1.setBorderColor(Macolor.magreen);
-        maButton1.setTextColor(Macolor.magreen);
-        maButton1.setButtonColor(Color.white);
-        maButton1.setArc(35);
-        maButton1.setText("+ เพิ่มข้อมูล");
-        maButton1.addActionListener(this::maButton1ActionPerformed);
+        AddBtn.setBorderColor(Macolor.magreen);
+        AddBtn.setTextColor(Macolor.magreen);
+        AddBtn.setButtonColor(Color.white);
+        AddBtn.setArc(35);
+        AddBtn.setText("+ เพิ่มข้อมูล");
+        AddBtn.addActionListener(this::AddBtnActionPerformed);
 
-        maButton2.setButtonColor(Color.white);
-        maButton2.setBorderColor(Macolor.mablue);
-        maButton2.setTextColor(Macolor.mablue);
-        maButton2.setArc(35);
-        maButton2.setText("เเก้ไขข้อมูลที่เลือก");
-        maButton2.addActionListener(this::maButton2ActionPerformed);
+        updateBtn.setButtonColor(Color.white);
+        updateBtn.setBorderColor(Macolor.mablue);
+        updateBtn.setTextColor(Macolor.mablue);
+        updateBtn.setArc(35);
+        updateBtn.setText("เเก้ไขข้อมูลที่เลือก");
+        updateBtn.addActionListener(this::updateBtnActionPerformed);
 
-        maButton3.setButtonColor(Color.white);
-        maButton3.setBorderColor(Macolor.mared);
-        maButton3.setTextColor(Macolor.mared);
-        maButton3.setArc(35);
-        maButton3.setText("ลบข้อมูลที่เลือก");
-        maButton3.addActionListener(this::maButton3ActionPerformed);
+        deleteBtn.setButtonColor(Color.white);
+        deleteBtn.setBorderColor(Macolor.mared);
+        deleteBtn.setTextColor(Macolor.mared);
+        deleteBtn.setArc(35);
+        deleteBtn.setText("ลบข้อมูลที่เลือก");
+        deleteBtn.addActionListener(this::deleteBtnActionPerformed);
 
         maPanel1.setBackground(Color.white);
         maPanel1.setBorderColor(Macolor.magreen);
@@ -131,11 +137,11 @@ public class BookingFrame extends MaFrame {
                                 .addGap(29, 29, 29)
                                 .addComponent(maTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(maButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(maButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -149,27 +155,70 @@ public class BookingFrame extends MaFrame {
                     .addComponent(maTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(maButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void maButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton1ActionPerformed
+    private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
         // TODO add your handling code here:
-        new EditBookingFrame().setVisible(true);
-    }//GEN-LAST:event_maButton1ActionPerformed
+        new EditBookingFrame(this).setVisible(true);
+    }//GEN-LAST:event_AddBtnActionPerformed
 
-    private void maButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton2ActionPerformed
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_maButton2ActionPerformed
+        int tableselectedRow = maTable1.getSelectedRow();
+        System.out.println(tableselectedRow);
+        if (tableselectedRow >= 0) {
+            ArrayList<String> bookingKeys = new ArrayList<>(Booking.data.keySet());
+            String key = bookingKeys.get(tableselectedRow);
+            Booking updateBooking = Booking.data.get(key);
+            updateBooking.getId();
+            new EditBookingFrame(updateBooking.getId(),this).setVisible(true);
+        }
+    }//GEN-LAST:event_updateBtnActionPerformed
 
-    private void maButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton3ActionPerformed
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_maButton3ActionPerformed
+        int tableselectedRow = maTable1.getSelectedRow();
+        System.out.println(tableselectedRow);
+        if (tableselectedRow >= 0) {
+            ArrayList<String> bookingKeys = new ArrayList<>(Booking.data.keySet());
+            String key = bookingKeys.get(tableselectedRow);
+            Booking.data.remove(key);
+            updateRender();
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    public void updateRender() {
+        ArrayList<String> columns = new ArrayList<>();
+        columns.add("Room Name");
+        columns.add("Customer Name");
+        columns.add("Check In");
+        columns.add("Check Out");
+
+        ArrayList<Object[]> rows = new ArrayList<>();
+        for (String key : Booking.data.keySet()) {
+            Booking b = Booking.data.get(key);
+
+            String customerName = b.getCustomer();
+            String checkIn = b.getCheckIn();
+            String checkOut = b.getCheckout();
+            String roomName = b.getRoom();
+
+            rows.add(new Object[]{
+                roomName,
+                customerName,
+                checkIn,
+                checkOut
+            });
+        }
+        maTable1.updateView(columns, rows);
+    }
 
     /**
      * @param args the command line arguments
@@ -197,13 +246,13 @@ public class BookingFrame extends MaFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private app.core.components.MaButton maButton1;
-    private app.core.components.MaButton maButton2;
-    private app.core.components.MaButton maButton3;
+    private app.core.components.MaButton AddBtn;
+    private app.core.components.MaButton deleteBtn;
     private app.core.components.MaPanel maPanel1;
     private app.core.components.MaScrollPane maScrollPane1;
     private app.core.components.MaTable maTable1;
     private app.core.components.MaTextArea maTextArea1;
     private app.core.components.NavLabel navLabel;
+    private app.core.components.MaButton updateBtn;
     // End of variables declaration//GEN-END:variables
 }

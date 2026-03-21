@@ -39,11 +39,11 @@
                               <Component id="maTable1" min="-2" pref="519" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="maButton1" min="-2" pref="233" max="-2" attributes="0"/>
+                              <Component id="AddBtn" min="-2" pref="233" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="maButton2" min="-2" pref="258" max="-2" attributes="0"/>
+                              <Component id="updateBtn" min="-2" pref="258" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="maButton3" min="-2" pref="270" max="-2" attributes="0"/>
+                              <Component id="deleteBtn" min="-2" pref="270" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -64,9 +64,9 @@
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="maButton2" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="maButton3" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="maButton1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="updateBtn" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="deleteBtn" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="AddBtn" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="54" max="32767" attributes="0"/>
           </Group>
@@ -79,39 +79,39 @@
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="navLabel.setExtraText(&quot;&#xe08;&#xe31;&#xe14;&#xe01;&#xe32;&#xe23;&#xe01;&#xe32;&#xe23;&#xe08;&#xe2d;&#xe07;&quot;);"/>
       </AuxValues>
     </Component>
-    <Component class="app.core.components.MaButton" name="maButton1">
+    <Component class="app.core.components.MaButton" name="AddBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="+ &#xe40;&#xe1e;&#xe34;&#xe48;&#xe21;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddBtnActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maButton1.setBorderColor(Macolor.magreen);&#xa;maButton1.setTextColor(Macolor.magreen);&#xa;maButton1.setButtonColor(Color.white);&#xa;maButton1.setArc(35);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="AddBtn.setBorderColor(Macolor.magreen);&#xa;AddBtn.setTextColor(Macolor.magreen);&#xa;AddBtn.setButtonColor(Color.white);&#xa;AddBtn.setArc(35);"/>
       </AuxValues>
     </Component>
     <Component class="app.core.components.MaTable" name="maTable1">
     </Component>
-    <Component class="app.core.components.MaButton" name="maButton2">
+    <Component class="app.core.components.MaButton" name="updateBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xe40;&#xe40;&#xe01;&#xe49;&#xe44;&#xe02;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;&#xe17;&#xe35;&#xe48;&#xe40;&#xe25;&#xe37;&#xe2d;&#xe01;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateBtnActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maButton2.setButtonColor(Color.white);&#xa;maButton2.setBorderColor(Macolor.mablue);&#xa;maButton2.setTextColor(Macolor.mablue);&#xa;maButton2.setArc(35);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="updateBtn.setButtonColor(Color.white);&#xa;updateBtn.setBorderColor(Macolor.mablue);&#xa;updateBtn.setTextColor(Macolor.mablue);&#xa;updateBtn.setArc(35);"/>
       </AuxValues>
     </Component>
-    <Component class="app.core.components.MaButton" name="maButton3">
+    <Component class="app.core.components.MaButton" name="deleteBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xe25;&#xe1a;&#xe02;&#xe49;&#xe2d;&#xe21;&#xe39;&#xe25;&#xe17;&#xe35;&#xe48;&#xe40;&#xe25;&#xe37;&#xe2d;&#xe01;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteBtnActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maButton3.setButtonColor(Color.white);&#xa;maButton3.setBorderColor(Macolor.mared);&#xa;maButton3.setTextColor(Macolor.mared);&#xa;maButton3.setArc(35);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="deleteBtn.setButtonColor(Color.white);&#xa;deleteBtn.setBorderColor(Macolor.mared);&#xa;deleteBtn.setTextColor(Macolor.mared);&#xa;deleteBtn.setArc(35);"/>
       </AuxValues>
     </Component>
     <Container class="app.core.components.MaPanel" name="maPanel1">

@@ -23,11 +23,12 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
     private JWindow popupWindow;
     private MaList<E> list;
     private MaScrollPane scroll;
+    private Point popupLocation = null;
+    private Window ancestor = null;
 
     private int arc = 20;
 
     public MaComboBox() {
-
         setLayout(new BorderLayout());
         setOpaque(false);
         setPreferredSize(new Dimension(200, 35));
@@ -53,6 +54,7 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
         list = new MaList<>();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.addMouseListener(this);
+        list.setPadding(2);
         MaPanel panel = new MaPanel();
         panel.setBackground(Macolor.trans);
         panel.setBorderColor(Macolor.trans);
@@ -93,6 +95,21 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
 //
 //    }
     private void togglePopup() {
+        if (ancestor == null) {
+            Window topWindow = SwingUtilities.getWindowAncestor(this);
+//            System.out.println(topWindow);
+            if (topWindow != null) {
+                topWindow.addComponentListener(new ComponentAdapter() {
+                    @Override
+                    public void componentMoved(ComponentEvent e) {
+                        if (popupWindow != null && popupWindow.isVisible()) {
+                            popupWindow.setVisible(false); // hide popup if frame moves
+                        }
+                    }
+                });
+            }
+            this.ancestor = topWindow;
+        }
 
         if (popupWindow.isVisible()) {
             popupWindow.setVisible(false);
@@ -105,7 +122,7 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
         int popupHeight = popupWindow.getHeight();
         int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
         int width = getWidth();
-        int height = list.getHeight();
+        int height = 120;
 
         scroll.setPreferredSize(new Dimension(width, height));
         popupWindow.pack();
@@ -130,6 +147,14 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
         return list.getSelectedValue();
     }
 
+    public void setSelectedItem(E item) {
+        if (item == null) {
+            return;
+        }
+        list.setSelectedValue(item, true);
+        display.setText(item.toString());
+    }
+
     public void setArc(int arc) {
         this.arc = arc;
         repaint();
@@ -138,7 +163,6 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
     public MaButton getArrow() {
         return arrow;
     }
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -203,4 +227,5 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
 
         g2.dispose();
     }
+
 }

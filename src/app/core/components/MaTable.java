@@ -104,6 +104,8 @@ public class MaTable extends MaPanel {
 
                 return c;
             }
+            
+            
         });
 
         scroll = new MaScrollPane(table);
@@ -120,6 +122,9 @@ public class MaTable extends MaPanel {
         return table;
     }
 
+    public int getSelectedRow(){
+        return getTable().getSelectedRow();
+    }
     public void updateView(ArrayList<String> columns, ArrayList<Object[]> rows) {
 
         DefaultTableModel model = (DefaultTableModel) this.getModel();
