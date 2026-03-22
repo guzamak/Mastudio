@@ -8,13 +8,13 @@ package presentation.roomAndaccessory.controller;
  *
  * @author poke
  */
-
 import java.util.HashMap;
 import java.util.List;
 import model.client.PocketBaseClient;
 import model.session.SessionManager;
+import model.utils.ApiObject;
 
-public class Accessory {
+public class Accessory extends ApiObject {
 
     private String id;
     private String name;
@@ -24,14 +24,12 @@ public class Accessory {
 
     public static HashMap<String, Accessory> data = new HashMap<>();
 
-    // Constructor
     public Accessory(String id, String name, double pricePerHour) {
         this.id = id;
         this.name = name;
         this.pricePerHour = pricePerHour;
     }
 
-    // Getters
     public String getId() {
         return id;
     }
@@ -44,7 +42,6 @@ public class Accessory {
         return pricePerHour;
     }
 
-    // Setters
     public void setName(String name) {
         this.name = name;
     }
@@ -53,7 +50,6 @@ public class Accessory {
         this.pricePerHour = pricePerHour;
     }
 
-    // Load data from PocketBase
     public static void loadAccessories(java.util.logging.Logger logger) {
         if (!pb.isAuthenticated()) {
             return;
@@ -93,5 +89,86 @@ public class Accessory {
     @Override
     public String toString() {
         return name + " (" + pricePerHour + "/hr)";
+    }
+
+    @Override
+    public String toJson() {
+        // Match the PocketBase field IDs exactly
+        return "{\n"
+                + "  \"name\": \"" + this.name + "\",\n"
+                + "  \"price_per_hour\": " + this.pricePerHour + "\n"
+                + "}";
+    }
+
+    public static void postAccessory(Accessory accessory, java.util.logging.Logger logger) {
+        if (!pb.isAuthenticated()) {
+            logger.warning("Not authenticated, cannot post accessory.");
+            return;
+        }
+
+        try {
+            String jsonPayload = accessory.toJson();
+            PocketBaseClient.PBResponse res = pb.createRecord("java_accessory", jsonPayload);
+
+            if (!res.isOk()) {
+                logger.warning("Failed to post accessory: " + res.getStatusCode() + " " + res.getBody());
+                return;
+            }
+
+            String accessoryId = PocketBaseClient.extractJsonString(res.getBody(), "id");
+            accessory.id = accessoryId;
+            Accessory.data.put(accessoryId, accessory);
+
+            System.out.println("Accessory posted successfully: ID = " + accessoryId);
+
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to post accessory", ex);
+        }
+    }
+
+    public static void updateAccessory(Accessory accessory, java.util.logging.Logger logger) {
+        if (!pb.isAuthenticated()) {
+            logger.warning("Not authenticated, cannot update accessory.");
+            return;
+        }
+
+        try {
+            String jsonPayload = accessory.toJson();
+            PocketBaseClient.PBResponse res = pb.updateRecord("java_accessory", accessory.getId(), jsonPayload);
+
+            if (!res.isOk()) {
+                logger.warning("Failed to update accessory: " + res.getStatusCode() + " " + res.getBody());
+                return;
+            }
+
+            Accessory.data.put(accessory.getId(), accessory);
+            System.out.println("Accessory updated successfully: ID = " + accessory.getId());
+
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to update accessory", ex);
+        }
+    }
+
+    public static void deleteAccessory(String accessoryId, java.util.logging.Logger logger) {
+        if (!pb.isAuthenticated()) {
+            logger.warning("Not authenticated, cannot delete accessory.");
+            return;
+        }
+
+        try {
+
+            PocketBaseClient.PBResponse res = pb.deleteRecord("java_accessory", accessoryId);
+
+            if (!res.isOk()) {
+                logger.warning("Failed to delete accessory: " + res.getStatusCode() + " " + res.getBody());
+                return;
+            }
+
+            Accessory.data.remove(accessoryId);
+            System.out.println("Accessory deleted successfully: ID = " + accessoryId);
+
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to delete accessory", ex);
+        }
     }
 }

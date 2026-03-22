@@ -67,31 +67,33 @@ public class RoomFrame extends MaInternalFrame {
         navLabel3 = new app.core.components.NavLabel();
         maLabel1 = new app.core.components.MaLabel();
         maLabel2 = new app.core.components.MaLabel();
-        maButton1 = new app.core.components.MaButton();
-        maButton2 = new app.core.components.MaButton();
-        maButton3 = new app.core.components.MaButton();
+        addRoomBtn = new app.core.components.MaButton();
+        editRoomBtn = new app.core.components.MaButton();
+        delRoomBtn = new app.core.components.MaButton();
         maButton4 = new app.core.components.MaButton();
         maButton5 = new app.core.components.MaButton();
         maButton6 = new app.core.components.MaButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("จัดการห้องเเละอุปกรณ์");
+
+        navLabel3.setExtraText("จัดการห้องเเละอุปกรณ์");
 
         maLabel1.setText("ห้องทั้งหมด");
 
         maLabel2.setText("อุปกรณ์ทั้งหมด");
 
-        maButton1.setText("maButton1");
+        addRoomBtn.setText("เพิ่มห้อง");
 
-        maButton2.setText("maButton2");
+        editRoomBtn.setText("เเก้ไขห้อง");
 
-        maButton3.setText("maButton3");
+        delRoomBtn.setText("ลบห้อง");
 
-        maButton4.setText("maButton1");
+        maButton4.setText("เพิ่มอุปกรณ์");
 
-        maButton5.setText("maButton2");
+        maButton5.setText("เเก้ไขอุปกรณ์");
 
-        maButton6.setText("maButton3");
+        maButton6.setText("ลบอุปกรณ์");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,9 +119,9 @@ public class RoomFrame extends MaInternalFrame {
                                     .addComponent(maTable1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
                                 .addGap(43, 43, 43)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(maButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(maButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(addRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(editRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(delRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addComponent(navLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -133,11 +135,11 @@ public class RoomFrame extends MaInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(maButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(maButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(delRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -215,9 +217,9 @@ public class RoomFrame extends MaInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private app.core.components.MaButton maButton1;
-    private app.core.components.MaButton maButton2;
-    private app.core.components.MaButton maButton3;
+    private app.core.components.MaButton addRoomBtn;
+    private app.core.components.MaButton delRoomBtn;
+    private app.core.components.MaButton editRoomBtn;
     private app.core.components.MaButton maButton4;
     private app.core.components.MaButton maButton5;
     private app.core.components.MaButton maButton6;

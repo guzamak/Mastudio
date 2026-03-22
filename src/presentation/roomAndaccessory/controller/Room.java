@@ -4,16 +4,21 @@
  */
 package presentation.roomAndaccessory.controller;
 
+import app.MainFrame;
+import app.core.components.MaOptionPane;
 import java.util.HashMap;
 import java.util.*;
+import javax.swing.JOptionPane;
 import model.client.PocketBaseClient;
 import model.session.SessionManager;
+import model.utils.ApiObject;
+import presentation.booking.controller.Booking;
 
 /**
  *
  * @author poke
  */
-public class Room {
+public class Room extends ApiObject {
 
     private String id;
     private String roomName;
@@ -47,6 +52,14 @@ public class Room {
 
     public void setPricePerHour(double pricePerHour) {
         this.pricePerHour = pricePerHour;
+    }
+
+    @Override
+    public String toJson() {
+        return "{\n"
+                + "  \"name\": \"" + this.roomName + "\",\n"
+                + "  \"price_per_hour\": " + this.pricePerHour + "\n"
+                + "}";
     }
 
     public static void loadRooms(java.util.logging.Logger logger) {
@@ -106,6 +119,84 @@ public class Room {
         }
 
         return roomNames;
+    }
+
+    public static void postRoom(Room room, java.util.logging.Logger logger) {
+        if (!pb.isAuthenticated()) {
+            logger.warning("Not authenticated, cannot post room.");
+            return;
+        }
+
+        try {
+            String jsonPayload = room.toJson();
+            PocketBaseClient.PBResponse res = pb.createRecord("java_room", jsonPayload);
+
+            if (!res.isOk()) {
+                logger.warning("Failed to post room: " + res.getStatusCode() + " " + res.getBody());
+                return;
+            }
+
+            String roomId = PocketBaseClient.extractJsonString(res.getBody(), "id");
+            room.id = roomId;
+            Room.data.put(roomId, room);
+
+            System.out.println("Room posted successfully: ID = " + roomId);
+
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to post room", ex);
+        }
+    }
+
+    public static void updateRoom(Room room, java.util.logging.Logger logger) {
+        if (!pb.isAuthenticated()) {
+            logger.warning("Not authenticated, cannot update room.");
+            return;
+        }
+
+        try {
+            String jsonPayload = room.toJson();
+            PocketBaseClient.PBResponse res = pb.updateRecord("java_room", room.getId(), jsonPayload);
+
+            if (!res.isOk()) {
+                logger.warning("Failed to update room: " + res.getStatusCode() + " " + res.getBody());
+                return;
+            }
+
+            Room.data.put(room.getId(), room);
+            System.out.println("Room updated successfully: ID = " + room.getId());
+
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to update room", ex);
+        }
+    }
+
+    public static void deleteRoom(String roomId, java.util.logging.Logger logger) {
+        if (!pb.isAuthenticated()) {
+            logger.warning("Not authenticated, cannot delete room.");
+            return;
+        }
+
+        try {
+            for (Booking booking : Booking.data.values()) {
+                if (roomId.equals(booking.getRoomId())) {
+                    MaOptionPane.showMessageDialog(MainFrame.getInstance(), "มีการจองในห้องนี้อยู่โปรดลบการจองก่อน");
+                    return;
+                }
+            }
+
+            PocketBaseClient.PBResponse res = pb.deleteRecord("java_room", roomId);
+
+            if (!res.isOk()) {
+                logger.warning("Failed to delete room: " + res.getStatusCode() + " " + res.getBody());
+                return;
+            }
+
+            Room.data.remove(roomId);
+            System.out.println("Room deleted successfully: ID = " + roomId);
+
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to delete room", ex);
+        }
     }
 
 }

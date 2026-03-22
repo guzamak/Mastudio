@@ -8,12 +8,12 @@ package presentation.roomAndaccessory.view;
  *
  * @author poke
  */
-public class EditAccessory extends javax.swing.JInternalFrame {
+public class EditAccessoryFrame extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form EditAccessory
      */
-    public EditAccessory() {
+    public EditAccessoryFrame() {
         initComponents();
     }
 
