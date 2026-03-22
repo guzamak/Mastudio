@@ -235,7 +235,7 @@ public class EditBookingFrame extends MaInternalFrame {
      * @param args the command line arguments
      */
     public void updateRender() {
-
+        Room.loadRooms(logger);
         roomComboBox.setList(Room.getRoomNamesList().toArray(new String[1]));
         CheckInDateCombobox.setList(TimeUtils.days);
         CheckInYearCombobox.setList(TimeUtils.years);
@@ -261,28 +261,7 @@ public class EditBookingFrame extends MaInternalFrame {
         }
     }
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new EditBookingFrame().setVisible(true));
-    }
-
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.core.components.MaComboBox CheckInDateCombobox;
     private app.core.components.MaComboBox CheckInMonthCombobox;

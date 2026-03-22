@@ -6,6 +6,29 @@
     </Component>
     <Component class="app.core.components.NavLabel" name="navLabel2">
     </Component>
+    <Container class="javax.swing.JInternalFrame" name="jInternalFrame1">
+      <Properties>
+        <Property name="visible" type="boolean" value="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -30,82 +53,92 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="maLabel1" min="-2" pref="87" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="maTable1" min="-2" pref="534" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="maTable2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="maLabel2" min="-2" pref="459" max="-2" attributes="0"/>
+                                  <Component id="editRoomBtn" pref="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace pref="2" max="32767" attributes="0"/>
+                                      <Component id="delRoomBtn" min="-2" pref="64" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="addRoomBtn" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="maLabel2" min="-2" pref="467" max="-2" attributes="0"/>
+                                      <EmptySpace pref="67" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="maTable2" alignment="1" min="-2" pref="534" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="maButton4" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="maButton5" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="maButton6" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="maLabel1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="maTable1" alignment="0" pref="469" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="addRoomBtn" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="editRoomBtn" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="delRoomBtn" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="addAcces" min="-2" pref="64" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="maButton5" pref="0" max="32767" attributes="0"/>
+                                  <Component id="maButton6" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                      <Component id="navLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+              <Component id="navLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="navLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="maLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="addRoomBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="editRoomBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="delRoomBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="maTable1" min="-2" pref="175" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="maLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="maTable2" min="-2" pref="182" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="maLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="maTable1" min="-2" max="-2" attributes="0"/>
+                      <Component id="addAcces" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="maButton4" min="-2" max="-2" attributes="0"/>
-                  <Component id="maLabel2" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
                       <Component id="maButton5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="maButton6" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="maTable2" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -124,41 +157,77 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xe2b;&#xe49;&#xe2d;&#xe07;&#xe17;&#xe31;&#xe49;&#xe07;&#xe2b;&#xe21;&#xe14;"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel1.setFont(IBMPlexSansThaiFont.medium(16f));"/>
+      </AuxValues>
     </Component>
     <Component class="app.core.components.MaLabel" name="maLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xe2d;&#xe38;&#xe1b;&#xe01;&#xe23;&#xe13;&#xe4c;&#xe17;&#xe31;&#xe49;&#xe07;&#xe2b;&#xe21;&#xe14;"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel2.setFont(IBMPlexSansThaiFont.medium(16f));"/>
+      </AuxValues>
     </Component>
     <Component class="app.core.components.MaButton" name="addRoomBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xe40;&#xe1e;&#xe34;&#xe48;&#xe21;&#xe2b;&#xe49;&#xe2d;&#xe07;"/>
+        <Property name="text" type="java.lang.String" value="+"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addRoomBtnActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="addRoomBtn.setBorderColor(Macolor.trans);&#xa;addRoomBtn.setTextColor(Macolor.magreen);&#xa;addRoomBtn.setButtonColor(Macolor.trans);"/>
+      </AuxValues>
     </Component>
     <Component class="app.core.components.MaButton" name="editRoomBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xe40;&#xe40;&#xe01;&#xe49;&#xe44;&#xe02;&#xe2b;&#xe49;&#xe2d;&#xe07;"/>
+        <Property name="text" type="java.lang.String" value="Edit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editRoomBtnActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="editRoomBtn.setButtonColor(Macolor.trans);&#xa;editRoomBtn.setBorderColor(Macolor.trans);&#xa;editRoomBtn.setTextColor(Macolor.mablue);"/>
+      </AuxValues>
     </Component>
     <Component class="app.core.components.MaButton" name="delRoomBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xe25;&#xe1a;&#xe2b;&#xe49;&#xe2d;&#xe07;"/>
+        <Property name="text" type="java.lang.String" value="Del"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delRoomBtnActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="delRoomBtn.setButtonColor(Macolor.trans);&#xa;delRoomBtn.setBorderColor(Macolor.trans);&#xa;delRoomBtn.setTextColor(Macolor.mared);"/>
+      </AuxValues>
     </Component>
-    <Component class="app.core.components.MaButton" name="maButton4">
+    <Component class="app.core.components.MaButton" name="addAcces">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xe40;&#xe1e;&#xe34;&#xe48;&#xe21;&#xe2d;&#xe38;&#xe1b;&#xe01;&#xe23;&#xe13;&#xe4c;"/>
+        <Property name="text" type="java.lang.String" value="+"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="addAcces.setBorderColor(Macolor.trans);&#xa;addAcces.setTextColor(Macolor.magreen);&#xa;addAcces.setButtonColor(Macolor.trans);"/>
+      </AuxValues>
     </Component>
     <Component class="app.core.components.MaButton" name="maButton5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xe40;&#xe40;&#xe01;&#xe49;&#xe44;&#xe02;&#xe2d;&#xe38;&#xe1b;&#xe01;&#xe23;&#xe13;&#xe4c;"/>
+        <Property name="text" type="java.lang.String" value="Edit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maButton5ActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maButton5.setButtonColor(Macolor.trans);&#xa;maButton5.setBorderColor(Macolor.trans);&#xa;maButton5.setTextColor(Macolor.mablue);"/>
+      </AuxValues>
     </Component>
     <Component class="app.core.components.MaButton" name="maButton6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xe25;&#xe1a;&#xe2d;&#xe38;&#xe1b;&#xe01;&#xe23;&#xe13;&#xe4c;"/>
+        <Property name="text" type="java.lang.String" value="Del"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maButton6.setButtonColor(Macolor.trans);&#xa;maButton6.setBorderColor(Macolor.trans);&#xa;maButton6.setTextColor(Macolor.mared);"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
