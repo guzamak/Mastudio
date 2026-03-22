@@ -63,6 +63,19 @@ public class Room extends ApiObject {
                 + "}";
     }
 
+    public static void updateRoomData(Room room, String roomName, String pricePerHourStr) {
+        room.setRoomName(roomName);
+
+        double pricePerHour = 0.0;
+        try {
+            pricePerHour = Double.parseDouble(pricePerHourStr);
+        } catch (NumberFormatException ex) {
+            MaOptionPane.showMessageDialog(MainFrame.getInstance(), "Price need to be Number");
+        }
+
+        room.setPricePerHour(pricePerHour);
+    }
+
     public static void loadRooms(java.util.logging.Logger logger) {
         if (!pb.isAuthenticated()) {
             return;
@@ -180,7 +193,7 @@ public class Room extends ApiObject {
         try {
 //                        System.out.println(Booking.data.get("zdw04rqxanu69ml").getRoomId());
             for (Booking booking : Booking.data.values()) {
-                System.out.println("del room id :" + roomId + "\n" + "booking roomid :" + booking.getRoomId() );
+                System.out.println("del room id :" + roomId + "\n" + "booking roomid :" + booking.getRoomId());
                 if (roomId.equals(booking.getRoomId())) {
                     MaOptionPane.showMessageDialog(MainFrame.getInstance(), "มีการจองในห้องนี้อยู่โปรดลบการจองก่อน");
                     return;

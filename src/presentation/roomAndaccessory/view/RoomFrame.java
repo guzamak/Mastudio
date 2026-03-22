@@ -126,6 +126,7 @@ public class RoomFrame extends MaInternalFrame {
         addAcces.setBorderColor(Macolor.trans);
         addAcces.setTextColor(Macolor.magreen);
         addAcces.setButtonColor(Macolor.trans);
+        addAcces.addActionListener(this::addAccesActionPerformed);
 
         maButton5.setText("Edit");
         maButton5.setButtonColor(Macolor.trans);
@@ -229,14 +230,33 @@ public class RoomFrame extends MaInternalFrame {
 
     private void editRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRoomBtnActionPerformed
         // TODO add your handling code here:
+        int tableselectedRow = maTable1.getSelectedRow();
+        System.out.println(tableselectedRow);
+        if (tableselectedRow >= 0) {
+            ArrayList<String> roomKeys = new ArrayList<>(Room.data.keySet());
+            String key = roomKeys.get(tableselectedRow);
+            Room updateRoom = Room.data.get(key);
+            updateRoom.getId();
+            MainFrame.getInstance().openInternalFrame(new EditRoomFrame(updateRoom.getId(),this));
+        }
     }//GEN-LAST:event_editRoomBtnActionPerformed
 
     private void addRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomBtnActionPerformed
         // TODO add your handling code here:
+        MainFrame.getInstance().openInternalFrame(new EditRoomFrame(this));
     }//GEN-LAST:event_addRoomBtnActionPerformed
 
     private void maButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton5ActionPerformed
         // TODO add your handling code here:
+        int tableselectedRow = maTable2.getSelectedRow();
+        System.out.println(tableselectedRow);
+        if (tableselectedRow >= 0) {
+            ArrayList<String> accessKeys = new ArrayList<>(Accessory.data.keySet());
+            String key = accessKeys.get(tableselectedRow);
+            Accessory updateAccessory = Accessory.data.get(key);
+            updateAccessory.getId();
+            MainFrame.getInstance().openInternalFrame(new EditAccessoryFrame(updateAccessory.getId(),this));
+        }
     }//GEN-LAST:event_maButton5ActionPerformed
 
     private void delAccessoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delAccessoryBtnActionPerformed
@@ -250,6 +270,11 @@ public class RoomFrame extends MaInternalFrame {
             updateRender();
         }
     }//GEN-LAST:event_delAccessoryBtnActionPerformed
+
+    private void addAccesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAccesActionPerformed
+        // TODO add your handling code here:
+        MainFrame.getInstance().openInternalFrame(new EditAccessoryFrame(this));
+    }//GEN-LAST:event_addAccesActionPerformed
 
     /**
      * @param args the command line arguments

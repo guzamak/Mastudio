@@ -15,18 +15,28 @@ import presentation.roomAndaccessory.controller.Room;
  */
 public class EditRoomFrame extends MaInternalFrame {
 
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EditRoomFrame.class.getName());
+
     /**
      * Creates new form EditRoomFrame
      */
-    
     private Room room = null;
     private String id;
     private RoomFrame parent;
-    
-    public EditRoomFrame() {
+
+    public EditRoomFrame(RoomFrame parent) {
+        this.parent = parent;
         initComponents();
+        updateRender();
     }
-    
+
+    public EditRoomFrame(String id, RoomFrame parent) {
+        this.parent = parent;
+        room = Room.data.get(id);
+        initComponents();
+        updateRender();
+        maLabel1.setText("รหัสห้อง : " + id);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,8 +50,8 @@ public class EditRoomFrame extends MaInternalFrame {
         maLabel1 = new app.core.components.MaLabel();
         maLabel2 = new app.core.components.MaLabel();
         maLabel3 = new app.core.components.MaLabel();
-        maTextField1 = new app.core.components.MaTextField();
-        maTextField2 = new app.core.components.MaTextField();
+        roomname = new app.core.components.MaTextField();
+        priceperhour = new app.core.components.MaTextField();
         maButton1 = new app.core.components.MaButton();
 
         maLabel1.setText("+ เพิ่มห้องใหม่");
@@ -51,6 +61,7 @@ public class EditRoomFrame extends MaInternalFrame {
         maLabel3.setText("ราคาต่อชั่วโมง");
 
         maButton1.setText("บันทึก");
+        maButton1.addActionListener(this::maButton1ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,11 +72,11 @@ public class EditRoomFrame extends MaInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(maTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(priceperhour, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(maLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(maTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(roomname, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -76,11 +87,11 @@ public class EditRoomFrame extends MaInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(maTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(roomname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(maLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(maTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(priceperhour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -89,13 +100,36 @@ public class EditRoomFrame extends MaInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void maButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton1ActionPerformed
+        // TODO add your handling code here:
+        boolean isNew = (room == null);
+        if (isNew) {
+            room = new Room(null, "", 0);
+        }
+
+        Room.updateRoomData(room, roomname.getText(), priceperhour.getText());
+
+        if (isNew) {
+            Room.postRoom(room, logger);
+        } else {
+            Room.updateRoom(room, logger);
+        }
+        parent.updateRender();
+        dispose();
+    }//GEN-LAST:event_maButton1ActionPerformed
+    public void updateRender() {
+        if (room != null) {
+            roomname.setText(room.getName());
+            priceperhour.setText("" + room.getPricePerHour());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.core.components.MaButton maButton1;
     private app.core.components.MaLabel maLabel1;
     private app.core.components.MaLabel maLabel2;
     private app.core.components.MaLabel maLabel3;
-    private app.core.components.MaTextField maTextField1;
-    private app.core.components.MaTextField maTextField2;
+    private app.core.components.MaTextField priceperhour;
+    private app.core.components.MaTextField roomname;
     // End of variables declaration//GEN-END:variables
 }

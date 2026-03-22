@@ -45,7 +45,7 @@ public class EditBookingFrame extends MaInternalFrame {
         booking = Booking.data.get(id);
         initComponents();
         updateRender();
-        maLabel1.setText("ห้อง : " + id);
+        maLabel1.setText("รหัสการจอง : " + id);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
@@ -206,7 +206,7 @@ public class EditBookingFrame extends MaInternalFrame {
         // TODO add your handling code here:
         boolean isNew = (booking == null);
         if (isNew) {
-            booking = new Booking(null, "", "", "", "");
+            booking = new Booking(null, "", "", "", "","");
         }
 
         Booking.updateBookingData(

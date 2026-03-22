@@ -8,6 +8,8 @@ package presentation.roomAndaccessory.controller;
  *
  * @author poke
  */
+import app.MainFrame;
+import app.core.components.MaOptionPane;
 import java.util.HashMap;
 import java.util.List;
 import model.client.PocketBaseClient;
@@ -50,6 +52,20 @@ public class Accessory extends ApiObject {
         this.pricePerHour = pricePerHour;
     }
 
+    
+    public static void updateAccessoryData(Accessory accessory, String name, String price) {
+        accessory.setName(name);
+
+        double pricePerHour = 0.0;
+        try {
+            pricePerHour = Double.parseDouble(price);
+        } catch (NumberFormatException ex) {
+            MaOptionPane.showMessageDialog(MainFrame.getInstance(), "Price need to be Number");
+        }
+
+        accessory.setPricePerHour(pricePerHour);
+    }
+    
     public static void loadAccessories(java.util.logging.Logger logger) {
         if (!pb.isAuthenticated()) {
             return;

@@ -11,7 +11,9 @@ import presentation.roomAndaccessory.controller.Accessory;
  *
  * @author poke
  */
-public class EditAccessoryFrame extends MaInternalFrame  {
+public class EditAccessoryFrame extends MaInternalFrame {
+
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EditAccessoryFrame.class.getName());
 
     /**
      * Creates new form EditAccessory
@@ -19,9 +21,20 @@ public class EditAccessoryFrame extends MaInternalFrame  {
     private Accessory accessory = null;
     private String id;
     private RoomFrame parent;
-    
-    public EditAccessoryFrame() {
+
+    public EditAccessoryFrame(RoomFrame parent) {
+        this.parent = parent;
         initComponents();
+        updateRender();
+    }
+
+    public EditAccessoryFrame(String id, RoomFrame parent) {
+        this.parent = parent;
+        accessory = Accessory.data.get(id);
+        System.out.println("name : " + accessory.getName());
+        initComponents();
+        updateRender();
+        maLabel1.setText("อุปกรณ์ที่ : " + id);
     }
 
     /**
@@ -36,9 +49,9 @@ public class EditAccessoryFrame extends MaInternalFrame  {
         maLabel1 = new app.core.components.MaLabel();
         maLabel2 = new app.core.components.MaLabel();
         maLabel3 = new app.core.components.MaLabel();
-        maTextField1 = new app.core.components.MaTextField();
-        maTextField2 = new app.core.components.MaTextField();
-        maButton1 = new app.core.components.MaButton();
+        accessoryName = new app.core.components.MaTextField();
+        accessoryPricePerHour = new app.core.components.MaTextField();
+        submitBtn = new app.core.components.MaButton();
 
         maLabel1.setText("+ เพิ่มอุปกรณ์ใหม่");
 
@@ -46,9 +59,10 @@ public class EditAccessoryFrame extends MaInternalFrame  {
 
         maLabel3.setText("ราคาต่อชั่วโมง");
 
-        maTextField1.addActionListener(this::maTextField1ActionPerformed);
+        accessoryName.addActionListener(this::accessoryNameActionPerformed);
 
-        maButton1.setText("บันทึก");
+        submitBtn.setText("บันทึก");
+        submitBtn.addActionListener(this::submitBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,13 +71,13 @@ public class EditAccessoryFrame extends MaInternalFrame  {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(maTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(accessoryPricePerHour, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(maLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(maTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(accessoryName, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,30 +88,56 @@ public class EditAccessoryFrame extends MaInternalFrame  {
                 .addGap(18, 18, 18)
                 .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(maTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(accessoryName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(maLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(maTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(accessoryPricePerHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void maTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maTextField1ActionPerformed
+    private void accessoryNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accessoryNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_maTextField1ActionPerformed
+    }//GEN-LAST:event_accessoryNameActionPerformed
 
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
+        boolean isNew = (accessory == null);
+        if (isNew) {
+            accessory = new Accessory(null, "", 0);
+        }
+
+        Accessory.updateAccessoryData(accessory, accessoryName.getText(), accessoryPricePerHour.getText());
+
+        if (isNew) {
+            Accessory.postAccessory(accessory, logger);
+        } else {
+            Accessory.updateAccessory(accessory, logger);
+        }
+        parent.updateRender();
+        dispose();
+
+    }//GEN-LAST:event_submitBtnActionPerformed
+    public void updateRender() {
+        if (accessory != null) {
+            System.out.println(accessory);
+            System.out.println("name : " + accessory.getName());
+            accessoryName.setText(accessory.getName());
+            accessoryPricePerHour.setText("" + accessory.getPricePerHour());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private app.core.components.MaButton maButton1;
+    private app.core.components.MaTextField accessoryName;
+    private app.core.components.MaTextField accessoryPricePerHour;
     private app.core.components.MaLabel maLabel1;
     private app.core.components.MaLabel maLabel2;
     private app.core.components.MaLabel maLabel3;
-    private app.core.components.MaTextField maTextField1;
-    private app.core.components.MaTextField maTextField2;
+    private app.core.components.MaButton submitBtn;
     // End of variables declaration//GEN-END:variables
 }

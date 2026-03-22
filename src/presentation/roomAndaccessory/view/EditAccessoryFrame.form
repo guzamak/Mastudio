@@ -22,13 +22,13 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="maButton1" min="-2" pref="148" max="-2" attributes="0"/>
+                  <Component id="submitBtn" min="-2" pref="148" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="maTextField2" alignment="0" min="-2" pref="340" max="-2" attributes="0"/>
+                      <Component id="accessoryPricePerHour" alignment="0" min="-2" pref="340" max="-2" attributes="0"/>
                       <Component id="maLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="maLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="maLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="maTextField1" alignment="0" min="-2" pref="340" max="-2" attributes="0"/>
+                      <Component id="accessoryName" alignment="0" min="-2" pref="340" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="39" max="32767" attributes="0"/>
@@ -43,13 +43,13 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="maLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="maTextField1" min="-2" max="-2" attributes="0"/>
+              <Component id="accessoryName" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="maLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="maTextField2" min="-2" max="-2" attributes="0"/>
+              <Component id="accessoryPricePerHour" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="26" max="32767" attributes="0"/>
-              <Component id="maButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="submitBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -71,17 +71,20 @@
         <Property name="text" type="java.lang.String" value="&#xe23;&#xe32;&#xe04;&#xe32;&#xe15;&#xe48;&#xe2d;&#xe0a;&#xe31;&#xe48;&#xe27;&#xe42;&#xe21;&#xe07;"/>
       </Properties>
     </Component>
-    <Component class="app.core.components.MaTextField" name="maTextField1">
+    <Component class="app.core.components.MaTextField" name="accessoryName">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="accessoryNameActionPerformed"/>
       </Events>
     </Component>
-    <Component class="app.core.components.MaTextField" name="maTextField2">
+    <Component class="app.core.components.MaTextField" name="accessoryPricePerHour">
     </Component>
-    <Component class="app.core.components.MaButton" name="maButton1">
+    <Component class="app.core.components.MaButton" name="submitBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xe1a;&#xe31;&#xe19;&#xe17;&#xe36;&#xe01;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
