@@ -138,7 +138,7 @@ public class MaComboBox<E> extends MaPanel implements ActionListener, MouseListe
         int popupHeight = popupWindow.getHeight();
         int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
         int width = getWidth();
-        int height = 120;
+        int height = Math.min(list.getHeight(),120);
 
         scroll.setPreferredSize(new Dimension(width, height));
         popupWindow.pack();

@@ -7,7 +7,6 @@
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/auth/view/SignInFrame.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/booking/view/BookingTableFrame.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/booking/view/BookingFrame.java</file>
-            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/Main.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/booking/controller/Booking.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/NavLabel.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/ImageLabel.java</file>
@@ -33,6 +32,14 @@
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaInternalFrame.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaLabel.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/auth/view/NewJInternalFrame.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/DateSelectionListener.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaBookingCalendar.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/MenuBar.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaScrollBar.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaTextField.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/roomAndaccessory/controller/Accessory.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/roomAndaccessory/view/EditRoomFrame.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/roomAndaccessory/view/EditAccessory.java</file>
         </group>
     </open-files>
 </project-private>

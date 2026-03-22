@@ -194,7 +194,7 @@ public class BookingFrame extends MaInternalFrame {
         if (tableselectedRow >= 0) {
             ArrayList<String> bookingKeys = new ArrayList<>(Booking.data.keySet());
             String key = bookingKeys.get(tableselectedRow);
-            Booking.data.remove(key);
+            Booking.deleteBooking(key, logger);
             updateRender();
         }
     }//GEN-LAST:event_deleteBtnActionPerformed

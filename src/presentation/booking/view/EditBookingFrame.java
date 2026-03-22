@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import model.client.TimeUtils;
+import model.utils.TimeUtils;
 import presentation.booking.controller.Booking;
 import presentation.roomAndaccessory.controller.Room;
 
@@ -220,19 +220,12 @@ public class EditBookingFrame extends MaInternalFrame {
                 (String) CheckInDateCombobox.getSelectedItem()
         );
 
-        if (isNew) {
-            System.out.println("rest");
-//            want id form backend 
-
-            String newBookingId = "BK" + (Booking.data.size() + 1); // simple increment, can be improved
-            Booking.data.put(newBookingId, booking);
-        }
         
         if (isNew){
-//            post api
+            Booking.postBooking(booking, logger);
         }
         else {
-//          put api   
+        Booking.putBooking(booking, logger);
         }
         parent.updateRender();
         dispose();

@@ -13,16 +13,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import model.client.TimeUtils;
+import model.client.PocketBaseClient;
+import model.session.SessionManager;
+import model.utils.ApiObject;
+import model.utils.TimeUtils;
 
-public class Booking {
+public class Booking extends ApiObject {
+
+    private static PocketBaseClient pb = SessionManager.pb;
+    private static PocketBaseClient.PBResponse pbClient;
 
     private String room, customer, id;
     private String roomId;
     private String timeSlot;
     private String checkIn;
     public static HashMap<String, Booking> data = new HashMap<>();
-    public static ArrayList<String> time_slot_list = new ArrayList<>(List.of("10.00-11.00","11.00-12.00","12.00-13.00","13.00-14.00","14.00-15.00","15.00-16.00","16.00-17.00","17.00-18.00","18.00-19.00","19.00-20.00"));
+    public static ArrayList<String> time_slot_list = new ArrayList<>(List.of("10.00-11.00", "11.00-12.00", "12.00-13.00", "13.00-14.00", "14.00-15.00", "15.00-16.00", "16.00-17.00", "17.00-18.00", "18.00-19.00", "19.00-20.00"));
 
     public Booking(String id, String room, String customer, String timeSlot, String checkIn) {
         this.id = id;
@@ -34,6 +40,10 @@ public class Booking {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getRoom() {
@@ -75,12 +85,10 @@ public class Booking {
     public void setRoomId(String roomId) {
         this.roomId = roomId;
     }
-    
-    
 
-    public static void updateBookingData(Booking booking,String room,String id,String customerName,String timeSlot,
+    public static void updateBookingData(Booking booking, String room, String id, String customerName, String timeSlot,
             String checkInYearStr, String checkInMonthStr, String checkInDayStr
-            ){
+    ) {
         booking.setRoom(room);
         booking.setRoomId(id);
         booking.setCustomer(customerName);
@@ -98,5 +106,92 @@ public class Booking {
         booking.setCheckIn(checkInOffset.format(formatter));
 
     }
-}
 
+    @Override
+    public String toJson() {
+
+        String json = "{\n"
+                + "  \"customer_name\": \"" + this.customer + "\",\n"
+                + "  \"checkIn_time\": \"" + this.checkIn + "\",\n"
+                + "  \"room\": \"" + this.roomId + "\",\n"
+                + "  \"time_slot\": \"" + this.timeSlot + "\"\n"
+                + "}";
+
+        return json;
+    }
+
+    public static void postBooking(Booking booking, java.util.logging.Logger logger) {
+        if (!pb.isAuthenticated()) {
+            logger.warning("Not authenticated, cannot post booking.");
+            return;
+        }
+
+        try {
+            String jsonPayload = booking.toJson();
+            System.out.println(jsonPayload);
+            PocketBaseClient.PBResponse res = pb.createRecord("java_book", jsonPayload);
+
+            if (!res.isOk()) {
+                logger.warning("Failed to post booking: " + res.getStatusCode() + " " + res.getBody());
+                return;
+            }
+
+            String bookingId = PocketBaseClient.extractJsonString(res.getBody(), "id");
+            System.out.println("Booking posted successfully: ID = " + bookingId);
+            booking.setId(bookingId);
+            Booking.data.put(bookingId, booking);
+
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to post booking", ex);
+        }
+    }
+
+    public static void putBooking(Booking booking, java.util.logging.Logger logger) {
+        if (!pb.isAuthenticated()) {
+            logger.warning("Not authenticated, cannot post booking.");
+            return;
+        }
+
+        try {
+            String jsonPayload = booking.toJson();
+            System.out.println(jsonPayload);
+            PocketBaseClient.PBResponse res = pb.updateRecord("java_book", booking.id, jsonPayload);
+
+            if (!res.isOk()) {
+                logger.warning("Failed to put booking: " + res.getStatusCode() + " " + res.getBody());
+                return;
+            }
+
+            System.out.println("Booking put successfully: ID = " + booking.id);
+            Booking.data.put(booking.id, booking);
+
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to post booking", ex);
+        }
+    }
+
+    public static void deleteBooking(String bookingId, java.util.logging.Logger logger) {
+        if (!pb.isAuthenticated()) {
+            logger.warning("Not authenticated, cannot delete booking.");
+            return;
+        }
+
+        try {
+            PocketBaseClient.PBResponse res = pb.deleteRecord("java_book", bookingId);
+
+            if (!res.isOk()) {
+                logger.warning("Failed to delete booking: " + res.getStatusCode() + " " + res.getBody());
+                return;
+            }
+
+            System.out.println("Booking deleted successfully: ID = " + bookingId);
+
+            Booking.data.remove(bookingId);
+
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to delete booking", ex);
+        }
+    }
+    
+
+}

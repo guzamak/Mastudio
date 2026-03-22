@@ -27,7 +27,7 @@ import javax.swing.BoxLayout;
 import javax.swing.*;
 import javax.swing.ImageIcon;
 import model.session.SessionManager;
-import model.client.TimeUtils;
+import model.utils.TimeUtils;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
