@@ -88,7 +88,7 @@
                                       <Component id="addAcces" min="-2" pref="64" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="maButton5" pref="0" max="32767" attributes="0"/>
-                                  <Component id="maButton6" pref="0" max="32767" attributes="0"/>
+                                  <Component id="delAccessoryBtn" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -134,7 +134,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="maButton5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="maButton6" min="-2" max="-2" attributes="0"/>
+                      <Component id="delAccessoryBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -221,12 +221,15 @@
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maButton5.setButtonColor(Macolor.trans);&#xa;maButton5.setBorderColor(Macolor.trans);&#xa;maButton5.setTextColor(Macolor.mablue);"/>
       </AuxValues>
     </Component>
-    <Component class="app.core.components.MaButton" name="maButton6">
+    <Component class="app.core.components.MaButton" name="delAccessoryBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Del"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delAccessoryBtnActionPerformed"/>
+      </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maButton6.setButtonColor(Macolor.trans);&#xa;maButton6.setBorderColor(Macolor.trans);&#xa;maButton6.setTextColor(Macolor.mared);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="delAccessoryBtn.setButtonColor(Macolor.trans);&#xa;delAccessoryBtn.setBorderColor(Macolor.trans);&#xa;delAccessoryBtn.setTextColor(Macolor.mared);"/>
       </AuxValues>
     </Component>
   </SubComponents>

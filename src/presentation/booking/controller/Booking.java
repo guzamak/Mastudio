@@ -30,8 +30,9 @@ public class Booking extends ApiObject {
     public static HashMap<String, Booking> data = new HashMap<>();
     public static ArrayList<String> time_slot_list = new ArrayList<>(List.of("10.00-11.00", "11.00-12.00", "12.00-13.00", "13.00-14.00", "14.00-15.00", "15.00-16.00", "16.00-17.00", "17.00-18.00", "18.00-19.00", "19.00-20.00"));
 
-    public Booking(String id, String room, String customer, String timeSlot, String checkIn) {
+    public Booking(String id, String room, String customer, String timeSlot, String checkIn,String roomId) {
         this.id = id;
+        this.roomId= roomId;
         this.room = room;
         this.customer = customer;
         this.timeSlot = timeSlot;

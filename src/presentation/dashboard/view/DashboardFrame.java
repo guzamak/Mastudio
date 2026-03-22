@@ -371,11 +371,11 @@ try {
                 String checkIn = PocketBaseClient.extractJsonString(item, "checkIn_time");
                 String timeslot = PocketBaseClient.extractJsonString(item, "time_slot");
                 String roomId = PocketBaseClient.extractJsonString(item, "room");
-                String roomName = Room.data.get(roomId).getName();
+                String roomName = Room.data.get(roomId) == null ?"ยังไม่มีห้อง" :  Room.data.get(roomId).getName();
                 String id = PocketBaseClient.extractJsonString(item, "id");
                 System.out.println(id);
 
-                Booking.data.put(id,new Booking(id,roomName, customerName, timeslot,checkIn));
+                Booking.data.put(id,new Booking(id,roomName, customerName, timeslot,checkIn,roomId));
             }
             updateRender();
         } catch (java.io.IOException | InterruptedException ex) {

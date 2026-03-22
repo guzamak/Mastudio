@@ -19,13 +19,69 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="394" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="maButton1" min="-2" pref="148" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="maTextField2" alignment="0" min="-2" pref="340" max="-2" attributes="0"/>
+                      <Component id="maLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="maLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="maLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="maTextField1" alignment="0" min="-2" pref="340" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="274" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Component id="maLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="maLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="maTextField1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="maLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="maTextField2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <Component id="maButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="app.core.components.MaLabel" name="maLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+ &#xe40;&#xe1e;&#xe34;&#xe48;&#xe21;&#xe2d;&#xe38;&#xe1b;&#xe01;&#xe23;&#xe13;&#xe4c;&#xe43;&#xe2b;&#xe21;&#xe48;"/>
+      </Properties>
+    </Component>
+    <Component class="app.core.components.MaLabel" name="maLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe0a;&#xe37;&#xe48;&#xe2d;&#xe2d;&#xe38;&#xe1b;&#xe01;&#xe23;&#xe13;&#xe4c;"/>
+      </Properties>
+    </Component>
+    <Component class="app.core.components.MaLabel" name="maLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe23;&#xe32;&#xe04;&#xe32;&#xe15;&#xe48;&#xe2d;&#xe0a;&#xe31;&#xe48;&#xe27;&#xe42;&#xe21;&#xe07;"/>
+      </Properties>
+    </Component>
+    <Component class="app.core.components.MaTextField" name="maTextField1">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maTextField1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="app.core.components.MaTextField" name="maTextField2">
+    </Component>
+    <Component class="app.core.components.MaButton" name="maButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xe1a;&#xe31;&#xe19;&#xe17;&#xe36;&#xe01;"/>
+      </Properties>
+    </Component>
+  </SubComponents>
 </Form>

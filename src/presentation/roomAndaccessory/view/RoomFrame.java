@@ -41,6 +41,8 @@ public class RoomFrame extends MaInternalFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RoomFrame.class.getName());
 
+    private int selectedRoomId = -1;
+    private int selectedAccessoryId = -1;
 
     /**
      * Creates new form RoomFrame
@@ -74,7 +76,7 @@ public class RoomFrame extends MaInternalFrame {
         delRoomBtn = new app.core.components.MaButton();
         addAcces = new app.core.components.MaButton();
         maButton5 = new app.core.components.MaButton();
-        maButton6 = new app.core.components.MaButton();
+        delAccessoryBtn = new app.core.components.MaButton();
 
         jInternalFrame1.setVisible(true);
 
@@ -131,10 +133,11 @@ public class RoomFrame extends MaInternalFrame {
         maButton5.setTextColor(Macolor.mablue);
         maButton5.addActionListener(this::maButton5ActionPerformed);
 
-        maButton6.setButtonColor(Macolor.trans);
-        maButton6.setBorderColor(Macolor.trans);
-        maButton6.setTextColor(Macolor.mared);
-        maButton6.setText("Del");
+        delAccessoryBtn.setButtonColor(Macolor.trans);
+        delAccessoryBtn.setBorderColor(Macolor.trans);
+        delAccessoryBtn.setTextColor(Macolor.mared);
+        delAccessoryBtn.setText("Del");
+        delAccessoryBtn.addActionListener(this::delAccessoryBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,7 +172,7 @@ public class RoomFrame extends MaInternalFrame {
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(addAcces, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(maButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(maButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                                    .addComponent(delAccessoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                         .addGap(29, 29, 29))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(56, 56, 56)
@@ -204,7 +207,7 @@ public class RoomFrame extends MaInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(maButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(maButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(delAccessoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69)))
                 .addGap(69, 69, 69))
         );
@@ -214,6 +217,14 @@ public class RoomFrame extends MaInternalFrame {
 
     private void delRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delRoomBtnActionPerformed
         // TODO add your handling code here:
+        int tableselectedRow = maTable1.getSelectedRow();
+//        System.out.println(tableselectedRow);
+        if (tableselectedRow >= 0) {
+            ArrayList<String> Roomkey = new ArrayList<>(Room.data.keySet());
+            String key = Roomkey.get(tableselectedRow);
+            Room.deleteRoom(key, logger);
+            updateRender();
+        }
     }//GEN-LAST:event_delRoomBtnActionPerformed
 
     private void editRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRoomBtnActionPerformed
@@ -228,13 +239,25 @@ public class RoomFrame extends MaInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_maButton5ActionPerformed
 
+    private void delAccessoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delAccessoryBtnActionPerformed
+        // TODO add your handling code here:
+        int tableselectedRow = maTable2.getSelectedRow();
+//        System.out.println(tableselectedRow);
+        if (tableselectedRow >= 0) {
+            ArrayList<String> accessorykey = new ArrayList<>(Accessory.data.keySet());
+            String key = accessorykey.get(tableselectedRow);
+            Accessory.deleteAccessory(key, logger);
+            updateRender();
+        }
+    }//GEN-LAST:event_delAccessoryBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
     private void loadData() {
-      Room.loadRooms(logger);
-      Accessory.loadAccessories(logger);
-      updateRender(); 
+        Room.loadRooms(logger);
+        Accessory.loadAccessories(logger);
+        updateRender();
     }
 
     public void updateRender() {
@@ -257,7 +280,7 @@ public class RoomFrame extends MaInternalFrame {
         }
 
         maTable1.updateView(columns, rows);
-        
+
         ArrayList<String> columns1 = new ArrayList<>();
         columns1.add("Accessory Name");
         columns1.add("Price / Hour");
@@ -280,16 +303,15 @@ public class RoomFrame extends MaInternalFrame {
     }
 
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.core.components.MaButton addAcces;
     private app.core.components.MaButton addRoomBtn;
+    private app.core.components.MaButton delAccessoryBtn;
     private app.core.components.MaButton delRoomBtn;
     private app.core.components.MaButton editRoomBtn;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private app.core.components.MaButton maButton5;
-    private app.core.components.MaButton maButton6;
     private app.core.components.MaLabel maLabel1;
     private app.core.components.MaLabel maLabel2;
     private app.core.components.MaTable maTable1;

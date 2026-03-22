@@ -4,15 +4,22 @@
  */
 package presentation.roomAndaccessory.view;
 
+import app.core.components.MaInternalFrame;
+import presentation.roomAndaccessory.controller.Accessory;
+
 /**
  *
  * @author poke
  */
-public class EditAccessoryFrame extends javax.swing.JInternalFrame {
+public class EditAccessoryFrame extends MaInternalFrame  {
 
     /**
      * Creates new form EditAccessory
      */
+    private Accessory accessory = null;
+    private String id;
+    private RoomFrame parent;
+    
     public EditAccessoryFrame() {
         initComponents();
     }
@@ -26,21 +33,71 @@ public class EditAccessoryFrame extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        maLabel1 = new app.core.components.MaLabel();
+        maLabel2 = new app.core.components.MaLabel();
+        maLabel3 = new app.core.components.MaLabel();
+        maTextField1 = new app.core.components.MaTextField();
+        maTextField2 = new app.core.components.MaTextField();
+        maButton1 = new app.core.components.MaButton();
+
+        maLabel1.setText("+ เพิ่มอุปกรณ์ใหม่");
+
+        maLabel2.setText("ชื่ออุปกรณ์");
+
+        maLabel3.setText("ราคาต่อชั่วโมง");
+
+        maTextField1.addActionListener(this::maTextField1ActionPerformed);
+
+        maButton1.setText("บันทึก");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(maTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(maLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(maTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(maTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(maLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(maTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(maButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void maTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maTextField1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private app.core.components.MaButton maButton1;
+    private app.core.components.MaLabel maLabel1;
+    private app.core.components.MaLabel maLabel2;
+    private app.core.components.MaLabel maLabel3;
+    private app.core.components.MaTextField maTextField1;
+    private app.core.components.MaTextField maTextField2;
     // End of variables declaration//GEN-END:variables
 }
