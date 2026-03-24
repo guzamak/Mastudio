@@ -8,30 +8,133 @@ package presentation.receipt.view;
  *
  * @author poke
  */
-import app.core.components.Macolor;
-import app.core.components.MaFrame;
-import app.core.components.MaTextField;
+import app.core.components.*;
 import app.core.components.fonts.IBMPlexSansThaiFont;
-import model.client.PocketBaseClient;
-import model.client.PocketBaseClient.PBResponse;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.TextField;
-import java.util.List;
-import javax.swing.BoxLayout;
+import presentation.receipt.controller.Receipt;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import javax.swing.*;
-import javax.swing.ImageIcon;
-public class ReceiptPageFrame extends MaFrame {
-    
+
+public class ReceiptPageFrame extends MaInternalFrame {
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReceiptPageFrame.class.getName());
 
-    /**
-     * Creates new form ReceiptPageFrame
-     */
+    private Receipt currentReceipt;
+    private JLabel previewLabel;
+    private MaButton saveBtn;
+
     public ReceiptPageFrame() {
         initComponents();
+        setupReceiptUI();
+    }
+
+    public void setReceipt(Receipt receipt) {
+        this.currentReceipt = receipt;
+        showPreview();
+    }
+
+    public void setReceiptData(String customerName, String roomName, double roomPrice, String timeSlot, String date) {
+        Receipt r = new Receipt();
+        r.setCustomerName(customerName);
+        if (date != null) r.setDate(date);
+        r.addItem(roomName + " (" + timeSlot + ")", roomPrice);
+        setReceipt(r);
+    }
+
+    private void setupReceiptUI() {
+        previewLabel = new JLabel();
+        previewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JScrollPane previewScroll = new JScrollPane(previewLabel);
+        previewScroll.setBorder(BorderFactory.createEmptyBorder());
+        previewScroll.getViewport().setBackground(new Color(235, 240, 245));
+        previewScroll.setPreferredSize(new Dimension(440, 500));
+
+        saveBtn = new MaButton();
+        saveBtn.setText("บันทึกเป็นรูปภาพ (Save PNG)");
+        saveBtn.setArc(16);
+        saveBtn.setButtonColor(Macolor.magreen);
+        saveBtn.addActionListener(e -> saveReceiptImage());
+
+        MaButton testBtn = new MaButton();
+        testBtn.setText("ทดสอบใบเสร็จ (Test)");
+        testBtn.setArc(16);
+        testBtn.setButtonColor(Macolor.mablue);
+        testBtn.addActionListener(e -> {
+            Receipt r = new Receipt();
+            r.setCustomerName("ทดสอบ Test Customer");
+            r.addItem("Room A (10.00-11.00)", 500.0);
+            r.addItem("Microphone", 200.0);
+            r.addItem("Speaker", 150.0);
+            setReceipt(r);
+        });
+
+        JPanel btnPanel = new JPanel(new GridLayout(1, 2, 10, 0));
+        btnPanel.setOpaque(false);
+        btnPanel.add(testBtn);
+        btnPanel.add(saveBtn);
+
+        MaPanel rightPanel = new MaPanel();
+        rightPanel.setBorderColor(Macolor.trans);
+        rightPanel.setLayout(new BorderLayout(0, 12));
+        rightPanel.add(previewScroll, BorderLayout.CENTER);
+        rightPanel.add(btnPanel, BorderLayout.SOUTH);
+
+        GroupLayout layout = (GroupLayout) getContentPane().getLayout();
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(18)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(navLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(maPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(24)
+                            .addComponent(rightPanel, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(18, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(navLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(maPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rightPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap(18, Short.MAX_VALUE))
+        );
+        pack();
+    }
+
+    private void showPreview() {
+        if (currentReceipt == null) return;
+        BufferedImage img = currentReceipt.toImage();
+        previewLabel.setIcon(new ImageIcon(img));
+        previewLabel.revalidate();
+    }
+
+    private void saveReceiptImage() {
+        if (currentReceipt == null) {
+            MaOptionPane.showMessageDialog(this, "ยังไม่มีใบเสร็จให้บันทึก");
+            return;
+        }
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("เลือกโฟลเดอร์สำหรับบันทึกใบเสร็จ");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            try {
+                File saved = currentReceipt.saveAsImage(chooser.getSelectedFile().getAbsolutePath());
+                MaOptionPane.showMessageDialog(this, "บันทึกสำเร็จ!\n" + saved.getAbsolutePath());
+            } catch (java.io.IOException ex) {
+                logger.log(java.util.logging.Level.SEVERE, "Failed to save receipt", ex);
+                MaOptionPane.showMessageDialog(this, "เกิดข้อผิดพลาดในการบันทึก");
+            }
+        }
     }
 
     /**
