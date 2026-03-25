@@ -45,7 +45,7 @@ public class RefreshButton extends MaButton {
         g2.drawArc(x, y, size, size, 40, 280);
 
         // Arrow head position
-        double angle = Math.toRadians(325);
+        double angle = Math.toRadians(320);
 
         int cx = x + size / 2;
         int cy = y + size / 2;

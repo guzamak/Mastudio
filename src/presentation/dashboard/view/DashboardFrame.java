@@ -34,7 +34,7 @@ import java.awt.image.*;
 import java.time.LocalDate;
 import presentation.booking.controller.Booking;
 import app.MainFrame;
-import presentation.editbookAccessory.view.EditBookAccessoryFrame;
+import presentation.editbookAccessory.view.BookAccessoryFrame;
 import presentation.receipt.view.ReceiptPageFrame;
 import presentation.roomAndaccessory.controller.Room;
 import presentation.roomAndaccessory.view.RoomFrame;
@@ -299,7 +299,7 @@ public class DashboardFrame extends MaInternalFrame {
 
     private void maButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton3ActionPerformed
         // TODO add your handling code here:
-        MainFrame.getInstance().openInternalFrame(new EditBookAccessoryFrame());
+        MainFrame.getInstance().openInternalFrame(new BookAccessoryFrame());
     }//GEN-LAST:event_maButton3ActionPerformed
 
     private void LogoutbtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_LogoutbtnActionPerformed

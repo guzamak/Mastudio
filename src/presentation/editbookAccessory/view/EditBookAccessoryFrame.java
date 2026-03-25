@@ -8,16 +8,7 @@ package presentation.editbookAccessory.view;
  *
  * @author poke
  */
-
-import app.core.components.NavLabel;
-import app.core.components.MaComboBox;
-import app.core.components.MaFrame;
-import app.core.components.MaInternalFrame;
-import app.core.components.MaList;
-import app.core.components.MaTable;
-import javax.swing.*;
-import java.awt.*;
-public class EditBookAccessoryFrame extends MaInternalFrame {
+public class EditBookAccessoryFrame extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form EditBookAccessoryFrame
@@ -35,36 +26,44 @@ public class EditBookAccessoryFrame extends MaInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        maScrollPane1 = new app.core.components.MaScrollPane();
+        maPanel1 = new app.core.components.MaPanel();
         maLabel1 = new app.core.components.MaLabel();
-        navLabel1 = new app.core.components.NavLabel();
-        maTable1 = new app.core.components.MaTable();
 
-        navLabel1.setExtraText("จัดการอุปกรณ์เเต่ละการจอง");
+        maLabel1.setText("การจอง :");
+
+        javax.swing.GroupLayout maPanel1Layout = new javax.swing.GroupLayout(maPanel1);
+        maPanel1.setLayout(maPanel1Layout);
+        maPanel1Layout.setHorizontalGroup(
+            maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(maPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(376, Short.MAX_VALUE))
+        );
+        maPanel1Layout.setVerticalGroup(
+            maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(maPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(374, Short.MAX_VALUE))
+        );
+
+        maScrollPane1.setViewportView(maPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(maTable1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(navLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addComponent(maScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(navLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(maTable1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addComponent(maScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -73,7 +72,7 @@ public class EditBookAccessoryFrame extends MaInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.core.components.MaLabel maLabel1;
-    private app.core.components.MaTable maTable1;
-    private app.core.components.NavLabel navLabel1;
+    private app.core.components.MaPanel maPanel1;
+    private app.core.components.MaScrollPane maScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
