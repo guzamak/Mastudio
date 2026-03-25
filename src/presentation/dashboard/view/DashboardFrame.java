@@ -49,8 +49,9 @@ public class DashboardFrame extends MaInternalFrame {
 
     {
         try {
-            pbClient = pb.authWithPassword("_superusers", System.getenv("SUPERUSERS_USERNAME"),
-                    System.getenv("SUPERUSERS_PASSWORD"));
+            pbClient = pb.authWithPassword("_superusers",
+                    System.getProperty("SUPERUSERS_USERNAME", System.getenv("SUPERUSERS_USERNAME")),
+                    System.getProperty("SUPERUSERS_PASSWORD", System.getenv("SUPERUSERS_PASSWORD")));
         } catch (java.io.IOException | InterruptedException ex) {
             logger.log(java.util.logging.Level.SEVERE, "Authentication error", ex);
             pbClient = null;
@@ -386,9 +387,12 @@ public class DashboardFrame extends MaInternalFrame {
                 String roomId = PocketBaseClient.extractJsonString(item, "room");
                 String roomName = Room.data.get(roomId) == null ? "ยังไม่มีห้อง" : Room.data.get(roomId).getName();
                 String id = PocketBaseClient.extractJsonString(item, "id");
+                List<String> accIds = PocketBaseClient.extractJsonArray(item, "accessories");
                 System.out.println(id);
 
-                Booking.data.put(id, new Booking(id, roomName, customerName, timeslot, checkIn, roomId));
+                Booking b = new Booking(id, roomName, customerName, timeslot, checkIn, roomId);
+                b.setAccessoryIds(accIds);
+                Booking.data.put(id, b);
             }
             updateRender();
         } catch (java.io.IOException | InterruptedException ex) {

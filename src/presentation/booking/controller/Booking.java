@@ -27,6 +27,7 @@ public class Booking extends ApiObject {
     private String roomId;
     private String timeSlot;
     private String checkIn;
+    private List<String> accessoryIds = new ArrayList<>();
     public static HashMap<String, Booking> data = new HashMap<>();
     public static ArrayList<String> time_slot_list = new ArrayList<>(List.of("10.00-11.00", "11.00-12.00", "12.00-13.00", "13.00-14.00", "14.00-15.00", "15.00-16.00", "16.00-17.00", "17.00-18.00", "18.00-19.00", "19.00-20.00"));
 
@@ -87,6 +88,14 @@ public class Booking extends ApiObject {
         this.roomId = roomId;
     }
 
+    public List<String> getAccessoryIds() {
+        return accessoryIds;
+    }
+
+    public void setAccessoryIds(List<String> accessoryIds) {
+        this.accessoryIds = accessoryIds != null ? accessoryIds : new ArrayList<>();
+    }
+
     public static void updateBookingData(Booking booking, String room, String id, String customerName, String timeSlot,
             String checkInYearStr, String checkInMonthStr, String checkInDayStr
     ) {
@@ -110,15 +119,20 @@ public class Booking extends ApiObject {
 
     @Override
     public String toJson() {
+        StringBuilder accArray = new StringBuilder("[");
+        for (int i = 0; i < accessoryIds.size(); i++) {
+            if (i > 0) accArray.append(",");
+            accArray.append("\"").append(accessoryIds.get(i)).append("\"");
+        }
+        accArray.append("]");
 
-        String json = "{\n"
+        return "{\n"
                 + "  \"customer_name\": \"" + this.customer + "\",\n"
                 + "  \"checkIn_time\": \"" + this.checkIn + "\",\n"
                 + "  \"room\": \"" + this.roomId + "\",\n"
-                + "  \"time_slot\": \"" + this.timeSlot + "\"\n"
+                + "  \"time_slot\": \"" + this.timeSlot + "\",\n"
+                + "  \"accessories\": " + accArray + "\n"
                 + "}";
-
-        return json;
     }
 
     public static void postBooking(Booking booking, java.util.logging.Logger logger) {
