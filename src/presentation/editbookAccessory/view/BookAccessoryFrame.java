@@ -21,15 +21,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import presentation.booking.controller.Booking;
-import presentation.booking.view.EditBookingFrame;
-import presentation.roomAndaccessory.view.EditAccessoryFrame;
+import presentation.roomAndaccessory.controller.Accessory;
+import app.core.components.MaOptionPane;
+
 public class BookAccessoryFrame extends MaInternalFrame {
+
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(BookAccessoryFrame.class.getName());
+    private ArrayList<Booking> bookingList = new ArrayList<>();
 
     /**
      * Creates new form EditBookAccessoryFrame
      */
     public BookAccessoryFrame() {
         initComponents();
+        loadData();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -91,18 +97,47 @@ public class BookAccessoryFrame extends MaInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void maButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton1ActionPerformed
-        // TODO add your handling code here:
-                int tableselectedRow = maTable1.getSelectedRow();
-        System.out.println(tableselectedRow);
-        if (tableselectedRow >= 0) {
-            ArrayList<String> bookingKeys = new ArrayList<>(Booking.data.keySet());
-            String key = bookingKeys.get(tableselectedRow);
-            Booking updateBooking = Booking.data.get(key);
-            updateBooking.getId();
-            System.out.println(updateBooking.getId());
-//            MainFrame.getInstance().openInternalFrame(new EditAccessoryFrame(updateBooking.getId(),this));
+        int row = maTable1.getSelectedRow();
+        if (row >= 0 && row < bookingList.size()) {
+            Booking selected = bookingList.get(row);
+            MainFrame.getInstance().openInternalFrame(new EditBookAccessoryFrame(selected, this));
         }
     }//GEN-LAST:event_maButton1ActionPerformed
+
+    public void loadData() {
+        Accessory.loadAccessories(logger);
+        bookingList.clear();
+
+        ArrayList<String> columns = new ArrayList<>();
+        columns.add("ห้อง");
+        columns.add("ลูกค้า");
+        columns.add("วันที่");
+        columns.add("Time Slot");
+        columns.add("อุปกรณ์ปัจจุบัน");
+
+        ArrayList<Object[]> rows = new ArrayList<>();
+        for (Booking b : Booking.data.values()) {
+            bookingList.add(b);
+
+            StringBuilder accNames = new StringBuilder();
+            for (String accId : b.getAccessoryIds()) {
+                Accessory a = Accessory.data.get(accId);
+                if (a != null) {
+                    if (accNames.length() > 0) accNames.append(", ");
+                    accNames.append(a.getName());
+                }
+            }
+
+            rows.add(new Object[]{
+                b.getRoom(),
+                b.getCustomer(),
+                b.getCheckIn() != null ? b.getCheckIn().substring(0, 10) : "",
+                b.getTimeSlot(),
+                accNames.length() > 0 ? accNames.toString() : "-"
+            });
+        }
+        maTable1.updateView(columns, rows);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
