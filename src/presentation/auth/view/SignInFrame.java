@@ -5,6 +5,7 @@
 package presentation.auth.view;
 
 import app.MainFrame;
+import app.TimeNotificationFrame;
 import app.core.components.MaFrame;
 import app.core.components.MaInternalFrame;
 //import app.components.*;
@@ -235,6 +236,7 @@ public class SignInFrame extends MaInternalFrame {
                 }
                 MainFrame.frames.clear();
                 MainFrame.getInstance().openInternalFrame(new DashboardFrame());
+                MainFrame.getInstance().openInternalFrame(new TimeNotificationFrame());
 
             } else {
 
