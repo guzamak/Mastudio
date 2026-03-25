@@ -46,10 +46,6 @@ public class MainFrame extends MaFrame {
     public void openInternalFrame(JInternalFrame frame) {
         desktopPane.add(frame);
         frame.setVisible(true);
-
-        // center the internal frame
-//        int x = (desktopPane.getWidth() - frame.getWidth()) / 2;
-//        int y = (desktopPane.getHeight() - frame.getHeight()) / 2;
         frame.toFront();
         frame.setLocation(0, 0);
         frames.add(frame);
