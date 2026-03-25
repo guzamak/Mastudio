@@ -157,10 +157,25 @@ public class PocketBaseClient {
     }
     
     public static Double extractJsonNumber(String json, String key) {
-    Pattern p = Pattern.compile("\"" + Pattern.quote(key) + "\"\\s*:\\s*(\\d+(\\.\\d+)?)");
-    Matcher m = p.matcher(json);
-    return m.find() ? Double.parseDouble(m.group(1)) : null;
-}
+        Pattern p = Pattern.compile("\"" + Pattern.quote(key) + "\"\\s*:\\s*(\\d+(\\.\\d+)?)");
+        Matcher m = p.matcher(json);
+        return m.find() ? Double.parseDouble(m.group(1)) : null;
+    }
+
+    public static List<String> extractJsonArray(String json, String key) {
+        Pattern p = Pattern.compile("\"" + Pattern.quote(key) + "\"\\s*:\\s*\\[([^\\]]*)\\]");
+        Matcher m = p.matcher(json);
+        List<String> result = new ArrayList<>();
+        if (!m.find()) return result;
+        String arrayContent = m.group(1).trim();
+        if (arrayContent.isEmpty()) return result;
+        Pattern strP = Pattern.compile("\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\"");
+        Matcher strM = strP.matcher(arrayContent);
+        while (strM.find()) {
+            result.add(strM.group(1));
+        }
+        return result;
+    }
 
     // --- Response wrapper ---
 

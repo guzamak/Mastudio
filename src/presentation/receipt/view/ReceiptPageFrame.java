@@ -11,10 +11,14 @@ package presentation.receipt.view;
 import app.core.components.*;
 import app.core.components.fonts.IBMPlexSansThaiFont;
 import presentation.receipt.controller.Receipt;
+import presentation.booking.controller.Booking;
+import presentation.roomAndaccessory.controller.Accessory;
+import presentation.roomAndaccessory.controller.Room;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class ReceiptPageFrame extends MaInternalFrame {
@@ -24,6 +28,8 @@ public class ReceiptPageFrame extends MaInternalFrame {
     private Receipt currentReceipt;
     private JLabel previewLabel;
     private MaButton saveBtn;
+    private MaTable bookingTable;
+    private ArrayList<Booking> bookingList = new ArrayList<>();
 
     public ReceiptPageFrame() {
         initComponents();
@@ -44,13 +50,51 @@ public class ReceiptPageFrame extends MaInternalFrame {
     }
 
     private void setupReceiptUI() {
+        Accessory.loadAccessories(logger);
+
+        // --- Booking table (center panel) ---
+        bookingTable = new MaTable();
+        loadBookingTable();
+
+        MaLabel bookingLabel = new MaLabel();
+        bookingLabel.setText("เลือก Booking ที่ต้องการออกใบเสร็จ");
+        bookingLabel.setFont(IBMPlexSansThaiFont.medium(14f));
+
+        MaButton generateBtn = new MaButton();
+        generateBtn.setText("ออกใบเสร็จ");
+        generateBtn.setArc(16);
+        generateBtn.setButtonColor(Macolor.magreen);
+        generateBtn.addActionListener(e -> generateReceipt());
+
+        MaButton refreshBtn = new MaButton();
+        refreshBtn.setText("Refresh");
+        refreshBtn.setArc(16);
+        refreshBtn.setButtonColor(Macolor.mablue);
+        refreshBtn.addActionListener(e -> loadBookingTable());
+
+        JPanel tableBtnPanel = new JPanel(new GridLayout(1, 2, 8, 0));
+        tableBtnPanel.setOpaque(false);
+        tableBtnPanel.add(refreshBtn);
+        tableBtnPanel.add(generateBtn);
+
+        JScrollPane tableScroll = new JScrollPane(bookingTable);
+        tableScroll.setBorder(BorderFactory.createEmptyBorder());
+        tableScroll.getViewport().setBackground(Color.WHITE);
+
+        MaPanel centerPanel = new MaPanel();
+        centerPanel.setBorderColor(Macolor.magreen);
+        centerPanel.setLayout(new BorderLayout(0, 10));
+        centerPanel.add(bookingLabel, BorderLayout.NORTH);
+        centerPanel.add(tableScroll, BorderLayout.CENTER);
+        centerPanel.add(tableBtnPanel, BorderLayout.SOUTH);
+
+        // --- Receipt preview panel (right) ---
         previewLabel = new JLabel();
         previewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         JScrollPane previewScroll = new JScrollPane(previewLabel);
         previewScroll.setBorder(BorderFactory.createEmptyBorder());
         previewScroll.getViewport().setBackground(new Color(235, 240, 245));
-        previewScroll.setPreferredSize(new Dimension(440, 500));
 
         saveBtn = new MaButton();
         saveBtn.setText("บันทึกเป็นรูปภาพ (Save PNG)");
@@ -58,29 +102,15 @@ public class ReceiptPageFrame extends MaInternalFrame {
         saveBtn.setButtonColor(Macolor.magreen);
         saveBtn.addActionListener(e -> saveReceiptImage());
 
-        MaButton testBtn = new MaButton();
-        testBtn.setText("ทดสอบใบเสร็จ (Test)");
-        testBtn.setArc(16);
-        testBtn.setButtonColor(Macolor.mablue);
-        testBtn.addActionListener(e -> {
-            Receipt r = new Receipt();
-            r.setCustomerName("ทดสอบ Test Customer");
-            r.addItem("Room A (10.00-11.00)", 500.0);
-            r.addItem("Microphone", 200.0);
-            r.addItem("Speaker", 150.0);
-            setReceipt(r);
-        });
-
-        JPanel btnPanel = new JPanel(new GridLayout(1, 2, 10, 0));
-        btnPanel.setOpaque(false);
-        btnPanel.add(testBtn);
-        btnPanel.add(saveBtn);
-
         MaPanel rightPanel = new MaPanel();
         rightPanel.setBorderColor(Macolor.trans);
         rightPanel.setLayout(new BorderLayout(0, 12));
         rightPanel.add(previewScroll, BorderLayout.CENTER);
-        rightPanel.add(btnPanel, BorderLayout.SOUTH);
+        rightPanel.add(saveBtn, BorderLayout.SOUTH);
+
+        // Add new components to content pane
+        getContentPane().add(centerPanel);
+        getContentPane().add(rightPanel);
 
         GroupLayout layout = (GroupLayout) getContentPane().getLayout();
         layout.setHorizontalGroup(
@@ -91,8 +121,10 @@ public class ReceiptPageFrame extends MaInternalFrame {
                         .addComponent(navLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(maPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addGap(24)
-                            .addComponent(rightPanel, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)))
+                            .addGap(18)
+                            .addComponent(centerPanel, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
+                            .addGap(18)
+                            .addComponent(rightPanel, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -103,10 +135,85 @@ public class ReceiptPageFrame extends MaInternalFrame {
                     .addGap(18)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(maPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(centerPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rightPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addContainerGap(18, Short.MAX_VALUE))
         );
         pack();
+    }
+
+    private void loadBookingTable() {
+        bookingList.clear();
+
+        ArrayList<String> columns = new ArrayList<>();
+        columns.add("ห้อง");
+        columns.add("ลูกค้า");
+        columns.add("วันที่");
+        columns.add("เวลา");
+        columns.add("อุปกรณ์");
+
+        ArrayList<Object[]> rows = new ArrayList<>();
+        for (Booking b : Booking.data.values()) {
+            bookingList.add(b);
+
+            // Build accessory names string
+            StringBuilder accNames = new StringBuilder();
+            for (String accId : b.getAccessoryIds()) {
+                Accessory a = Accessory.data.get(accId);
+                if (a != null) {
+                    if (accNames.length() > 0) accNames.append(", ");
+                    accNames.append(a.getName());
+                }
+            }
+
+            rows.add(new Object[]{
+                b.getRoom(),
+                b.getCustomer(),
+                b.getCheckIn() != null ? b.getCheckIn().substring(0, 10) : "",
+                b.getTimeSlot(),
+                accNames.length() > 0 ? accNames.toString() : "-"
+            });
+        }
+        bookingTable.updateView(columns, rows);
+    }
+
+    private void generateReceipt() {
+        int row = bookingTable.getSelectedRow();
+        if (row < 0 || row >= bookingList.size()) {
+            MaOptionPane.showMessageDialog(this, "กรุณาเลือก Booking ในตารางก่อน");
+            return;
+        }
+
+        Booking b = bookingList.get(row);
+        double hours = parseHours(b.getTimeSlot());
+
+        Room room = Room.data.get(b.getRoomId());
+        String roomName = room != null ? room.getName() : b.getRoom();
+        double roomPrice = room != null ? room.getPricePerHour() : 0.0;
+
+        Receipt r = new Receipt();
+        r.setCustomerName(b.getCustomer());
+        r.addItem(roomName + " (" + b.getTimeSlot() + ")", roomPrice * hours);
+
+        for (String accId : b.getAccessoryIds()) {
+            Accessory a = Accessory.data.get(accId);
+            if (a != null) {
+                r.addItem(a.getName() + " (" + b.getTimeSlot() + ")", a.getPricePerHour() * hours);
+            }
+        }
+
+        setReceipt(r);
+    }
+
+    private double parseHours(String timeSlot) {
+        try {
+            String[] parts = timeSlot.split("-");
+            double start = Double.parseDouble(parts[0]);
+            double end = Double.parseDouble(parts[1]);
+            return end - start;
+        } catch (Exception e) {
+            return 1.0;
+        }
     }
 
     private void showPreview() {
@@ -118,7 +225,7 @@ public class ReceiptPageFrame extends MaInternalFrame {
 
     private void saveReceiptImage() {
         if (currentReceipt == null) {
-            MaOptionPane.showMessageDialog(this, "ยังไม่มีใบเสร็จให้บันทึก");
+            MaOptionPane.showMessageDialog(this, "ยังไม่มีใบเสร็จให้บันทึก\nกรุณาเลือก Booking แล้วกด 'ออกใบเสร็จ' ก่อน");
             return;
         }
         JFileChooser chooser = new JFileChooser();
@@ -147,13 +254,13 @@ public class ReceiptPageFrame extends MaInternalFrame {
     private void initComponents() {
 
         navLabel1 = new app.core.components.NavLabel();
-        navLabel1.setExtraText("ออกใบเสณ้จ");
+        navLabel1.setExtraText("ออกใบเสร็จ");
         maPanel1 = new app.core.components.MaPanel();
         maScrollPane1 = new app.core.components.MaScrollPane();
         maTextArea1 = new app.core.components.MaTextArea();
         maLabel1 = new app.core.components.MaLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         maPanel1.setBackground(Color.white);
         maPanel1.setBorderColor(Macolor.magreen);
@@ -168,7 +275,7 @@ public class ReceiptPageFrame extends MaInternalFrame {
         maTextArea1.setBackground(Color.white);
         maTextArea1.setColumns(20);
         maTextArea1.setRows(5);
-        maTextArea1.setText("วิธีการใช้งาน\n** วิธีการเพิ่มข้อมูล**\n\nกดปุ่ม “+ เพิ่มข้อมูล”\n1. ระบบจะเปิดฟอร์มให้กรอกข้อมูล (ขึ้นอยู่กับการออกแบบระบบ)\n2.กรอกข้อมูลให้ครบในแต่ละคอลัมน์\n3.กดยืนยันเพื่อบันทึกข้อมูล\n4.ข้อมูลใหม่จะแสดงในตารางทันที\n\n*หมายเหตุ: ควรตรวจสอบความถูกต้องก่อนบันทึก\n\n\n** วิธีการลบข้อมูล **\n\n1.คลิกเลือกแถวข้อมูลที่ต้องการลบ\n2.กดปุ่ม “ลบข้อมูลที่เลือก”\n\n* คำเตือน: การลบข้อมูลไม่สามารถกู้คืนได้ ควรตรวจสอบก่อนลบทุกครั้ง");
+        maTextArea1.setText("วิธีการใช้งาน\n\n1. เลือก Booking จากตารางกลาง\n2. กดปุ่ม 'ออกใบเสร็จ'\n3. ใบเสร็จจะแสดงพร้อมราคา\n   ห้อง + อุปกรณ์ × จำนวนชั่วโมง\n4. กด 'บันทึกเป็นรูปภาพ'\n   เพื่อ save PNG\n\n* กด Refresh เพื่อโหลด\n  ข้อมูลการจองล่าสุด");
         maScrollPane1.setViewportView(maTextArea1);
 
         javax.swing.GroupLayout maPanel1Layout = new javax.swing.GroupLayout(maPanel1);
@@ -227,11 +334,6 @@ public class ReceiptPageFrame extends MaInternalFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -242,9 +344,7 @@ public class ReceiptPageFrame extends MaInternalFrame {
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new ReceiptPageFrame().setVisible(true));
     }
 

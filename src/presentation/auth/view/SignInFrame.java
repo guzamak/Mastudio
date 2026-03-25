@@ -24,14 +24,21 @@ import model.session.SessionManager;
  */
 public class SignInFrame extends MaInternalFrame {
 
-    private PocketBaseClient pb = new PocketBaseClient("https://studiodb.hostmy.photos");
+    private PocketBaseClient pb = SessionManager.pb;
     private PBResponse pbClient;
 
     {
-        try {
-            pbClient = pb.authWithPassword("_superusers", System.getenv("SUPERUSERS_USERNAME"), System.getenv("SUPERUSERS_PASSWORD"));
-        } catch (java.io.IOException | InterruptedException ex) {
-            logger.log(java.util.logging.Level.SEVERE, "Authentication error", ex);
+        String superUsername = System.getProperty("SUPERUSERS_USERNAME", System.getenv("SUPERUSERS_USERNAME"));
+        String superPassword = System.getProperty("SUPERUSERS_PASSWORD", System.getenv("SUPERUSERS_PASSWORD"));
+        if (superUsername != null && superPassword != null) {
+            try {
+                pbClient = pb.authWithPassword("_superusers", superUsername, superPassword);
+            } catch (Exception ex) {
+                logger.log(java.util.logging.Level.SEVERE, "Authentication error", ex);
+                pbClient = null;
+            }
+        } else {
+            logger.warning("SUPERUSERS_USERNAME or SUPERUSERS_PASSWORD env var not set");
             pbClient = null;
         }
     }
@@ -202,13 +209,19 @@ public class SignInFrame extends MaInternalFrame {
             String user = username.getText();
             String pass = new String(password.getPassword());
 
-            String adminId = System.getenv("ADMIN_ID");
+            String adminId = System.getProperty("ADMIN_ID", System.getenv("ADMIN_ID"));
             PBResponse admin = null;
             try {
                 admin = pb.getRecord("java_login", adminId);
             } catch (java.io.IOException | InterruptedException ex) {
                 logger.log(java.util.logging.Level.SEVERE, "Error fetching admin record", ex);
                 MaOptionPane.showMessageDialog(this, "เกิดข้อผิดพลาดระหว่างดึงข้อมูลผู้ดูแลระบบ");
+                return;
+            }
+
+            if (admin == null || !admin.isOk()) {
+                MaOptionPane.showMessageDialog(this, "เกิดข้อผิดพลาดระหว่างดึงข้อมูลผู้ดูแลระบบ");
+                return;
             }
 
             if (user.equals(admin.getJsonString("username")) && pass.equals(admin.getJsonString("password"))) {
