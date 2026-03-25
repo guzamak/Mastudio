@@ -14,6 +14,7 @@ import presentation.receipt.controller.Receipt;
 import presentation.booking.controller.Booking;
 import presentation.roomAndaccessory.controller.Accessory;
 import presentation.roomAndaccessory.controller.Room;
+import presentation.payment.controller.Payment;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
