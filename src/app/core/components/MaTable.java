@@ -49,7 +49,12 @@ public class MaTable extends MaPanel {
                 new String[]{
                     "Col 1", "Col 2", "Col 3", "Col 4"
                 }
-        );
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;//This causes all cells to be not editable
+            }
+        };
         table = new JTable(model);
         table.setBorder(BorderFactory.createEmptyBorder());
         table.setRowHeight(30);

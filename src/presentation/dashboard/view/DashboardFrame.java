@@ -34,6 +34,7 @@ import java.awt.image.*;
 import java.time.LocalDate;
 import presentation.booking.controller.Booking;
 import app.MainFrame;
+import presentation.editbookAccessory.view.EditBookAccessoryFrame;
 import presentation.receipt.view.ReceiptPageFrame;
 import presentation.roomAndaccessory.controller.Room;
 import presentation.roomAndaccessory.view.RoomFrame;
@@ -195,6 +196,7 @@ public class DashboardFrame extends MaInternalFrame {
         maButton3.setBorderColor(Macolor.magreen);
         maButton3.setButtonColor(Macolor.seablue);
         maButton3.setTextColor(Macolor.magreen);
+        maButton3.addActionListener(this::maButton3ActionPerformed);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
@@ -295,6 +297,11 @@ public class DashboardFrame extends MaInternalFrame {
         // ReceiptPageFrame
         MainFrame.getInstance().openInternalFrame(new ReceiptPageFrame());
     }//GEN-LAST:event_maButton4ActionPerformed
+
+    private void maButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton3ActionPerformed
+        // TODO add your handling code here:
+        MainFrame.getInstance().openInternalFrame(new EditBookAccessoryFrame());
+    }//GEN-LAST:event_maButton3ActionPerformed
 
     private void LogoutbtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_LogoutbtnActionPerformed
         SessionManager.clearSession();
