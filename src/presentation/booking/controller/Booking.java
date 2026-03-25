@@ -17,6 +17,7 @@ import model.client.PocketBaseClient;
 import model.session.SessionManager;
 import model.utils.ApiObject;
 import model.utils.TimeUtils;
+import presentation.roomAndaccessory.controller.Room;
 
 public class Booking extends ApiObject {
 
@@ -182,6 +183,32 @@ public class Booking extends ApiObject {
 
         } catch (java.io.IOException | InterruptedException ex) {
             logger.log(java.util.logging.Level.SEVERE, "Failed to post booking", ex);
+        }
+    }
+
+    public static void loadBookings(java.util.logging.Logger logger) {
+        if (!pb.isAuthenticated()) return;
+        try {
+            PocketBaseClient.PBResponse res = pb.getRecords("java_book");
+            if (!res.isOk()) {
+                logger.warning("Failed to load bookings: " + res.getStatusCode());
+                return;
+            }
+            Booking.data.clear();
+            for (String item : res.getItems()) {
+                String id = PocketBaseClient.extractJsonString(item, "id");
+                String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
+                String checkIn = PocketBaseClient.extractJsonString(item, "checkIn_time");
+                String timeslot = PocketBaseClient.extractJsonString(item, "time_slot");
+                String roomId = PocketBaseClient.extractJsonString(item, "room");
+                String roomName = Room.data.get(roomId) != null ? Room.data.get(roomId).getName() : roomId;
+                List<String> accIds = PocketBaseClient.extractJsonArray(item, "accessories");
+                Booking b = new Booking(id, roomName, customerName, timeslot, checkIn, roomId);
+                b.setAccessoryIds(accIds);
+                Booking.data.put(id, b);
+            }
+        } catch (java.io.IOException | InterruptedException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to load bookings", ex);
         }
     }
 

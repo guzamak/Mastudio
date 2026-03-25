@@ -14,6 +14,7 @@ import presentation.receipt.controller.Receipt;
 import presentation.booking.controller.Booking;
 import presentation.roomAndaccessory.controller.Accessory;
 import presentation.roomAndaccessory.controller.Room;
+import presentation.payment.controller.Payment;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,6 +27,8 @@ public class ReceiptPageFrame extends MaInternalFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReceiptPageFrame.class.getName());
 
     private Receipt currentReceipt;
+    private Booking selectedBooking;
+    private double selectedTotal;
     private JLabel previewLabel;
     private MaButton saveBtn;
     private MaTable bookingTable;
@@ -102,11 +105,22 @@ public class ReceiptPageFrame extends MaInternalFrame {
         saveBtn.setButtonColor(Macolor.magreen);
         saveBtn.addActionListener(e -> saveReceiptImage());
 
+        MaButton payBtn = new MaButton();
+        payBtn.setText("บันทึกการชำระเงิน");
+        payBtn.setArc(16);
+        payBtn.setButtonColor(Macolor.mablue);
+        payBtn.addActionListener(e -> recordPayment());
+
+        JPanel rightBtnPanel = new JPanel(new GridLayout(1, 2, 8, 0));
+        rightBtnPanel.setOpaque(false);
+        rightBtnPanel.add(payBtn);
+        rightBtnPanel.add(saveBtn);
+
         MaPanel rightPanel = new MaPanel();
         rightPanel.setBorderColor(Macolor.trans);
         rightPanel.setLayout(new BorderLayout(0, 12));
         rightPanel.add(previewScroll, BorderLayout.CENTER);
-        rightPanel.add(saveBtn, BorderLayout.SOUTH);
+        rightPanel.add(rightBtnPanel, BorderLayout.SOUTH);
 
         // Add new components to content pane
         getContentPane().add(centerPanel);
@@ -195,13 +209,17 @@ public class ReceiptPageFrame extends MaInternalFrame {
         r.setCustomerName(b.getCustomer());
         r.addItem(roomName + " (" + b.getTimeSlot() + ")", roomPrice * hours);
 
+        double total = roomPrice * hours;
         for (String accId : b.getAccessoryIds()) {
             Accessory a = Accessory.data.get(accId);
             if (a != null) {
                 r.addItem(a.getName() + " (" + b.getTimeSlot() + ")", a.getPricePerHour() * hours);
+                total += a.getPricePerHour() * hours;
             }
         }
 
+        selectedBooking = b;
+        selectedTotal = total;
         setReceipt(r);
     }
 
@@ -221,6 +239,19 @@ public class ReceiptPageFrame extends MaInternalFrame {
         BufferedImage img = currentReceipt.toImage();
         previewLabel.setIcon(new ImageIcon(img));
         previewLabel.revalidate();
+    }
+
+    private void recordPayment() {
+        if (selectedBooking == null) {
+            MaOptionPane.showMessageDialog(this, "กรุณาเลือก Booking แล้วกด 'ออกใบเสร็จ' ก่อน");
+            return;
+        }
+        Payment p = Payment.postPayment(selectedBooking.getId(), selectedTotal, logger);
+        if (p != null) {
+            MaOptionPane.showMessageDialog(this, "บันทึกการชำระเงินสำเร็จ!\nยอด: " + String.format("%.2f", selectedTotal) + " บาท");
+        } else {
+            MaOptionPane.showMessageDialog(this, "เกิดข้อผิดพลาดในการบันทึกการชำระเงิน");
+        }
     }
 
     private void saveReceiptImage() {
