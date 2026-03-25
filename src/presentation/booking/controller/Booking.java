@@ -100,6 +100,34 @@ public class Booking extends ApiObject {
         this.accessoryIds = accessoryIds != null ? accessoryIds : new ArrayList<>();
     }
 
+    public static boolean isRoomBooked(String roomId, String date, String timeSlot) {
+        for (Booking b : data.values()) {
+
+            if (b.getRoomId().equals(roomId)
+                    && b.getCheckIn().equals(date)
+                    && b.getTimeSlot().equals(timeSlot)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static boolean isRoomBooked(String roomId, String date, String timeSlot, String currentBookingId) {
+        for (Booking b : data.values()) {
+            if (currentBookingId != null && currentBookingId.equals(b.getId())) {
+                continue;
+            }
+
+
+            if (b.getRoomId().equals(roomId)
+                    && b.getCheckIn().equals(date)
+                    && b.getTimeSlot().equals(timeSlot)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void loadBookings(java.util.logging.Logger logger) {
         if (!pb.isAuthenticated()) {
             return;

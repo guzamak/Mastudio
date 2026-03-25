@@ -4,6 +4,7 @@ import app.core.components.Macolor;
 import app.core.components.MaFrame;
 import app.core.components.MaFrame;
 import app.core.components.MaInternalFrame;
+import app.core.components.MaOptionPane;
 import app.core.components.MaTable;
 import app.core.components.fonts.IBMPlexSansThaiFont;
 import model.client.PocketBaseClient;
@@ -48,14 +49,14 @@ public class EditBookingFrame extends MaInternalFrame {
         booking = Booking.data.get(id);
         initComponents();
         updateRender();
-        if (id.length() >= 8){
+        if (id.length() >= 8) {
             String newId = "";
-            for (int i = 0; i< 8 ; i++){
+            for (int i = 0; i < 8; i++) {
                 newId += id.charAt(i);
             }
             id = newId;
         }
-        maLabel1.setText("รหัสการจอง : " + id +"...");
+        maLabel1.setText("รหัสการจอง : " + id + "...");
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
@@ -215,7 +216,7 @@ public class EditBookingFrame extends MaInternalFrame {
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         boolean isNew = (booking == null);
         if (isNew) {
-            booking = new Booking(null, "", "", "", "","");
+            booking = new Booking(null, "", "", "", "", "");
         }
 
         Booking.updateBookingData(
@@ -229,18 +230,19 @@ public class EditBookingFrame extends MaInternalFrame {
                 (String) CheckInDateCombobox.getSelectedItem()
         );
 
-        // Collect selected accessory IDs
-        java.util.List<String> selectedIds = new ArrayList<>();
-        for (JCheckBox cb : accessoryCheckBoxes) {
-            if (cb.isSelected()) {
-                selectedIds.add((String) cb.getClientProperty("accessoryId"));
-            }
-        }
-        booking.setAccessoryIds(selectedIds);
 
-        if (isNew){
+        if (isNew) {
+            if (Booking.isRoomBooked(booking.getRoomId(), booking.getCheckIn(), booking.getTimeSlot())) {
+                MaOptionPane.showMessageDialog(this,"มีคนจองห้องนี้ในเวลานี้เเล้ว");
+                return;
+            }
+
             Booking.postBooking(booking, logger);
         } else {
+            if (Booking.isRoomBooked(booking.getRoomId(), booking.getCheckIn(), booking.getTimeSlot(), booking.getId())) {
+                MaOptionPane.showMessageDialog(this,"มีคนจองห้องนี้ในเวลานี้เเล้ว");
+                return;
+            }
             Booking.putBooking(booking, logger);
         }
         parent.updateRender();
