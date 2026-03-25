@@ -45,7 +45,14 @@ public class EditBookingFrame extends MaInternalFrame {
         booking = Booking.data.get(id);
         initComponents();
         updateRender();
-        maLabel1.setText("รหัสการจอง : " + id);
+        if (id.length() >= 8){
+            String newId = "";
+            for (int i = 0; i< 8 ; i++){
+                newId += id.charAt(i);
+            }
+            id = newId;
+        }
+        maLabel1.setText("รหัสการจอง : " + id +"...");
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 

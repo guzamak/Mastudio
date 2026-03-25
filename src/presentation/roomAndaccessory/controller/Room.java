@@ -66,7 +66,7 @@ public class Room extends ApiObject {
     public static void updateRoomData(Room room, String roomName, String pricePerHourStr) {
         room.setRoomName(roomName);
 
-        double pricePerHour = 0.0;
+        double pricePerHour = room.pricePerHour;
         try {
             pricePerHour = Double.parseDouble(pricePerHourStr);
         } catch (NumberFormatException ex) {
