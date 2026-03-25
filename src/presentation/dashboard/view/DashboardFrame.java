@@ -35,6 +35,7 @@ import java.time.LocalDate;
 import presentation.booking.controller.Booking;
 import app.MainFrame;
 import presentation.editbookAccessory.view.BookAccessoryFrame;
+import presentation.payment.view.PaymentHistoryFrame;
 import presentation.receipt.view.ReceiptPageFrame;
 import presentation.roomAndaccessory.controller.Room;
 import presentation.roomAndaccessory.view.RoomFrame;
@@ -315,7 +316,7 @@ public class DashboardFrame extends MaInternalFrame {
     }// GEN-LAST:event_editbookingBtnActionPerformed
 
     private void maButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_maButton5ActionPerformed
-        // TODO add your handling code here:
+        MainFrame.getInstance().openInternalFrame(new PaymentHistoryFrame());
     }// GEN-LAST:event_maButton5ActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_refreshButtonActionPerformed

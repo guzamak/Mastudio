@@ -27,18 +27,18 @@ public class MaPanel extends JPanel {
     private int padLeft = 0;
     private int padBottom = 0;
     private int padRight = 0;
-    
+
     public MaPanel() {
         setBackground(backgroundColor);
         setDefaultStyle();
     }
-    
+
     private void setDefaultStyle() {
         setOpaque(false);
         setBorder(BorderFactory.createEmptyBorder(padTop, padLeft, padBottom, padRight));
         updateSpace();
     }
-    
+
     public void setRound(boolean round) {
         this.round = round;
         repaint();
@@ -73,15 +73,6 @@ public class MaPanel extends JPanel {
         setForeground(color);
     }
 
-    public void setFontSize(int size) {
-        setFont(getFont().deriveFont((float) size));
-    }
-
-    public void setFontName(String name) {
-        setFont(new Font(name, Font.PLAIN, getFont().getSize()));
-    }
-
-
     private void updateSpace() {
         Border padding = BorderFactory.createEmptyBorder(padTop, padLeft, padBottom, padRight);
         setBorder(padding);
@@ -96,6 +87,14 @@ public class MaPanel extends JPanel {
         repaint();
     }
 
+    public void setPadding(int top, int left, int bottom, int right) {
+        this.padTop = top;
+        this.padLeft = left;
+        this.padBottom = bottom;
+        this.padRight = right;
+        updateSpace();
+        repaint();
+    }
 
     @Override
     protected void paintComponent(Graphics g) {

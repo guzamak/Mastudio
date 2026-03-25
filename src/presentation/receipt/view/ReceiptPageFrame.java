@@ -20,15 +20,17 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.border.Border;
+import presentation.payment.controller.Payment;
+import static presentation.payment.controller.Payment.alreadyCheckBookId;
 
 public class ReceiptPageFrame extends MaInternalFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReceiptPageFrame.class.getName());
 
     private Receipt currentReceipt;
-    private JLabel previewLabel;
-    private MaButton saveBtn;
-    private MaTable bookingTable;
+    private Booking selectedBooking;
+    private double selectedTotal;
     private ArrayList<Booking> bookingList = new ArrayList<>();
 
     public ReceiptPageFrame() {
@@ -50,96 +52,14 @@ public class ReceiptPageFrame extends MaInternalFrame {
     }
 
     private void setupReceiptUI() {
+        Payment.loadPayments(logger);
+        System.out.println(Payment.alreadyCheckBookId.size());
         Accessory.loadAccessories(logger);
-
-        // --- Booking table (center panel) ---
-        bookingTable = new MaTable();
         loadBookingTable();
 
         MaLabel bookingLabel = new MaLabel();
         bookingLabel.setText("เลือก Booking ที่ต้องการออกใบเสร็จ");
         bookingLabel.setFont(IBMPlexSansThaiFont.medium(14f));
-
-        MaButton generateBtn = new MaButton();
-        generateBtn.setText("ออกใบเสร็จ");
-        generateBtn.setArc(16);
-        generateBtn.setButtonColor(Macolor.magreen);
-        generateBtn.addActionListener(e -> generateReceipt());
-
-        MaButton refreshBtn = new MaButton();
-        refreshBtn.setText("Refresh");
-        refreshBtn.setArc(16);
-        refreshBtn.setButtonColor(Macolor.mablue);
-        refreshBtn.addActionListener(e -> loadBookingTable());
-
-        JPanel tableBtnPanel = new JPanel(new GridLayout(1, 2, 8, 0));
-        tableBtnPanel.setOpaque(false);
-        tableBtnPanel.add(refreshBtn);
-        tableBtnPanel.add(generateBtn);
-
-        JScrollPane tableScroll = new JScrollPane(bookingTable);
-        tableScroll.setBorder(BorderFactory.createEmptyBorder());
-        tableScroll.getViewport().setBackground(Color.WHITE);
-
-        MaPanel centerPanel = new MaPanel();
-        centerPanel.setBorderColor(Macolor.magreen);
-        centerPanel.setLayout(new BorderLayout(0, 10));
-        centerPanel.add(bookingLabel, BorderLayout.NORTH);
-        centerPanel.add(tableScroll, BorderLayout.CENTER);
-        centerPanel.add(tableBtnPanel, BorderLayout.SOUTH);
-
-        // --- Receipt preview panel (right) ---
-        previewLabel = new JLabel();
-        previewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        JScrollPane previewScroll = new JScrollPane(previewLabel);
-        previewScroll.setBorder(BorderFactory.createEmptyBorder());
-        previewScroll.getViewport().setBackground(new Color(235, 240, 245));
-
-        saveBtn = new MaButton();
-        saveBtn.setText("บันทึกเป็นรูปภาพ (Save PNG)");
-        saveBtn.setArc(16);
-        saveBtn.setButtonColor(Macolor.magreen);
-        saveBtn.addActionListener(e -> saveReceiptImage());
-
-        MaPanel rightPanel = new MaPanel();
-        rightPanel.setBorderColor(Macolor.trans);
-        rightPanel.setLayout(new BorderLayout(0, 12));
-        rightPanel.add(previewScroll, BorderLayout.CENTER);
-        rightPanel.add(saveBtn, BorderLayout.SOUTH);
-
-        // Add new components to content pane
-        getContentPane().add(centerPanel);
-        getContentPane().add(rightPanel);
-
-        GroupLayout layout = (GroupLayout) getContentPane().getLayout();
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(18)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(navLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(maPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18)
-                            .addComponent(centerPanel, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18)
-                            .addComponent(rightPanel, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(18, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(navLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(maPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(centerPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rightPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap(18, Short.MAX_VALUE))
-        );
-        pack();
     }
 
     private void loadBookingTable() {
@@ -156,7 +76,6 @@ public class ReceiptPageFrame extends MaInternalFrame {
         for (Booking b : Booking.data.values()) {
             bookingList.add(b);
 
-            // Build accessory names string
             StringBuilder accNames = new StringBuilder();
             for (String accId : b.getAccessoryIds()) {
                 Accessory a = Accessory.data.get(accId);
@@ -195,13 +114,17 @@ public class ReceiptPageFrame extends MaInternalFrame {
         r.setCustomerName(b.getCustomer());
         r.addItem(roomName + " (" + b.getTimeSlot() + ")", roomPrice * hours);
 
+        double total = roomPrice * hours;
         for (String accId : b.getAccessoryIds()) {
             Accessory a = Accessory.data.get(accId);
             if (a != null) {
                 r.addItem(a.getName() + " (" + b.getTimeSlot() + ")", a.getPricePerHour() * hours);
+                total += a.getPricePerHour() * hours;
             }
         }
 
+        selectedBooking = b;
+        selectedTotal = total;
         setReceipt(r);
     }
 
@@ -223,9 +146,10 @@ public class ReceiptPageFrame extends MaInternalFrame {
         previewLabel.revalidate();
     }
 
+
     private void saveReceiptImage() {
         if (currentReceipt == null) {
-            MaOptionPane.showMessageDialog(this, "ยังไม่มีใบเสร็จให้บันทึก\nกรุณาเลือก Booking แล้วกด 'ออกใบเสร็จ' ก่อน");
+            MaOptionPane.showMessageDialog(this, "โปรดกดออกใบเสร็จก่อนบันทึก");
             return;
         }
         JFileChooser chooser = new JFileChooser();
@@ -236,11 +160,28 @@ public class ReceiptPageFrame extends MaInternalFrame {
         if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
                 File saved = currentReceipt.saveAsImage(chooser.getSelectedFile().getAbsolutePath());
-                MaOptionPane.showMessageDialog(this, "บันทึกสำเร็จ!\n" + saved.getAbsolutePath());
+                MaOptionPane.showMessageDialog(this, "บันทึกที่" + saved.getAbsolutePath());
             } catch (java.io.IOException ex) {
                 logger.log(java.util.logging.Level.SEVERE, "Failed to save receipt", ex);
-                MaOptionPane.showMessageDialog(this, "เกิดข้อผิดพลาดในการบันทึก");
+                MaOptionPane.showMessageDialog(this, "เกิดข้อผิดผลาดระหว่างบันทึก");
             }
+        }
+    }
+    
+     private void recordPayment() {
+        if (selectedBooking == null || currentReceipt == null) {
+            MaOptionPane.showMessageDialog(this, "โปรดเลือกการจอง");
+            return;
+        }
+        if (Payment.alreadyCheckBookId.contains(selectedBooking.getId())){
+            MaOptionPane.showMessageDialog(this, "การจองนี้ได้ชำระเงินเเล้ว");
+            return;
+        }
+        Payment p = Payment.postPayment(selectedBooking.getId(), selectedTotal, logger);
+        if (p == null) {
+            MaOptionPane.showMessageDialog(this, "เกิดข้อผิดผลาด");
+        } else {
+            MaOptionPane.showMessageDialog(this, "บันทึกลงในประวิติการจ่ายเงิน");
         }
     }
 
@@ -253,82 +194,129 @@ public class ReceiptPageFrame extends MaInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBox1 = new javax.swing.JCheckBox();
         navLabel1 = new app.core.components.NavLabel();
         navLabel1.setExtraText("ออกใบเสร็จ");
-        maPanel1 = new app.core.components.MaPanel();
-        maScrollPane1 = new app.core.components.MaScrollPane();
-        maTextArea1 = new app.core.components.MaTextArea();
         maLabel1 = new app.core.components.MaLabel();
+        generateBtn = new app.core.components.MaButton();
+        maScrollPane1 = new app.core.components.MaScrollPane();
+        previewLabel = new app.core.components.MaLabel();
+        saveBtn = new app.core.components.MaButton();
+        bookingTable = new app.core.components.MaTable();
+        maLabel2 = new app.core.components.MaLabel();
+        paymentBtn = new app.core.components.MaButton();
+
+        jCheckBox1.setText("jCheckBox1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("ออกใบเสร็จ");
 
-        maPanel1.setBackground(Color.white);
-        maPanel1.setBorderColor(Macolor.magreen);
+        maLabel1.setText("เลือกห้องที่ต้องการออกใบเสร็จ");
+        maLabel1.setTextColor(Macolor.magreen);
+        maLabel1.setFont(IBMPlexSansThaiFont.medium(16));
 
-        maScrollPane1.setScrollX(false);
-        maScrollPane1.scrollToTop();
-        maScrollPane1.getViewport().setBackground(Color.white);
+        generateBtn.setText("+ เลือกการจอง");
+        generateBtn.setBorderColor(Macolor.trans);
+        generateBtn.setTextColor(Macolor.trans);
+        generateBtn.setButtonColor(Macolor.trans);
+        generateBtn.setTextColor(Macolor.magreen);
+        generateBtn.addActionListener(this::generateBtnActionPerformed);
 
-        maTextArea1.setTextColor(Macolor.magreen);
-        maTextArea1.setFont(IBMPlexSansThaiFont.light(12f));
-        maTextArea1.setEditable(false);
-        maTextArea1.setBackground(Color.white);
-        maTextArea1.setColumns(20);
-        maTextArea1.setRows(5);
-        maTextArea1.setText("วิธีการใช้งาน\n\n1. เลือก Booking จากตารางกลาง\n2. กดปุ่ม 'ออกใบเสร็จ'\n3. ใบเสร็จจะแสดงพร้อมราคา\n   ห้อง + อุปกรณ์ × จำนวนชั่วโมง\n4. กด 'บันทึกเป็นรูปภาพ'\n   เพื่อ save PNG\n\n* กด Refresh เพื่อโหลด\n  ข้อมูลการจองล่าสุด");
-        maScrollPane1.setViewportView(maTextArea1);
+        Border greenline = BorderFactory.createLineBorder(Macolor.mablue, 1);
+        maScrollPane1.setBorder(greenline);
+        maScrollPane1.setBackground(new Color(245,245,245));
 
-        javax.swing.GroupLayout maPanel1Layout = new javax.swing.GroupLayout(maPanel1);
-        maPanel1.setLayout(maPanel1Layout);
-        maPanel1Layout.setHorizontalGroup(
-            maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 256, Short.MAX_VALUE)
-            .addGroup(maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(maPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(maScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        maPanel1Layout.setVerticalGroup(
-            maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
-            .addGroup(maPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(maPanel1Layout.createSequentialGroup()
-                    .addGap(9, 9, 9)
-                    .addComponent(maScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-                    .addGap(10, 10, 10)))
-        );
+        previewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        maScrollPane1.setViewportView(previewLabel);
 
-        maLabel1.setText("รายชื่อห้อง (ต้องการออกใบเสร็จห้องไหน )");
+        saveBtn.setText("บันทึกใบเสร็จ ( .png )");
+        saveBtn.setButtonColor(Color.white);
+        saveBtn.setBorderColor(Macolor.magreen);
+        saveBtn.setTextColor(Macolor.magreen);
+        saveBtn.setArc(35);
+        saveBtn.addActionListener(this::saveBtnActionPerformed);
+
+        maLabel2.setText("ใบเสร็จ ( preview )");
+        maLabel2.setTextColor(Macolor.magreen);
+        maLabel2.setFont(IBMPlexSansThaiFont.medium(16));
+
+        paymentBtn.setText("ชำระเงินเเล้ว");
+        paymentBtn.setBorderColor(Macolor.trans);
+        paymentBtn.setTextColor(Macolor.trans);
+        paymentBtn.setButtonColor(Macolor.trans);
+        paymentBtn.setTextColor(Macolor.mared);
+        paymentBtn.addActionListener(this::paymentBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(navLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(231, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(generateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bookingTable, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(paymentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(maScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(52, 52, 52))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(navLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addComponent(navLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(generateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(paymentBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(maScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookingTable, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void generateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateBtnActionPerformed
+        // TODO add your handling code here:
+        generateReceipt();
+    }//GEN-LAST:event_generateBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+        saveReceiptImage();
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void paymentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentBtnActionPerformed
+        // TODO add your handling code here:
+        recordPayment();
+    }//GEN-LAST:event_paymentBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -349,10 +337,15 @@ public class ReceiptPageFrame extends MaInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private app.core.components.MaTable bookingTable;
+    private app.core.components.MaButton generateBtn;
+    private javax.swing.JCheckBox jCheckBox1;
     private app.core.components.MaLabel maLabel1;
-    private app.core.components.MaPanel maPanel1;
+    private app.core.components.MaLabel maLabel2;
     private app.core.components.MaScrollPane maScrollPane1;
-    private app.core.components.MaTextArea maTextArea1;
     private app.core.components.NavLabel navLabel1;
+    private app.core.components.MaButton paymentBtn;
+    private app.core.components.MaLabel previewLabel;
+    private app.core.components.MaButton saveBtn;
     // End of variables declaration//GEN-END:variables
 }

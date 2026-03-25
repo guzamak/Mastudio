@@ -48,7 +48,6 @@ public class EditBookingFrame extends MaInternalFrame {
         booking = Booking.data.get(id);
         initComponents();
         updateRender();
-        setupAccessoriesUI();
         if (id.length() >= 8){
             String newId = "";
             for (int i = 0; i< 8 ; i++){
@@ -64,7 +63,6 @@ public class EditBookingFrame extends MaInternalFrame {
         this.parent = parent;
         initComponents();
         updateRender();
-        setupAccessoriesUI();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
@@ -279,99 +277,6 @@ public class EditBookingFrame extends MaInternalFrame {
         }
     }
 
-    private void setupAccessoriesUI() {
-        Accessory.loadAccessories(logger);
-
-        JPanel checkPanel = new JPanel();
-        checkPanel.setBackground(Color.WHITE);
-        checkPanel.setLayout(new BoxLayout(checkPanel, BoxLayout.Y_AXIS));
-
-        accessoryCheckBoxes.clear();
-        for (Accessory a : Accessory.data.values()) {
-            JCheckBox cb = new JCheckBox(a.getName() + " (" + (int) a.getPricePerHour() + "/hr)");
-            cb.setBackground(Color.WHITE);
-            cb.setFont(IBMPlexSansThaiFont.regular(13f));
-            cb.putClientProperty("accessoryId", a.getId());
-            if (booking != null && booking.getAccessoryIds().contains(a.getId())) {
-                cb.setSelected(true);
-            }
-            accessoryCheckBoxes.add(cb);
-            checkPanel.add(cb);
-        }
-
-        accessoryScrollPane = new JScrollPane(checkPanel);
-        accessoryScrollPane.setPreferredSize(new Dimension(220, 250));
-        accessoryScrollPane.setBorder(BorderFactory.createLineBorder(Macolor.magreen, 1, true));
-        accessoryScrollPane.getViewport().setBackground(Color.WHITE);
-
-        app.core.components.MaLabel accessLabel = new app.core.components.MaLabel();
-        accessLabel.setText("อุปกรณ์");
-        accessLabel.setFont(IBMPlexSansThaiFont.medium(16f));
-
-        getContentPane().add(accessLabel);
-        getContentPane().add(accessoryScrollPane);
-
-        GroupLayout layout = (GroupLayout) getContentPane().getLayout();
-        layout.setHorizontalGroup(
-            layout.createSequentialGroup()
-                .addGap(32)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(maLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maLabel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roomComboBox, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customerName, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maLabel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(CheckInDateCombobox, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-                        .addGap(10)
-                        .addComponent(CheckInMonthCombobox, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-                        .addGap(12)
-                        .addComponent(CheckInYearCombobox, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(maLabel7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CheckInTimeSlotCombobox, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(submitBtn, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE))
-                .addGap(24)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(accessLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(accessoryScrollPane, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE))
-                .addGap(24)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(15)
-                    .addComponent(maLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18)
-                    .addComponent(maLabel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(roomComboBox, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-                    .addGap(15)
-                    .addComponent(maLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(12)
-                    .addComponent(customerName, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18)
-                    .addComponent(maLabel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(11)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(CheckInDateCombobox, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(CheckInMonthCombobox, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(CheckInYearCombobox, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
-                    .addGap(11)
-                    .addComponent(maLabel7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(11)
-                    .addComponent(CheckInTimeSlotCombobox, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-                    .addGap(49)
-                    .addComponent(submitBtn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(47, Short.MAX_VALUE))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(15)
-                    .addComponent(accessLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(8)
-                    .addComponent(accessoryScrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
-        );
-        pack();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.core.components.MaComboBox CheckInDateCombobox;

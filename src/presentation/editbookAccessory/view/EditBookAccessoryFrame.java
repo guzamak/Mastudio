@@ -1,4 +1,13 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package presentation.editbookAccessory.view;
+
+/**
+ *
+ * @author poke
+ */
 
 import app.core.components.*;
 import app.core.components.fonts.IBMPlexSansThaiFont;
@@ -28,31 +37,34 @@ public class EditBookAccessoryFrame extends MaInternalFrame {
     private void initComponents() {
         setTitle("แก้ไขอุปกรณ์การจอง");
 
-        // --- Info panel (top) ---
         MaLabel infoLabel = new MaLabel();
         infoLabel.setText("การจอง: " + booking.getRoom() + " | " + booking.getCustomer() + " | " + booking.getTimeSlot());
-        infoLabel.setFont(IBMPlexSansThaiFont.medium(14f));
+        infoLabel.setFont(IBMPlexSansThaiFont.medium(16f));
+        infoLabel.setTextColor(Macolor.magreen);
 
-        // --- Accessories checkbox panel ---
-        JPanel checkPanel = new JPanel();
-        checkPanel.setBackground(Color.WHITE);
+        MaPanel checkPanel = new MaPanel();
+        checkPanel.setPadding(20,10,0,0);
+        checkPanel.setBorderColor(Macolor.trans);
         checkPanel.setLayout(new BoxLayout(checkPanel, BoxLayout.Y_AXIS));
 
         for (Accessory a : Accessory.data.values()) {
-            JCheckBox cb = new JCheckBox(a.getName() + "  (" + (int) a.getPricePerHour() + " บาท/hr)");
-            cb.setBackground(Color.WHITE);
-            cb.setFont(IBMPlexSansThaiFont.regular(13f));
+            
+            MaCheckBox cb = new MaCheckBox();
+            cb.setText(a.getName() + "  (" + (int) a.getPricePerHour() + " บาท/ชม)");
+            cb.setOpaque(false);
+            cb.setFont(IBMPlexSansThaiFont.light(13f));
             cb.putClientProperty("accessoryId", a.getId());
+            cb.setFocusPainted(false);
+            cb.setBorderColor(Macolor.magreen);
+            cb.setArc(8);
+            cb.setPadding(10, 10, 0, 0);
             cb.setSelected(booking.getAccessoryIds().contains(a.getId()));
             checkBoxes.add(cb);
             checkPanel.add(cb);
         }
 
-        JScrollPane scrollPane = new JScrollPane(checkPanel);
-        scrollPane.setBorder(BorderFactory.createLineBorder(Macolor.magreen, 1, true));
-        scrollPane.getViewport().setBackground(Color.WHITE);
+        MaScrollPane scrollPane = new MaScrollPane(checkPanel);
 
-        // --- Save button ---
         MaButton saveBtn = new MaButton();
         saveBtn.setText("บันทึก");
         saveBtn.setButtonColor(Macolor.magreen);
@@ -60,11 +72,9 @@ public class EditBookAccessoryFrame extends MaInternalFrame {
         saveBtn.setArc(16);
         saveBtn.addActionListener(e -> save());
 
-        // --- Layout ---
         MaPanel contentPanel = new MaPanel();
-        contentPanel.setBorderColor(Macolor.magreen);
-        contentPanel.setBackground(Color.WHITE);
-        contentPanel.setLayout(new BorderLayout(0, 12));
+        contentPanel.setBorderColor(Macolor.trans);
+        contentPanel.setLayout(new BorderLayout());
         contentPanel.setBorder(BorderFactory.createEmptyBorder(16, 16, 16, 16));
         contentPanel.add(infoLabel, BorderLayout.NORTH);
         contentPanel.add(scrollPane, BorderLayout.CENTER);

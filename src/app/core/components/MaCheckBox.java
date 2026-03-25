@@ -4,50 +4,43 @@
  */
 package app.core.components;
 
+import app.core.components.fonts.IBMPlexSansThaiFont;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.*;
+import java.awt.RenderingHints;
+import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
+import javax.swing.border.Border;
+
 /**
  *
  * @author poke
  */
-import app.core.components.fonts.IBMPlexSansThaiFont;
-import javax.swing.*;
-import java.awt.*;
-import javax.swing.border.*;
+public class MaCheckBox extends JCheckBox {
 
-public class MaTextField extends JTextField {
-
-    private boolean round = true;
-    private int arc = 20;
+    private int arc = 0;
     private int borderSize = 1;
+    private int box_width = 20;
+    private int box_and_text_space = 5;
 
-    private Color borderColor = new Color(180, 180, 180);
-    private Color backgroundColor = Color.WHITE;
-
-    // padding (margin not work now)
     private int padTop = 0;
     private int padLeft = 0;
     private int padBottom = 0;
     private int padRight = 0;
 
-    public MaTextField() {
+    private Color borderColor;
+
+    public MaCheckBox() {
         setDefaultStyle();
     }
 
     private void setDefaultStyle() {
         setFont(IBMPlexSansThaiFont.regular(14f));
         setForeground(Color.BLACK);
-//        important it make Jcomponent dont paint bg make it can have custom bg on it s
         setOpaque(false);
         setBorder(BorderFactory.createEmptyBorder(padTop, padLeft, padBottom, padRight));
         updateSpace();
-    }
-
-    public void setRound(boolean round) {
-        this.round = round;
-        repaint();
-    }
-
-    public boolean isRound() {
-        return round;
     }
 
     public void setArc(int arc) {
@@ -65,20 +58,10 @@ public class MaTextField extends JTextField {
         repaint();
     }
 
-    public void setFieldColor(Color color) {
-        this.backgroundColor = color;
-        repaint();
-    }
-
-    public void setTextColor(Color color) {
-        setForeground(color);
-    }
-
-
-//  pandding only margin dont know how to set
     private void updateSpace() {
         Border padding = BorderFactory.createEmptyBorder(padTop, padLeft, padBottom, padRight);
         setBorder(padding);
+        repaint();
     }
 
     public void setPadding(int p) {
@@ -99,25 +82,43 @@ public class MaTextField extends JTextField {
         repaint();
     }
 
-//    https://www.comp.nus.edu.sg/~cs3283/ftp/Java/JavaTutorial/uiswing/painting/overview.html
-
+    //    https://www.comp.nus.edu.sg/~cs3283/ftp/Java/JavaTutorial/uiswing/painting/overview.html
     @Override
     protected void paintComponent(Graphics g) {
 
         Graphics2D g2 = (Graphics2D) g.create();
 
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(backgroundColor);
+        g2.setColor(getBackground());
 
-        if (round) {
-            g2.fillRoundRect(0, 0, getWidth(), getHeight(), arc, arc);
+        int y_padding = padBottom + padTop;
+        if (arc != 0) {
+            g2.fillRoundRect(0, 0, box_width, getHeight() - y_padding, arc, arc);
         } else {
-            g2.fillRect(0, 0, getWidth(), getHeight());
+            g2.fillRect(0, 0, box_width, getHeight() - y_padding);
         }
 
-//        draw other thing like text and i dont know everything expect bg
-//        important pls set setOpaque(false); to false to not paint bg
-        super.paintComponent(g);
+        g2.setColor(getForeground());
+        g2.setFont(getFont());
+//        System.out.println(getText() + getFont()+ getForeground());
+//        print follolw text size because it print and text will be above of x,y and below so h = 0 not work
+        FontMetrics fm = g2.getFontMetrics();
+        int textY = fm.getAscent();
+        g2.drawString(getText(), box_width + box_and_text_space, textY);
+//        draw check
+        if (isSelected()) {
+            g2.setColor(Macolor.magreen);
+//            g2.fillRect(0, 0, box_width / 2, getHeight() / 3);
+            int r = Math.min(box_width,getHeight()- y_padding) / 5;
+
+            g2.drawArc(box_width/2 -r  , (getHeight() - y_padding)/2 -r  ,r*2 ,r*2, 0,360);
+            
+            int r2 = Math.min(box_width,getHeight()- y_padding) / 8;
+
+            g2.fillArc(box_width/2 -r2  , (getHeight() - y_padding)/2 -r2  ,r2*2 ,r2*2, 0,360);
+        }
+        //        use for test not draw check now
+//        super.paintComponent(g);
         g2.dispose();
     }
 
@@ -129,11 +130,11 @@ public class MaTextField extends JTextField {
 
         g2.setColor(borderColor);
         g2.setStroke(new BasicStroke(borderSize));
-
-        if (round) {
-            g2.drawRoundRect(0, 0, getWidth() - borderSize, getHeight() - borderSize, arc, arc);
+        int y_padding = padBottom + padTop;
+        if (arc != 0) {
+            g2.drawRoundRect(0, 0, box_width - borderSize, getHeight() - borderSize - y_padding, arc, arc);
         } else {
-            g2.drawRect(0, 0, getWidth() - borderSize, getHeight() - borderSize);
+            g2.drawRect(0, 0, box_width - borderSize, getHeight() - borderSize - y_padding);
         }
 
         g2.dispose();
