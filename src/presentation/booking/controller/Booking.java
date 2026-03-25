@@ -12,6 +12,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import model.client.PocketBaseClient;
 import model.session.SessionManager;
@@ -29,7 +30,9 @@ public class Booking extends ApiObject {
     private String timeSlot;
     private String checkIn;
     private List<String> accessoryIds = new ArrayList<>();
-    public static HashMap<String, Booking> data = new HashMap<>();
+//    public static HashMap<String, Booking> data = new HashMap<>();
+//    LinkedHashMap make put order have effect not sort by id but what come first
+    public static LinkedHashMap<String, Booking> data = new LinkedHashMap<>();
     public static ArrayList<String> time_slot_list = new ArrayList<>(List.of("10.00-11.00", "11.00-12.00", "12.00-13.00", "13.00-14.00", "14.00-15.00", "15.00-16.00", "16.00-17.00", "17.00-18.00", "18.00-19.00", "19.00-20.00"));
 
     public Booking(String id, String room, String customer, String timeSlot, String checkIn, String roomId) {
@@ -102,7 +105,10 @@ public class Booking extends ApiObject {
             return;
         }
         try {
-            PocketBaseClient.PBResponse res = pb.getRecords("java_book");
+            HashMap<String, String> params = new HashMap<>();
+            params.put("sort", "-checkIn_time,-created");
+
+            PocketBaseClient.PBResponse res = pb.getRecords("java_book", params);
             if (!res.isOk()) {
                 logger.warning("Failed to load bookings: " + res.getStatusCode());
                 return;
@@ -118,13 +124,13 @@ public class Booking extends ApiObject {
                 List<String> accIds = PocketBaseClient.extractJsonArray(item, "accessories");
                 Booking b = new Booking(id, roomName, customerName, timeslot, checkIn, roomId);
                 b.setAccessoryIds(accIds);
+//                System.out.println("id" + id + "checkin" + checkIn);
                 Booking.data.put(id, b);
             }
         } catch (java.io.IOException | InterruptedException ex) {
             logger.log(java.util.logging.Level.SEVERE, "Failed to load bookings", ex);
         }
     }
-    
 
     public static void updateBookingData(Booking booking, String room, String id, String customerName, String timeSlot,
             String checkInYearStr, String checkInMonthStr, String checkInDayStr
@@ -214,32 +220,6 @@ public class Booking extends ApiObject {
 
         } catch (java.io.IOException | InterruptedException ex) {
             logger.log(java.util.logging.Level.SEVERE, "Failed to post booking", ex);
-        }
-    }
-
-    public static void loadBookings(java.util.logging.Logger logger) {
-        if (!pb.isAuthenticated()) return;
-        try {
-            PocketBaseClient.PBResponse res = pb.getRecords("java_book");
-            if (!res.isOk()) {
-                logger.warning("Failed to load bookings: " + res.getStatusCode());
-                return;
-            }
-            Booking.data.clear();
-            for (String item : res.getItems()) {
-                String id = PocketBaseClient.extractJsonString(item, "id");
-                String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
-                String checkIn = PocketBaseClient.extractJsonString(item, "checkIn_time");
-                String timeslot = PocketBaseClient.extractJsonString(item, "time_slot");
-                String roomId = PocketBaseClient.extractJsonString(item, "room");
-                String roomName = Room.data.get(roomId) != null ? Room.data.get(roomId).getName() : roomId;
-                List<String> accIds = PocketBaseClient.extractJsonArray(item, "accessories");
-                Booking b = new Booking(id, roomName, customerName, timeslot, checkIn, roomId);
-                b.setAccessoryIds(accIds);
-                Booking.data.put(id, b);
-            }
-        } catch (java.io.IOException | InterruptedException ex) {
-            logger.log(java.util.logging.Level.SEVERE, "Failed to load bookings", ex);
         }
     }
 

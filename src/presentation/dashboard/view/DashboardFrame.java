@@ -334,78 +334,9 @@ public class DashboardFrame extends MaInternalFrame {
     }// GEN-LAST:event_maButton7ActionPerformed
 
     private void loadBookings() {
-        if (!pb.isAuthenticated()) {
-            return;
-        }
 
-        // try {
-        // PBResponse res = pb.getRecords("java_book");
-        // if (!res.isOk()) {
-        // logger.warning("Failed to load bookings: " + res.getStatusCode());
-        // return;
-        // }
-        //
-        // jPanel3.removeAll();
-        // jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
-        //
-        //// List<String> items = res.getItems();
-        //// for (String item : items) {
-        //// String bookingNumber = PocketBaseClient.extractJsonString(item,
-        // "booking_number");
-        //// String customerName = PocketBaseClient.extractJsonString(item,
-        // "customer_name");
-        //// System.out.println("item: " + item);
-        //// javax.swing.JPanel card = new javax.swing.JPanel(new
-        // FlowLayout(FlowLayout.LEFT));
-        //// card.setBackground(Color.WHITE);
-        //// card.setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
-        ////
-        //// MaLabel label = new MaLabel();
-        //// MaTextField textField = new MaTextField();
-        //// textField.setText(customerName);
-        //// label.setText(bookingNumber != null ? bookingNumber : "—");
-        //// label.setFont(IBMPlexSansThaiFont.medium(14f));
-        //// card.add(label);
-        //// card.add(textField);
-        ////
-        //// jPanel3.add(card);
-        //// }
-        ////
-        //// jPanel3.revalidate();
-        //// jPanel3.repaint();
-        // } catch (java.io.IOException | InterruptedException ex) {
-        // logger.log(java.util.logging.Level.SEVERE, "Failed to load bookings", ex);
-        // }
-
-        try {
-            PBResponse res = pb.getRecords("java_book");
-
-            if (!res.isOk()) {
-                logger.warning("Failed to load bookings: " + res.getStatusCode());
-                return;
-            }
-
-            List<String> items = res.getItems();
-
-            for (String item : items) {
-
-                String customerName = PocketBaseClient.extractJsonString(item, "customer_name");
-                String checkIn = PocketBaseClient.extractJsonString(item, "checkIn_time");
-                String timeslot = PocketBaseClient.extractJsonString(item, "time_slot");
-                String roomId = PocketBaseClient.extractJsonString(item, "room");
-                String roomName = Room.data.get(roomId) == null ? "ยังไม่มีห้อง" : Room.data.get(roomId).getName();
-                String id = PocketBaseClient.extractJsonString(item, "id");
-                List<String> accIds = PocketBaseClient.extractJsonArray(item, "accessories");
-                System.out.println(id);
-
-                Booking b = new Booking(id, roomName, customerName, timeslot, checkIn, roomId);
-                b.setAccessoryIds(accIds);
-                Booking.data.put(id, b);
-            }
-            updateRender();
-        } catch (java.io.IOException | InterruptedException ex) {
-            logger.log(java.util.logging.Level.SEVERE, "Failed to load bookings", ex);
-        }
+        Booking.loadBookings(logger);
+         updateRender();
     }
 
     public void updateRender() {

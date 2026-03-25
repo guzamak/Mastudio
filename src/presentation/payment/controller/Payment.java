@@ -16,13 +16,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import javax.swing.JOptionPane;
 import presentation.booking.controller.Booking;
 
 public class Payment extends ApiObject {
 
     private static final PocketBaseClient pb = SessionManager.pb;
-    public static HashMap<String, Payment> data = new HashMap<>();
+    public static LinkedHashMap<String, Payment> data = new LinkedHashMap<>();
     public static HashSet<String> alreadyCheckBookId = new HashSet<>();
 
     private String id;
@@ -82,7 +83,11 @@ public class Payment extends ApiObject {
             return;
         }
         try {
-            PocketBaseClient.PBResponse res = pb.getRecords("java_payment");
+            
+            HashMap<String, String> params = new HashMap<>();
+            params.put("sort", "-checkIn_time,-created");
+
+            PocketBaseClient.PBResponse res = pb.getRecords("java_payment", params);
             if (!res.isOk()) {
                 logger.warning("Failed to load payments: " + res.getStatusCode());
                 return;
