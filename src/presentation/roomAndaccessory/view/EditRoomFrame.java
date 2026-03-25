@@ -8,7 +8,9 @@ import app.core.components.MaInternalFrame;
 import presentation.booking.controller.Booking;
 import presentation.booking.view.BookingFrame;
 import presentation.roomAndaccessory.controller.Room;
-
+import app.core.components.*;
+import app.core.components.fonts.IBMPlexSansThaiFont;
+import java.awt.Color;
 /**
  *
  * @author poke
@@ -50,21 +52,41 @@ public class EditRoomFrame extends MaInternalFrame {
         maLabel1 = new app.core.components.MaLabel();
         maLabel2 = new app.core.components.MaLabel();
         maLabel3 = new app.core.components.MaLabel();
+        maLabel3.setFont(IBMPlexSansThaiFont.medium(14f));
         roomname = new app.core.components.MaTextField();
         priceperhour = new app.core.components.MaTextField();
         maButton1 = new app.core.components.MaButton();
-        maLabel4 = new app.core.components.MaLabel();
+
+        setTitle("เเก้ไขห้อง");
 
         maLabel1.setText("+ เพิ่มห้องใหม่");
+        maLabel1.setTextColor(Macolor.magreen);
+        maLabel1.setFont(IBMPlexSansThaiFont.medium(16));
 
+        maLabel2.setFont(IBMPlexSansThaiFont.medium(14f));
         maLabel2.setText("ชื่อห้อง");
 
         maLabel3.setText("ราคาต่อชั่วโมง");
 
-        maButton1.setText("บันทึก");
-        maButton1.addActionListener(this::maButton1ActionPerformed);
+        roomname.setArc(20);
+        roomname.setPadding(10);
+        roomname.setColumns(20);
+        roomname.setFieldColor(Color.white);
+        roomname.setBorderSize(1);
+        roomname.setBorderColor(Macolor.textgrey);
 
-        maLabel4.setText("maLabel4");
+        priceperhour.setArc(20);
+        priceperhour.setPadding(10);
+        priceperhour.setColumns(20);
+        priceperhour.setFieldColor(Color.white);
+        priceperhour.setBorderSize(1);
+        priceperhour.setBorderColor(Macolor.textgrey);
+
+        maButton1.setText("บันทึก");
+        maButton1.setBorderColor(Macolor.trans);
+        maButton1.setButtonColor(Macolor.magreen);
+        maButton1.setTextColor(Color.white);
+        maButton1.addActionListener(this::maButton1ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,22 +107,15 @@ public class EditRoomFrame extends MaInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(maLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(130, 130, 130))))
+                        .addGap(130, 295, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(maLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14)
+                .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(maLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(roomname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -144,7 +159,6 @@ public class EditRoomFrame extends MaInternalFrame {
     private app.core.components.MaLabel maLabel1;
     private app.core.components.MaLabel maLabel2;
     private app.core.components.MaLabel maLabel3;
-    private app.core.components.MaLabel maLabel4;
     private app.core.components.MaTextField priceperhour;
     private app.core.components.MaTextField roomname;
     // End of variables declaration//GEN-END:variables

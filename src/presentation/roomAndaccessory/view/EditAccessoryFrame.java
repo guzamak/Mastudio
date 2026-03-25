@@ -6,7 +6,9 @@ package presentation.roomAndaccessory.view;
 
 import app.core.components.MaInternalFrame;
 import presentation.roomAndaccessory.controller.Accessory;
-
+import app.core.components.*;
+import app.core.components.fonts.IBMPlexSansThaiFont;
+import java.awt.Color;
 /**
  *
  * @author poke
@@ -48,20 +50,43 @@ public class EditAccessoryFrame extends MaInternalFrame {
 
         maLabel1 = new app.core.components.MaLabel();
         maLabel2 = new app.core.components.MaLabel();
+        maLabel2.setFont(IBMPlexSansThaiFont.medium(14f));
         maLabel3 = new app.core.components.MaLabel();
         accessoryName = new app.core.components.MaTextField();
         accessoryPricePerHour = new app.core.components.MaTextField();
         submitBtn = new app.core.components.MaButton();
 
+        setResizable(true);
+        setTitle("เเก้ไขอุปปกรณ์");
+
         maLabel1.setText("+ เพิ่มอุปกรณ์ใหม่");
+        maLabel1.setTextColor(Macolor.magreen);
+        maLabel1.setFont(IBMPlexSansThaiFont.medium(16));
 
         maLabel2.setText("ชื่ออุปกรณ์");
 
+        maLabel3.setFont(IBMPlexSansThaiFont.medium(14f));
         maLabel3.setText("ราคาต่อชั่วโมง");
 
+        accessoryName.setArc(20);
+        accessoryName.setPadding(10);
+        accessoryName.setColumns(20);
+        accessoryName.setFieldColor(Color.white);
+        accessoryName.setBorderSize(1);
+        accessoryName.setBorderColor(Macolor.textgrey);
         accessoryName.addActionListener(this::accessoryNameActionPerformed);
 
+        accessoryPricePerHour.setArc(20);
+        accessoryPricePerHour.setPadding(10);
+        accessoryPricePerHour.setColumns(20);
+        accessoryPricePerHour.setFieldColor(Color.white);
+        accessoryPricePerHour.setBorderSize(1);
+        accessoryPricePerHour.setBorderColor(Macolor.textgrey);
+
         submitBtn.setText("บันทึก");
+        submitBtn.setBorderColor(Macolor.trans);
+        submitBtn.setButtonColor(Macolor.magreen);
+        submitBtn.setTextColor(Color.white);
         submitBtn.addActionListener(this::submitBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

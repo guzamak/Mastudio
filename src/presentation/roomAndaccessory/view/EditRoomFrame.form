@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <Properties>
+    <Property name="title" type="java.lang.String" value="&#xe40;&#xe40;&#xe01;&#xe49;&#xe44;&#xe02;&#xe2b;&#xe49;&#xe2d;&#xe07;"/>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -38,9 +41,7 @@
                           <Component id="maLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="maLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="maLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                      <EmptySpace min="130" pref="295" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -49,18 +50,10 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="maLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="maLabel2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="maLabel4" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Component id="maLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="maLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="roomname" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -79,20 +72,35 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="+ &#xe40;&#xe1e;&#xe34;&#xe48;&#xe21;&#xe2b;&#xe49;&#xe2d;&#xe07;&#xe43;&#xe2b;&#xe21;&#xe48;"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maLabel1.setTextColor(Macolor.magreen);&#xa;maLabel1.setFont(IBMPlexSansThaiFont.medium(16));"/>
+      </AuxValues>
     </Component>
     <Component class="app.core.components.MaLabel" name="maLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xe0a;&#xe37;&#xe48;&#xe2d;&#xe2b;&#xe49;&#xe2d;&#xe07;"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="maLabel2.setFont(IBMPlexSansThaiFont.medium(14f));"/>
+      </AuxValues>
     </Component>
     <Component class="app.core.components.MaLabel" name="maLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xe23;&#xe32;&#xe04;&#xe32;&#xe15;&#xe48;&#xe2d;&#xe0a;&#xe31;&#xe48;&#xe27;&#xe42;&#xe21;&#xe07;"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="maLabel3.setFont(IBMPlexSansThaiFont.medium(14f));"/>
+      </AuxValues>
     </Component>
     <Component class="app.core.components.MaTextField" name="roomname">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="roomname.setArc(20);&#xa;roomname.setPadding(10);&#xa;roomname.setColumns(20);&#xa;roomname.setFieldColor(Color.white);&#xa;roomname.setBorderSize(1);&#xa;roomname.setBorderColor(Macolor.textgrey);"/>
+      </AuxValues>
     </Component>
     <Component class="app.core.components.MaTextField" name="priceperhour">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="priceperhour.setArc(20);&#xa;priceperhour.setPadding(10);&#xa;priceperhour.setColumns(20);&#xa;priceperhour.setFieldColor(Color.white);&#xa;priceperhour.setBorderSize(1);&#xa;priceperhour.setBorderColor(Macolor.textgrey);"/>
+      </AuxValues>
     </Component>
     <Component class="app.core.components.MaButton" name="maButton1">
       <Properties>
@@ -101,11 +109,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maButton1ActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="app.core.components.MaLabel" name="maLabel4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="maLabel4"/>
-      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="maButton1.setBorderColor(Macolor.trans);&#xa;maButton1.setButtonColor(Macolor.magreen);&#xa;maButton1.setTextColor(Color.white);"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
