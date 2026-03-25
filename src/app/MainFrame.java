@@ -62,6 +62,7 @@ public class MainFrame extends MaFrame {
             frame.setVisible(true);
             if (SessionManager.hasSession()) {
                 DashboardFrame d = new DashboardFrame();
+                MainFrame.instance.openInternalFrame(new TimeNotificationFrame());
                 MainFrame.instance.openInternalFrame(d);
             } else {
                 SignInFrame s = new SignInFrame();
