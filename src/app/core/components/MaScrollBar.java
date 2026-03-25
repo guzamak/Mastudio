@@ -45,8 +45,8 @@ public class MaScrollBar extends BasicScrollBarUI {
         g2.fillRoundRect(
                 thumbBounds.x,
                 thumbBounds.y,
-                thickness,
-                thumbBounds.height,
+                (scrollbar.getOrientation() == JScrollBar.VERTICAL ) ? thickness : thumbBounds.width,
+                (scrollbar.getOrientation() == JScrollBar.VERTICAL ) ? thumbBounds.height : thickness,
                 arc, arc
         );
 

@@ -44,10 +44,12 @@
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaOptionPane.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/receipt/controller/Receipt.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/editbookAccessory/view/BookAccessoryFrame.java</file>
-            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/Backgroud.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/editbookAccessory/view/EditBookAccessoryFrame.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/MaCheckBox.java</file>
             <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/core/components/Macolor.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/payment/controller/Payment.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/presentation/payment/view/PaymentHistoryFrame.java</file>
+            <file>file:/C:/Users/poke/Documents/NetBeansProjects/MaStudio/src/app/TimeNotificationFrame.java</file>
         </group>
     </open-files>
 </project-private>
