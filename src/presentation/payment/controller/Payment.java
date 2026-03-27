@@ -83,9 +83,9 @@ public class Payment extends ApiObject {
             return;
         }
         try {
-            
+
             HashMap<String, String> params = new HashMap<>();
-            params.put("sort","-paid_at");
+            params.put("sort", "-paid_at");
 
             PocketBaseClient.PBResponse res = pb.getRecords("java_payment", params);
             if (!res.isOk()) {

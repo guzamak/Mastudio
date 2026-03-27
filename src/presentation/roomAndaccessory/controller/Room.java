@@ -115,7 +115,7 @@ public class Room extends ApiObject {
 
     public static HashMap<String, String> getRoomNameToIdMap() {
         HashMap<String, String> result = new HashMap<>();
-//        for null id
+        // for null id
         for (String roomId : data.keySet()) {
             Room room = data.get(roomId);
 
@@ -191,7 +191,7 @@ public class Room extends ApiObject {
         }
 
         try {
-//                        System.out.println(Booking.data.get("zdw04rqxanu69ml").getRoomId());
+            // System.out.println(Booking.data.get("zdw04rqxanu69ml").getRoomId());
             for (Booking booking : Booking.data.values()) {
                 System.out.println("del room id :" + roomId + "\n" + "booking roomid :" + booking.getRoomId());
                 if (roomId.equals(booking.getRoomId())) {

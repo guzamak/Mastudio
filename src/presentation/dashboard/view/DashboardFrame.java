@@ -78,7 +78,8 @@ public class DashboardFrame extends MaInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
@@ -106,25 +107,22 @@ public class DashboardFrame extends MaInternalFrame {
         javax.swing.GroupLayout bookingFrame1Layout = new javax.swing.GroupLayout(bookingFrame1.getContentPane());
         bookingFrame1.getContentPane().setLayout(bookingFrame1Layout);
         bookingFrame1Layout.setHorizontalGroup(
-            bookingFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1, Short.MAX_VALUE)
-        );
+                bookingFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 1, Short.MAX_VALUE));
         bookingFrame1Layout.setVerticalGroup(
-            bookingFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1, Short.MAX_VALUE)
-        );
+                bookingFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 1, Short.MAX_VALUE));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+                new Object[][] {
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null }
+                },
+                new String[] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }));
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -132,8 +130,8 @@ public class DashboardFrame extends MaInternalFrame {
 
         maPanel2.setBorderColor(Macolor.trans);
         java.awt.GridBagLayout maPanel2Layout = new java.awt.GridBagLayout();
-        maPanel2Layout.columnWidths = new int[] {0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0};
-        maPanel2Layout.rowHeights = new int[] {0};
+        maPanel2Layout.columnWidths = new int[] { 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0, 17, 0 };
+        maPanel2Layout.rowHeights = new int[] { 0 };
         maPanel2.setLayout(maPanel2Layout);
 
         imageLabel1.setImage("src/resources/images/Profile.png");
@@ -148,8 +146,8 @@ public class DashboardFrame extends MaInternalFrame {
         maPanel1.setBorderColor(Macolor.magreen);
         maPanel1.setPadding(20);
         java.awt.GridBagLayout maPanel1Layout = new java.awt.GridBagLayout();
-        maPanel1Layout.columnWidths = new int[] {0, 22, 0, 22, 0};
-        maPanel1Layout.rowHeights = new int[] {0, 16, 0, 16, 0};
+        maPanel1Layout.columnWidths = new int[] { 0, 22, 0, 22, 0 };
+        maPanel1Layout.rowHeights = new int[] { 0, 16, 0, 16, 0 };
         maPanel1.setLayout(maPanel1Layout);
 
         maButton5.setText("ประวัติการโอนเงิน");
@@ -224,10 +222,10 @@ public class DashboardFrame extends MaInternalFrame {
         maLabel1.setFont(IBMPlexSansThaiFont.medium(14f));
 
         refreshButton.setText("Refresh");
-        //ImageIcon icon = new ImageIcon("src/resources/images/refresh.png");
+        // ImageIcon icon = new ImageIcon("src/resources/images/refresh.png");
         //
-        //Image img = icon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);
-        //refreshButton.setIcon(new ImageIcon(img));
+        // Image img = icon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);
+        // refreshButton.setIcon(new ImageIcon(img));
         refreshButton.setText(null);
         refreshButton.setBorderColor(Macolor.trans);
         refreshButton.setBackground(Macolor.trans);
@@ -238,71 +236,109 @@ public class DashboardFrame extends MaInternalFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(navLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(imageLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(maPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Logoutbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(maTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(navLabel, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(imageLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 173,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(69, 69, 69)
+                                                                .addComponent(maPanel2,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(31, 31, 31)
+                                                                .addComponent(maLabel1,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(Logoutbtn,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(refreshButton,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 41,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(maTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 674,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 688,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(47, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(navLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(maLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Logoutbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2)))
-                        .addComponent(maPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(imageLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(maTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(32, 32, 32)
+                                                .addComponent(navLabel, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(43, 43, 43)
+                                                                .addGroup(layout.createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                        .addComponent(maLabel1,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(Logoutbtn,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
+                                                                .createSequentialGroup()
+                                                                .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(refreshButton,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(2, 2, 2)))
+                                                .addComponent(maPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(114, 114, 114)
+                                                .addComponent(imageLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(maPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30,
+                                        Short.MAX_VALUE)
+                                .addComponent(maTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 272,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void maButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton4ActionPerformed
+    private void maButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_maButton4ActionPerformed
         // ReceiptPageFrame
         MainFrame.getInstance().openInternalFrame(new ReceiptPageFrame());
-    }//GEN-LAST:event_maButton4ActionPerformed
+    }// GEN-LAST:event_maButton4ActionPerformed
 
-    private void maButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maButton3ActionPerformed
+    private void maButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_maButton3ActionPerformed
         // TODO add your handling code here:
         MainFrame.getInstance().openInternalFrame(new BookAccessoryFrame());
-    }//GEN-LAST:event_maButton3ActionPerformed
+    }// GEN-LAST:event_maButton3ActionPerformed
 
     private void LogoutbtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_LogoutbtnActionPerformed
         SessionManager.clearSession();
@@ -336,7 +372,7 @@ public class DashboardFrame extends MaInternalFrame {
     private void loadBookings() {
 
         Booking.loadBookings(logger);
-         updateRender();
+        updateRender();
     }
 
     public void updateRender() {

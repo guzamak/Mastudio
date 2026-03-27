@@ -206,7 +206,7 @@ public class Receipt {
     private int drawDivider(Graphics2D g, int y) {
         y += 10;
         g.setColor(DIVIDER);
-        g.setStroke(new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10f, new float[]{4f, 4f}, 0f));
+        g.setStroke(new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10f, new float[] { 4f, 4f }, 0f));
         g.drawLine(PAD, y, PAD + CONTENT_W, y);
         g.setStroke(new BasicStroke(1f));
         return y + 10;

@@ -52,7 +52,6 @@ public class Accessory extends ApiObject {
         this.pricePerHour = pricePerHour;
     }
 
-    
     public static void updateAccessoryData(Accessory accessory, String name, String price) {
         accessory.setName(name);
 
@@ -65,7 +64,7 @@ public class Accessory extends ApiObject {
 
         accessory.setPricePerHour(pricePerHour);
     }
-    
+
     public static void loadAccessories(java.util.logging.Logger logger) {
         if (!pb.isAuthenticated()) {
             return;

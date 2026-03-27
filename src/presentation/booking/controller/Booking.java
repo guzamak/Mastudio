@@ -30,10 +30,12 @@ public class Booking extends ApiObject {
     private String timeSlot;
     private String checkIn;
     private List<String> accessoryIds = new ArrayList<>();
-//    public static HashMap<String, Booking> data = new HashMap<>();
-//    LinkedHashMap make put order have effect not sort by id but what come first
+    // public static HashMap<String, Booking> data = new HashMap<>();
+    // LinkedHashMap make put order have effect not sort by id but what come first
     public static LinkedHashMap<String, Booking> data = new LinkedHashMap<>();
-    public static ArrayList<String> time_slot_list = new ArrayList<>(List.of("10.00-11.00", "11.00-12.00", "12.00-13.00", "13.00-14.00", "14.00-15.00", "15.00-16.00", "16.00-17.00", "17.00-18.00", "18.00-19.00", "19.00-20.00"));
+    public static ArrayList<String> time_slot_list = new ArrayList<>(
+            List.of("10.00-11.00", "11.00-12.00", "12.00-13.00", "13.00-14.00", "14.00-15.00", "15.00-16.00",
+                    "16.00-17.00", "17.00-18.00", "18.00-19.00", "19.00-20.00"));
 
     public Booking(String id, String room, String customer, String timeSlot, String checkIn, String roomId) {
         this.id = id;
@@ -111,13 +113,12 @@ public class Booking extends ApiObject {
         }
         return false;
     }
-    
+
     public static boolean isRoomBooked(String roomId, String date, String timeSlot, String currentBookingId) {
         for (Booking b : data.values()) {
             if (currentBookingId != null && currentBookingId.equals(b.getId())) {
                 continue;
             }
-
 
             if (b.getRoomId().equals(roomId)
                     && b.getCheckIn().equals(date)
@@ -152,7 +153,7 @@ public class Booking extends ApiObject {
                 List<String> accIds = PocketBaseClient.extractJsonArray(item, "accessories");
                 Booking b = new Booking(id, roomName, customerName, timeslot, checkIn, roomId);
                 b.setAccessoryIds(accIds);
-//                System.out.println("id" + id + "checkin" + checkIn);
+                // System.out.println("id" + id + "checkin" + checkIn);
                 Booking.data.put(id, b);
             }
         } catch (java.io.IOException | InterruptedException ex) {
@@ -161,8 +162,7 @@ public class Booking extends ApiObject {
     }
 
     public static void updateBookingData(Booking booking, String room, String id, String customerName, String timeSlot,
-            String checkInYearStr, String checkInMonthStr, String checkInDayStr
-    ) {
+            String checkInYearStr, String checkInMonthStr, String checkInDayStr) {
         booking.setRoom(room);
         booking.setRoomId(id);
         booking.setCustomer(customerName);
@@ -173,7 +173,8 @@ public class Booking extends ApiObject {
         int checkInHour = 0;
         int checkInMinute = 0;
 
-        LocalDateTime checkInDateTime = LocalDateTime.of(checkInYear, checkInMonth, checkInDay, checkInHour, checkInMinute);
+        LocalDateTime checkInDateTime = LocalDateTime.of(checkInYear, checkInMonth, checkInDay, checkInHour,
+                checkInMinute);
         OffsetDateTime checkInOffset = checkInDateTime.atOffset(ZoneOffset.UTC);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSX");
 

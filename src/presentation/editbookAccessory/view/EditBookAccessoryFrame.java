@@ -21,7 +21,8 @@ import javax.swing.*;
 
 public class EditBookAccessoryFrame extends MaInternalFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EditBookAccessoryFrame.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger
+            .getLogger(EditBookAccessoryFrame.class.getName());
 
     private final Booking booking;
     private final BookAccessoryFrame parent;
@@ -38,17 +39,18 @@ public class EditBookAccessoryFrame extends MaInternalFrame {
         setTitle("แก้ไขอุปกรณ์การจอง");
 
         MaLabel infoLabel = new MaLabel();
-        infoLabel.setText("การจอง: " + booking.getRoom() + " | " + booking.getCustomer() + " | " + booking.getTimeSlot());
+        infoLabel.setText(
+                "การจอง: " + booking.getRoom() + " | " + booking.getCustomer() + " | " + booking.getTimeSlot());
         infoLabel.setFont(IBMPlexSansThaiFont.medium(16f));
         infoLabel.setTextColor(Macolor.magreen);
 
         MaPanel checkPanel = new MaPanel();
-        checkPanel.setPadding(20,10,0,0);
+        checkPanel.setPadding(20, 10, 0, 0);
         checkPanel.setBorderColor(Macolor.trans);
         checkPanel.setLayout(new BoxLayout(checkPanel, BoxLayout.Y_AXIS));
 
         for (Accessory a : Accessory.data.values()) {
-            
+
             MaCheckBox cb = new MaCheckBox();
             cb.setText(a.getName() + "  (" + (int) a.getPricePerHour() + " บาท/ชม)");
             cb.setOpaque(false);

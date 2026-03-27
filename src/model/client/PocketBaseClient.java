@@ -8,6 +8,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import model.utils.ApiObject;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -76,9 +77,19 @@ public class PocketBaseClient {
         return post("/api/collections/" + collection + "/records", jsonBody);
     }
 
+    public PBResponse createRecord(String collection, ApiObject obj)
+            throws IOException, InterruptedException {
+        return createRecord(collection, obj.toJson());
+    }
+
     public PBResponse updateRecord(String collection, String recordId, String jsonBody)
             throws IOException, InterruptedException {
         return patch("/api/collections/" + collection + "/records/" + recordId, jsonBody);
+    }
+
+    public PBResponse updateRecord(String collection, String recordId, ApiObject obj)
+            throws IOException, InterruptedException {
+        return updateRecord(collection, recordId, obj.toJson());
     }
 
     public PBResponse deleteRecord(String collection, String recordId)
