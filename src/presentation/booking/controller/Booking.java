@@ -207,6 +207,11 @@ public class Booking extends ApiObject {
             return;
         }
 
+        // Check if the room is already booked.
+        if (isRoomBooked(booking.getRoomId(), booking.getCheckIn(), booking.getTimeSlot(), booking.getId())) {
+            return;
+        }
+
         try {
             String jsonPayload = booking.toJson();
             System.out.println(jsonPayload);
