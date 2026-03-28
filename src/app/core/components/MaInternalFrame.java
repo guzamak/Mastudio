@@ -50,6 +50,7 @@ public class MaInternalFrame extends JInternalFrame {
             super(jif);
         }
 
+        @Override
         protected JComponent createNorthPane(JInternalFrame jif) {
 
             MetalInternalFrameTitlePane titlePane = new MetalInternalFrameTitlePane(jif) {
